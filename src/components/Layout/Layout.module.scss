@@ -1,0 +1,115 @@
+/* shared */
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 0 16px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+/* HEADER */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 1000;
+  background-color: #0f1121;
+  border-bottom: 1px solid #3b3e5b;
+}
+
+/* icons & logo images */
+.icon img,
+.logo img {
+  height: 24px;
+  width: 24px;
+  transition: transform 0.3s ease;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+}
+
+.nav {
+  display: flex;
+  gap: 32px;
+}
+
+.link {
+  color: #89939a;
+  text-decoration: none;
+  font-weight: 600;
+  padding-bottom: 8px;
+  border-bottom: 2px solid transparent;
+  transition: color 0.3s ease, border-color 0.3s ease;
+}
+
+.active {
+  color: #fff;
+  border-bottom-color: #fff;
+}
+
+.actions {
+  display: flex;
+  gap: 24px;
+}
+
+.icon {
+  position: relative;
+}
+
+/* MAIN */
+.main {
+  padding: 24px 0;
+}
+
+/* FOOTER */
+.footer {
+  border-top: 1px solid #3b3e5b;
+  background-color: #0f1121;
+  padding: 24px 0;
+  margin-top: 64px;
+}
+
+.github {
+  color: #89939a;
+  text-decoration: none;
+  transition: color 0.3s ease;
+
+  &:hover {
+    color: #fff;
+  }
+}
+
+.backToTop {
+  background: none;
+  border: none;
+  color: #89939a;
+  cursor: pointer;
+  font-weight: 600;
+  transition: color 0.3s ease, transform 0.3s ease;
+
+  &:hover {
+    color: #fff;
+    transform: translateY(-2px);
+  }
+}
+
+.counter {
+  position: absolute;
+  top: -6px;
+  right: -6px;
+
+  width: 16px;
+  height: 16px;
+  border-radius: 50%;
+
+  background-color: #eb5757;
+  color: #fff;
+  font-size: 10px;
+  font-weight: 700;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}

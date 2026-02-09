@@ -1,5 +1,5 @@
 // eslint-disable-next-line max-len
-import { ProductsList } from '../../../ProductsPage/components/ProductsList/ProductsList';
+import { ProductsList } from '../../../ProductPage/components/ProductList';
 import styles from './SuggestedProducts.module.scss';
 
 type Props = {

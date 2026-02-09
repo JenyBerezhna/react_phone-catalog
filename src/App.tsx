@@ -6,7 +6,7 @@ import { Layout } from './components/Layout/Layout';
 import { NotFoundPage } from './components/NotFoundPage/NotFoundPage';
 
 import { HomePage } from './modules/HomePage/HomePage';
-import { ProductsPage } from './modules/ProductsPage/ProductsPage';
+import { ProductsPage } from './modules/ProductPage/ProductPage';
 // eslint-disable-next-line max-len
 import { ProductDetailsPage } from './modules/ProductDetailsPage/ProductDetailsPage';
 import { FavoritesPage } from './modules/FavoritesPage/FavoritesPage';

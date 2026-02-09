@@ -5,6 +5,8 @@ const handleBackToTop = () => {
   });
 };
 
+import styles from './Footer.module.css';
+
 <button type="button" onClick={handleBackToTop} className={styles.backToTop}>
   Back to top
 </button>;

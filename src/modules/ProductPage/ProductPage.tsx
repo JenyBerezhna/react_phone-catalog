@@ -1,7 +1,7 @@
 import { useMemo } from 'react';
 
-import { ProductsList } from './components/ProductsList/ProductsList';
-import { Pagination } from '../../components/Pagination/Pagination';
+import { ProductsList } from './components/ProductList';
+import { Pagination } from '../../shared/Pagination/Pagination';
 import { WithLoader } from '../../components/WithLoader';
 
 import { useProducts } from '../../hooks/useProducts';

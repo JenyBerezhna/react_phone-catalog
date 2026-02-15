@@ -1,4 +1,6 @@
-/* Visually hidden but accessible */
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
 .visuallyHidden {
   position: absolute;
   width: 1px;

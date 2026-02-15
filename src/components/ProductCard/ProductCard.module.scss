@@ -1,3 +1,6 @@
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
 .product-card {
   background: $bg-primary;
   padding: $space-3;

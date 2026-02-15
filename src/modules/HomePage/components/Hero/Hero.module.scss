@@ -1,4 +1,6 @@
-/* Root */
+@import '../../styles/variables';
+@import '../../styles/mixins';
+
 .slider {
   position: relative;
   width: 100%;
@@ -7,7 +9,7 @@
   border-radius: $radius-l;
 
   @include flex-center;
-  
+
   background: $bg-primary;
 
   @include tablet {

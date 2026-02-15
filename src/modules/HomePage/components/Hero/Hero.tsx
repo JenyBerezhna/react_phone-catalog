@@ -1,4 +1,4 @@
-import styles from './ProductsSlider.module.scss';
+import styles from './Hero.module.scss';
 import { useSlider } from '../../../../hooks/useSlider';
 
 const images = [

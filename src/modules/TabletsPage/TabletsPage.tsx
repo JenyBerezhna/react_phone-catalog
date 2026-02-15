@@ -6,9 +6,9 @@ import { WithLoader } from '../../components/WithLoader';
 import { ProductsList } from '../../modules/ProductPage/components/ProductsList';
 import { Pagination } from '../../shared/Pagination';
 import { SortSelect } from '../../modules/SortSelect/SortSelect';
-import styles from './PhonesPage.module.scss';
+import styles from './TabletsPage.module.scss';
 
-export const PhonesPage = () => {
+export const TabletsPage = () => {
   const { products, loading, error } = useProducts();
   const [params, setParams] = useSearchParams();
 
@@ -24,10 +24,10 @@ export const PhonesPage = () => {
     setParams(newParams);
   };
 
-  const phones = products.filter(p => p.category === 'phones');
+  const tablets = products.filter(p => p.category === 'tablets');
 
   const { sort, sortedProducts, setSort } = useSort(
-    phones,
+    tablets,
     Object.fromEntries(params),
     setParam,
   );
@@ -35,13 +35,13 @@ export const PhonesPage = () => {
   return (
     <WithLoader loading={loading} error={error}>
       <div className={styles.wrapper}>
-        <h1 className={styles.title}>Mobile phones</h1>
+        <h1 className={styles.title}>Tablets</h1>
 
         <div className={styles.topBar}>
           <SortSelect sort={sort} setSort={setSort} />
           <Pagination
             total={sortedProducts.length}
-            currentPage={Number(params.get('page')) || 1}
+            currentPage={1}
             totalPages={Math.ceil(sortedProducts.length / 10)}
             onPageChange={page => setParam('page', page.toString())}
           />

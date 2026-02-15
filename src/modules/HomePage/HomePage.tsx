@@ -2,7 +2,7 @@ import styles from './HomePage.module.scss';
 
 import { Hero } from './components/Hero/Hero';
 // eslint-disable-next-line max-len
-import { ProductsSlider } from '../HomePage/components/ProductsSlider/ProductsSlider';
+import { ProductsSlider } from './components/ProductsSlider/ProductsSlider';
 import { CategoryCard } from '../../components/CategoryCard/CategoryCard';
 
 import { useProducts } from '../../hooks/useProducts';

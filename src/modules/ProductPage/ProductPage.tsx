@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { ProductsList } from './components/ProductList';
+import { ProductsList } from '../ProductPage/components/ProductsList';
 import { Pagination } from '../../shared/Pagination/Pagination';
 import { WithLoader } from '../../components/WithLoader';
 
@@ -79,6 +79,7 @@ export const ProductsPage: React.FC<Props> = ({ type }) => {
                 currentPage={page}
                 totalPages={totalPages}
                 onPageChange={setPage}
+                total={filtered.length}
               />
             )}
           </>

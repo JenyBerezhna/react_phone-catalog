@@ -1,0 +1,24 @@
+:root {
+  /* Colors */
+  $bg-primary: #0f1121;
+  $bg-secondary: #0d0f1d;
+  $text-primary: #fff;
+  $text-secondary: rgba(255, 255, 255, 0.6);
+  $accent-primary: #905bff;
+
+  /* Spacing */
+  $space-1: 4px;
+  $space-2: 8px;
+  $space-3: 16px;
+  $space-4: 24px;
+  $space-5: 32px;
+  $space-6: 48px;
+
+  /* Radius */
+  $radius-s: 4px;
+  $radius-m: 8px;
+  $radius-l: 16px;
+
+  /* Animation */
+  $transition: 0.3s ease;
+}

@@ -1,0 +1,15 @@
+.wrapper {
+  min-height: 60vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  text-align: center;
+  padding: 32px 16px;
+}
+
+.wrapper h2 {
+  font-size: 32px;
+  font-weight: 700;
+  color: $text-primary;
+}

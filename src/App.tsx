@@ -2,8 +2,8 @@ import './App.scss';
 import { Routes, Route } from 'react-router-dom';
 import { CartProvider } from './shared/context/CartContext';
 
-import { Layout } from './components/Layout/Layout';
-import { NotFoundPage } from './components/NotFoundPage/NotFoundPage';
+import { Layout } from './components/Layout';
+import { NotFoundPage } from './modules/NotFoundPage/NotFoundPage';
 
 import { HomePage } from './modules/HomePage/HomePage';
 import { ProductsPage } from './modules/ProductPage/ProductPage';

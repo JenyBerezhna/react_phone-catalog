@@ -1,31 +1,52 @@
 .categories {
-  margin: 48px 0;
+  margin-bottom: 64px;
 }
 
 .title {
-  font-size: 24px;
+  font-size: 32px;
+  font-weight: 700;
+  color: var(--text-primary);
   margin-bottom: 24px;
 }
 
+/* Grid of 3 category items */
 .list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 16px;
+  gap: 24px;
 }
 
+/* Each category tile */
 .item {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 16px;
+
   text-decoration: none;
-  color: inherit;
+  color: $text-primary;
 
-  img {
-    width: 100%;
-    transition: transform 0.3s ease;
-  }
+  transition: transform 0.3s ease;
+}
 
-  &:hover img {
-    transform: scale(1.1);
-  }
+.item:hover {
+  transform: translateY(-4px);
+}
+
+/* Category image */
+.item img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+
+  transition: transform 0.3s ease;
+}
+
+.item:hover img {
+  transform: scale(1.1);
+}
+
+/* Category label */
+.item span {
+  font-size: 18px;
+  font-weight: 700;
 }

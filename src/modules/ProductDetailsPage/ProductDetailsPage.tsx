@@ -1,19 +1,9 @@
 import { useParams } from 'react-router-dom';
+import { useState } from 'react';
 
-import { Breadcrumbs } from './components/Breadcrumbs';
-import { BackButton } from './components/BackButton';
-import { ImageSelector } from './components/ImageSelector';
-import { ColorSelector } from './components/ColorSelector';
-import { CapacitySelector } from './components/CapacitySelector';
-import { TechSpecs } from './components/TechSpecs';
-import { AboutSection } from './components/AboutSection';
-// eslint-disable-next-line max-len
-import { SuggestedProducts } from '../ProductDetailsPage/components/SuggestedProducts/SuggestedProducts';
-
+import { WithLoader } from '../../components/WithLoader';
 import { useProductDetails } from '../../hooks/useProductDetails';
 import { useSuggestedProducts } from '../../hooks/useSuggestedProducts';
-import { useState } from 'react';
-import { WithLoader } from '../../components/WithLoader';
 
 export const ProductDetailsPage = () => {
   const { productId } = useParams();
@@ -23,8 +13,6 @@ export const ProductDetailsPage = () => {
   );
 
   const [selectedImage, setSelectedImage] = useState('');
-  const [selectedColor, setSelectedColor] = useState('');
-  const [selectedCapacity, setSelectedCapacity] = useState('');
 
   return (
     <WithLoader loading={loading} error={error}>
@@ -32,39 +20,50 @@ export const ProductDetailsPage = () => {
         <p>Product was not found</p>
       ) : (
         <section className="product-details">
-          <Breadcrumbs category={product.category} name={product.name} />
-          <BackButton />
-
           <div className="product-details__content">
-            <ImageSelector
-              images={product.images}
-              selected={selectedImage || product.images[0]}
-              onSelect={setSelectedImage}
-            />
+            <div className="product-details__images">
+              <img
+                src={selectedImage || product.images[0]}
+                alt={product.name}
+                className="product-details__main-image"
+              />
+
+              <div className="product-details__thumbnails">
+                {product.images.map((img: string) => (
+                  <button
+                    key={img}
+                    onClick={() => setSelectedImage(img)}
+                    className="product-details__thumbnail"
+                  >
+                    <img src={img} alt={product.name} />
+                  </button>
+                ))}
+              </div>
+            </div>
 
             <div className="product-details__info">
               <h1>{product.name}</h1>
 
-              <ColorSelector
-                colors={product.colorsAvailable}
-                selected={selectedColor || product.color}
-                onSelect={setSelectedColor}
-              />
+              <p className="product-details__price">
+                ${product.price ?? product.fullPrice}
+              </p>
 
-              <CapacitySelector
-                capacities={product.capacityAvailable}
-                selected={selectedCapacity || product.capacity}
-                onSelect={setSelectedCapacity}
-              />
-
-              <TechSpecs product={product} />
+              <ul className="product-details__specs">
+                <li>Screen: {product.screen}</li>
+                <li>Resolution: {product.resolution}</li>
+                <li>Processor: {product.processor}</li>
+                <li>RAM: {product.ram}</li>
+              </ul>
             </div>
           </div>
 
-          <AboutSection description={product.description} />
-
           <WithLoader loading={loadingSuggested} error={errorSuggested}>
-            <SuggestedProducts products={suggested} />
+            {suggested.length > 0 && (
+              <div className="product-details__suggested">
+                <h2>You may also like</h2>
+                {/* Render your suggested products however you prefer */}
+              </div>
+            )}
           </WithLoader>
         </section>
       )}

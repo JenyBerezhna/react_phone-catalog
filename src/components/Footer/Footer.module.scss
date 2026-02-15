@@ -1,55 +1,54 @@
+/* Footer wrapper */
 .footer {
-  background: #0F1121;
-  ;
-  padding: 32px 0;
+  background: $bg-primary;
+  padding: $space-5 0;
 }
 
-.footer__container {
-  width: 1440px;
-  margin: 0 auto;
-  padding: 0 16px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
+/* Same width as Header + Layout */
+.container {
+  @include container;
+  @include flex-between;
 }
 
-.footer__logo {
+/* GitHub link */
+.github {
   font-size: 16px;
   font-weight: 700;
-  color: var(--text-primary);
+  color: $text-primary;
+  text-decoration: none;
+  transition: color $transition;
+
+  &:hover {
+    color: $accent-primary;
+  }
 }
 
-.footer__nav {
-  display: flex;
-  gap: 32px;
-}
-
-.footer__nav-item {
-  font-size: 13px;
-  color: var(--text-muted);
-  cursor: pointer;
-}
-
-.footer__nav-item:hover {
-  color: var(--text-primary);
-}
-
-.footer__back-to-top {
+/* Back to top button */
+.backToTop {
   width: 32px;
   height: 32px;
-  background: var(--bg-elevated);
-  border-radius: var(--radius-sm);
-  display: flex;
-  align-items: center;
-  justify-content: center;
+
+  background: $bg-elevated;
+  border-radius: $radius-s;
+  border: none;
+
+  @include flex-center;
+
+  color: $text-primary;
   cursor: pointer;
+  transition: all $transition;
+
+  &:hover {
+    background: $surface-3;
+    transform: translateY(-2px);
+  }
 }
 
+/* Global image hover scale (10%) */
 .imageLink img {
-  transition: transform 0.3s ease;
+  transition: transform $transition;
 
   &:hover {
     transform: scale(1.1);
   }
 }
-

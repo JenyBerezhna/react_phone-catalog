@@ -1,0 +1,51 @@
+/* Breakpoints */
+$mobile-max: 639px;
+$tablet-min: 640px;
+$tablet-max: 1199px;
+$desktop-min: 1200px;
+
+/* Media mixins */
+@mixin mobile {
+  @media (max-width: #{$mobile-max}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-min}) and (max-width: #{$tablet-max}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-min}) {
+    @content;
+  }
+}
+
+/* Layout helpers */
+@mixin container {
+  width: 100%;
+  max-width: 1136px;
+  margin: 0 auto;
+  padding: 0 16px;
+}
+
+@mixin flex-center {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+@mixin flex-between {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+@mixin hover-scale($scale: 1.1) {
+  transition: transform var(--transition);
+  &:hover {
+    transform: scale($scale);
+  }
+}

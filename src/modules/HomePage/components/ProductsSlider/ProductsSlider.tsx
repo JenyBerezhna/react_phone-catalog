@@ -18,12 +18,14 @@ export const ProductsSlider: React.FC<Props> = ({ title, products }) => {
   };
 
   return (
-    <section>
-      <h2>{title}</h2>
+    <section className={styles.slider}>
+      <div className={styles.header}>
+        <h2 className={styles.title}>{title}</h2>
 
-      <div className={styles.controls}>
-        <button onClick={() => scroll(-300)}>‹</button>
-        <button onClick={() => scroll(300)}>›</button>
+        <div className={styles.controls}>
+          <button onClick={() => scroll(-300)}>‹</button>
+          <button onClick={() => scroll(300)}>›</button>
+        </div>
       </div>
 
       <div className={styles.list} ref={ref}>

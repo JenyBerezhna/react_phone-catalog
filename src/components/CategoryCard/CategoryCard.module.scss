@@ -1,12 +1,29 @@
 .card {
   display: flex;
   flex-direction: column;
-  align-items: center;
-  justify-content: center;
-  width: 200px;
-  height: 200px;
-  background-color: #f5f5f5;
-  border-radius: 10px;
-  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  transition: transform 0.2s ease-in-out;
+  gap: $space-3;
+  text-decoration: none;
+  color: $text-primary;
+  transition: transform $transition;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    border-radius: $radius-m;
+    transition: transform $transition;
+  }
+
+  &:hover img {
+    transform: scale(1.1);
+  }
+
+  h3 {
+    font-size: 18px;
+    font-weight: 700;
+    margin: 0;
+  }
 }

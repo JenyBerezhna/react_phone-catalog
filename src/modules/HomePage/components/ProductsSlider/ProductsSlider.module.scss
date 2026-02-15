@@ -1,7 +1,86 @@
 .slider {
-  width: 1136;
-height: 432;
-top: 232px;
-left: 32px;
-opacity: 1;
+  margin-bottom: $space-6;
+}
+
+/* Title + arrows */
+.header {
+  @include flex-between;
+
+  margin-bottom: $space-4;
+}
+
+.title {
+  font-size: 32px;
+  font-weight: 700;
+  color: $text-primary;
+}
+
+/* Arrow buttons */
+.controls {
+  display: flex;
+  gap: $space-2;
+}
+
+.controls button {
+  width: 32px;
+  height: 32px;
+  border: none;
+  border-radius: 50%;
+  background: $surface-2;
+  color: $text-primary;
+  font-size: 20px;
+  cursor: pointer;
+  transition: $transition, transform $transition;
+
+  &:hover {
+    background: $surface-3;
+    transform: scale(1.1);
+  }
+}
+
+/* Horizontal scroll list */
+.list {
+  display: flex;
+  gap: $space-3;
+  overflow-x: auto;
+  scroll-behavior: smooth;
+  padding-bottom: $space-2;
+  scrollbar-width: none;
+
+  &::-webkit-scrollbar {
+    display: none;
+  }
+}
+
+/* Product card */
+.card {
+  min-width: 212px;
+  background: $surface-1;
+  border-radius: $radius-m;
+  padding: $space-3;
+  display: flex;
+  flex-direction: column;
+  gap: $space-2;
+  transition: transform $transition;
+
+  &:hover {
+    transform: translateY(-4px);
+  }
+
+  img {
+    width: 100%;
+    height: auto;
+    object-fit: contain;
+    transition: transform $transition;
+  }
+
+  &:hover img {
+    transform: scale(1.1);
+  }
+
+  p {
+    font-size: 14px;
+    color: $text-primary;
+    margin: 0;
+  }
 }

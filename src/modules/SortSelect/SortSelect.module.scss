@@ -1,0 +1,19 @@
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+}
+
+.label {
+  font-size: 12px;
+  color: $text-secondary;
+}
+
+.select {
+  padding: $space-2 $space-3;
+  border-radius: $radius-m;
+  border: 1px solid $surface-3;
+  background: $surface-1;
+  color: $text-primary;
+  cursor: pointer;
+}

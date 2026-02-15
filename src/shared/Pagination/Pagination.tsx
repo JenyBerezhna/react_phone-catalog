@@ -4,6 +4,7 @@ type Props = {
   currentPage: number;
   totalPages: number;
   onPageChange: (page: number) => void;
+  total: number;
 };
 
 export const Pagination: React.FC<Props> = ({

@@ -1,3 +1,6 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins/layout' as *;
+@use '../../styles/mixins/typography' as typo;
 
 .header {
   position: sticky;
@@ -21,7 +24,7 @@
 
   img {
     height: 24px;
-
+    
     @include hover-scale;
   }
 }
@@ -33,10 +36,14 @@
 }
 
 .link {
-  font-size: 14px;
+  @include typo.menu-typography(
+    $menu-font-size,
+    $menu-line-height,
+    $menu-font-size,  // if you want same size on mobile for now
+    $menu-line-height
+  );
+
   color: $text-secondary;
-  text-transform: uppercase;
-  letter-spacing: 0.04em;
   position: relative;
   transition: color $transition;
 
@@ -72,8 +79,18 @@
   @include flex-center;
 
   img {
-    width: 24px;
-    height: 24px;
+    width: 16px;
+    height: 16px;
+
+    @include tablet {
+      width: 24px;
+      height: 24px;
+    }
+
+    @include desktop {
+      width: 32px;
+      height: 32px;
+    }
 
     @include hover-scale;
   }
@@ -91,6 +108,8 @@
 
   background: $accent-primary;
   color: $text-primary;
+
+  font-family: $font-family-primary;
   font-size: 10px;
   font-weight: 700;
 

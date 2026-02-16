@@ -1,3 +1,6 @@
+@use '../../styles/variables' as *;
+@use '../../styles/mixins/layout' as *;
+@use '../../styles/mixins/typography' as typo;
 
 /* Footer wrapper */
 .footer {
@@ -13,8 +16,10 @@
 
 /* GitHub link */
 .github {
-  font-size: 16px;
+  @include typo.body-text;
+  
   font-weight: 700;
+
   color: $text-primary;
   text-decoration: none;
   transition: color $transition;
@@ -29,7 +34,7 @@
   width: 32px;
   height: 32px;
 
-  background: $bg-elevated;
+  background: $surface-2;
   border-radius: $radius-s;
   border: none;
 

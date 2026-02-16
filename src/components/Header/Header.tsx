@@ -19,7 +19,7 @@ export const Header = () => {
           className={styles.logo}
           aria-label="Go to homepage"
         >
-          <img src="/public/img/logo_3d.jpg" alt="Product Catalog" />
+          <img src="/public/img/logo/Logo.png" alt="Logo" />
         </NavLink>
 
         <nav className={styles.nav}>
@@ -43,7 +43,7 @@ export const Header = () => {
             className={styles.icon}
             aria-label="Favorites"
           >
-            <img src="/img/icons/favorites.svg" alt="" />
+            <img src="/img/icons/Favourites.png" alt="Favourites" />
 
             {favorites.length > 0 && (
               <span className={styles.counter}>{favorites.length}</span>
@@ -51,7 +51,7 @@ export const Header = () => {
           </NavLink>
 
           <NavLink to="/cart" className={styles.icon} aria-label="Cart">
-            <img src="/img/icons/cart.svg" alt="" />
+            <img src="/img/icons/Cart.png" alt="Shopping cart" />
 
             {cartCount > 0 && (
               <span className={styles.counter}>{cartCount}</span>

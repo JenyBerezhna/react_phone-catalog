@@ -2,9 +2,9 @@ import styles from './Hero.module.scss';
 import { useSlider } from '../../../../hooks/useSlider';
 
 const images = [
-  '/img/banner-phones.png',
-  '/img/banner-tablets.png',
-  '/img/banner-accessories.png',
+  '/img/banner-phones.jpg',
+  '/img/banner-tabs.jpeg',
+  '/img/banner-accessor.png',
 ];
 
 export const Hero = () => {

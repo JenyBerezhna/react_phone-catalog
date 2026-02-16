@@ -19,7 +19,7 @@ export const Header = () => {
           className={styles.logo}
           aria-label="Go to homepage"
         >
-          <img src="" alt="Product Catalog" />
+          <img src="/public/img/logo_3d.jpg" alt="Product Catalog" />
         </NavLink>
 
         <nav className={styles.nav}>

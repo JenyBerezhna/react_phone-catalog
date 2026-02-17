@@ -1,5 +1,6 @@
-@use "../variables" as *;
-@use "./media" as *; // ← THIS is required for @include mobile
+@use '../variables' as *;
+@use './media' as *;
+
 
 @mixin typography(
   $size,

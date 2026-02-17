@@ -1,2 +1,12 @@
 @use "./variables" as *;
-@use "./mixins" as *;
+
+* {
+  box-sizing: border-box;
+}
+
+body {
+  margin: 0;
+  background-color: $bg-primary;
+  color: $text-primary;
+  font-family: $font-family-primary;
+}

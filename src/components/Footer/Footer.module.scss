@@ -1,14 +1,8 @@
-@use '../../styles/variables' as *;
-@use '../../styles/mixins/layout' as *;
-@use '../../styles/mixins/typography' as typo;
-
-/* Footer wrapper */
 .footer {
   background: $bg-primary;
   padding: $space-5 0;
 }
 
-/* Same width as Header + Layout */
 .container {
   @include container;
   @include flex-between;
@@ -16,8 +10,8 @@
 
 /* GitHub link */
 .github {
-  @include typo.body-text;
-  
+  @include body-text;
+
   font-weight: 700;
 
   color: $text-primary;
@@ -50,7 +44,7 @@
   }
 }
 
-/* Global image hover scale (10%) */
+/* Global image hover scale */
 .imageLink img {
   transition: transform $transition;
 

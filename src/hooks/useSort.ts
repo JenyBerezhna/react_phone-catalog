@@ -20,7 +20,9 @@ export const useSort = (
 
     switch (sort) {
       case 'title':
-        return items.sort((a, b) => a.name.localeCompare(b.name));
+        return items.sort((a, b) =>
+          a.name.localeCompare(b.name, undefined, { sensitivity: 'base' }),
+        );
 
       case 'price':
         return items.sort((a, b) => getFinalPrice(a) - getFinalPrice(b));
@@ -32,8 +34,15 @@ export const useSort = (
   }, [products, sort]);
 
   const setSort = (value: SortKey) => {
-    setParam('sort', value);
-    setParam('page', null); // reset pagination
+    // Remove default from URL
+    if (value === 'age') {
+      setParam('sort', null);
+    } else {
+      setParam('sort', value);
+    }
+
+    // Reset pagination
+    setParam('page', null);
   };
 
   return {

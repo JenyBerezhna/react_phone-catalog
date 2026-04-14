@@ -4,6 +4,7 @@ type Props = {
   loading: boolean;
   error?: boolean;
   children: React.ReactNode;
+  errorSlot?: React.ReactNode;
 };
 
 export const WithLoader: React.FC<Props> = ({ loading, error, children }) => {

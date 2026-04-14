@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getSuggestedProducts } from '../shared/api/getSuggestedProducts';
+import { getSuggestedProducts } from '../shared/helpers/getSuggestedProducts';
 import { Product } from '../types/Product';
 
 export const useSuggestedProducts = (productId: string) => {

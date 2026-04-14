@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getProducts } from '../shared/api/products';
+import { getProducts } from '../shared/helpers/products';
 import { Product } from '../types/Product';
 
 export const useProducts = () => {

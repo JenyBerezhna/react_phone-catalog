@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import { getProductDetails } from '../shared/api/products';
+import { getProductDetails } from '../shared/helpers/products';
 // eslint-disable-next-line max-len
 import { ProductDetails } from '../modules/ProductDetailsPage/ProductDetailsPage';
 

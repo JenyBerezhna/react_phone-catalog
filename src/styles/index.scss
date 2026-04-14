@@ -1,4 +1,4 @@
-@forward './variables' as vars-*;
-@forward './breakpoints' as bp-*;
+@forward './variables' ;
+@forward './breakpoints';
 @forward './mixins/index';
 @forward './globals';

@@ -1,6 +1,6 @@
 import { WithLoader } from '../../components/WithLoader';
 // eslint-disable-next-line max-len
-import { ProductsList } from '../ProductPage/components/ProductsList';
+import { ProductsList } from '../CatalogPage/components/ProductsList';
 import { useFavorites } from '../../hooks/useFavorites';
 
 export const FavoritesPage = () => {

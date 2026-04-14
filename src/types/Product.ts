@@ -8,4 +8,5 @@ export type Product = {
   itemId: string;
   imageUrl: string;
   image: string;
+  namespaceId: string;
 };

@@ -1,7 +1,7 @@
-import { useMemo } from 'react';
+import { useEffect, useMemo } from 'react';
 import { Product } from '../types/Product';
 
-type PerPage = number | 'all';
+type PerPage = '4' | '8' | '16' | 'all';
 
 export const usePagination = ({
   products,
@@ -12,21 +12,33 @@ export const usePagination = ({
   params: Record<string, string>;
   setParam: (key: string, value: string | null) => void;
 }) => {
+  // Parse perPage
+  const perPage: PerPage =
+    params.perPage === '4' ||
+    params.perPage === '8' ||
+    params.perPage === '16' ||
+    params.perPage === 'all'
+      ? params.perPage
+      : 'all';
+
   // Parse page
   const page = Number(params.page) > 0 ? Number(params.page) : 1;
 
-  // Parse perPage
-  const perPage: PerPage =
-    params.perPage === 'all'
-      ? 'all'
-      : Number(params.perPage) > 0
-        ? Number(params.perPage)
-        : 'all';
-
+  // Total pages
   const totalPages =
-    perPage === 'all' ? 1 : Math.max(1, Math.ceil(products.length / perPage));
+    perPage === 'all'
+      ? 1
+      : Math.max(1, Math.ceil(products.length / Number(perPage)));
 
+  // Clamp page
   const safePage = Math.min(page, totalPages);
+
+  // If URL page is invalid → fix it
+  useEffect(() => {
+    if (safePage !== page) {
+      setParam('page', safePage === 1 ? null : String(safePage));
+    }
+  }, [safePage, page, setParam]);
 
   // Slice products
   const paginatedProducts = useMemo(() => {
@@ -34,9 +46,9 @@ export const usePagination = ({
       return products;
     }
 
-    const start = (safePage - 1) * perPage;
+    const start = (safePage - 1) * Number(perPage);
 
-    return products.slice(start, start + perPage);
+    return products.slice(start, start + Number(perPage));
   }, [products, safePage, perPage]);
 
   // Update page
@@ -48,14 +60,16 @@ export const usePagination = ({
     }
   };
 
+  // Update perPage
   const setPerPage = (value: string) => {
     if (value === 'all') {
       setParam('perPage', null);
-      setParam('page', null);
     } else {
       setParam('perPage', value);
-      setParam('page', null);
     }
+
+    // Always reset page
+    setParam('page', null);
   };
 
   return {

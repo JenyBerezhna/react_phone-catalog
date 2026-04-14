@@ -1,0 +1,45 @@
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 16px;
+  margin-bottom: 8px;
+
+  @include tablet {
+    margin-top: 24px;
+    margin-bottom: 12px;
+  }
+}
+
+.item {
+  display: flex;
+  align-items: center;
+}
+
+.link {
+  color: $text-secondary;
+  text-decoration: none;
+  font-size: 12px;
+
+  &:hover {
+    color: $text-primary;
+  }
+
+  @include tablet {
+    font-size: 14px;
+  }
+}
+
+.current {
+  color: $text-primary;
+  font-size: 12px;
+
+  @include tablet {
+    font-size: 14px;
+  }
+}
+
+.separator {
+  margin: 0 4px;
+  color: $text-secondary;
+}

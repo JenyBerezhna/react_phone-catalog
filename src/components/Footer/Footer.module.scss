@@ -1,18 +1,50 @@
 .footer {
   background: $bg-primary;
-  padding: $space-5 0;
+  padding: $space-6 0;
 }
 
+/* CONTAINER */
 .container {
   @include container;
   @include flex-between;
+
+  align-items: center;
+  gap: $space-4;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-5;
+  }
 }
 
-/* GitHub link */
-.github {
+/* NAVIGATION */
+
+.nav {
+  display: flex;
+  align-items: center;
+  gap: $space-5;
+
+  @include tablet {
+    gap: $space-4;
+  }
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-3;
+    order: 1;
+    width: 100%;
+  }
+}
+
+/* Shared link mixin */
+@mixin nav-link {
   @include body-text;
 
   font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: $menu-letter-spacing;
 
   color: $text-primary;
   text-decoration: none;
@@ -23,7 +55,20 @@
   }
 }
 
-/* Back to top button */
+
+.github {
+  @include nav-link;
+}
+
+.contacts {
+  @include nav-link;
+}
+
+.rights {
+  @include nav-link;
+}
+
+
 .backToTop {
   width: 32px;
   height: 32px;
@@ -34,7 +79,6 @@
 
   @include flex-center;
 
-  color: $text-primary;
   cursor: pointer;
   transition: all $transition;
 
@@ -42,13 +86,36 @@
     background: $surface-3;
     transform: translateY(-2px);
   }
+
+  img {
+    width: 16px;
+    height: 16px;
+
+    @include tablet {
+      width: 24px;
+      height: 24px;
+    }
+
+    @include desktop {
+      width: 32px;
+      height: 32px;
+    }
+  }
 }
 
-/* Global image hover scale */
-.imageLink img {
-  transition: transform $transition;
 
-  &:hover {
-    transform: scale(1.1);
+.logo {
+  order: 0;
+
+  img {
+    transition: transform $transition;
+
+    &:hover {
+      transform: scale(1.1);
+    }
+  }
+
+  @include mobile {
+    align-self: flex-start;
   }
 }

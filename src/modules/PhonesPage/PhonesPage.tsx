@@ -3,7 +3,7 @@ import { useProducts } from '../../hooks/useProducts';
 import { useSort } from '../../hooks/useSort';
 import { WithLoader } from '../../components/WithLoader';
 // eslint-disable-next-line max-len
-import { ProductsList } from '../../modules/ProductPage/components/ProductsList';
+import { ProductsList } from '../CatalogPage/components/ProductsList';
 import { Pagination } from '../../shared/Pagination';
 import { SortSelect } from '../../modules/SortSelect/SortSelect';
 import styles from './PhonesPage.module.scss';

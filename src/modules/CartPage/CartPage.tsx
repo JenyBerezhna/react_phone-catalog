@@ -1,46 +1,56 @@
 import { useCart } from '../../shared/context/CartContext';
+import { CartItem } from '../../modules/CartItem/CartItem';
+import styles from './CartPage.module.scss';
 
 export const CartPage = () => {
   const { items, totalPrice, removeFromCart, increase, decrease, clearCart } =
     useCart();
 
-  if (!items.length) {
-    return <p>Your cart is empty</p>;
-  }
-
   const handleCheckout = () => {
-    const confirmed = confirm(
-      'Checkout is not implemented yet. Do you want to clear the Cart?',
-    );
+    const confirmed = confirm("Checkout isn't available yet. Clear your cart?");
 
     if (confirmed) {
       clearCart();
     }
   };
 
+  /* EMPTY CART */
+  if (!items.length) {
+    return (
+      <section className={styles.empty}>
+        <img
+          src="/img/cart-is-empty.png"
+          alt="Cart is empty"
+          className={styles.emptyImage}
+        />
+        <p className={styles.emptyText}>Your cart is empty</p>
+      </section>
+    );
+  }
+
+  /* FILLED CART */
   return (
-    <section>
-      <h1>Cart</h1>
+    <section className={styles.cart}>
+      <h1 className={styles.title}>Cart</h1>
 
-      {items.map(item => (
-        <div key={item.id}>
-          <button onClick={() => removeFromCart(item.id)}>×</button>
+      <div className={styles.items}>
+        {items.map(item => (
+          <CartItem
+            key={item.id}
+            item={item}
+            increase={increase}
+            decrease={decrease}
+            remove={removeFromCart}
+          />
+        ))}
+      </div>
 
-          <span>{item.product.name}</span>
-
-          <button onClick={() => decrease(item.id)}>-</button>
-          <span>{item.quantity}</span>
-          <button onClick={() => increase(item.id)}>+</button>
-
-          <span>${item.product.price * item.quantity}</span>
-        </div>
-      ))}
-
-      <hr />
-
-      <h2>Total: ${totalPrice}</h2>
-
-      <button onClick={handleCheckout}>Checkout</button>
+      <div className={styles.summary}>
+        <h2>Total: ${totalPrice}</h2>
+        <button className={styles.checkout} onClick={handleCheckout}>
+          Checkout
+        </button>
+      </div>
     </section>
   );
 };

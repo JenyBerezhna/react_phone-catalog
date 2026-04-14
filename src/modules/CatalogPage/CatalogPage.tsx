@@ -1,6 +1,6 @@
 import { useMemo } from 'react';
 
-import { ProductsList } from '../ProductPage/components/ProductsList';
+import { ProductsList } from './components/ProductsList';
 import { Pagination } from '../../shared/Pagination/Pagination';
 import { WithLoader } from '../../components/WithLoader';
 
@@ -35,21 +35,25 @@ export const ProductsPage: React.FC<Props> = ({ type }) => {
   const { sort, sortedProducts, setSort } = useSort(filtered, params, setParam);
 
   // Pagination
-  // eslint-disable-next-line max-len
   const { paginatedProducts, page, perPage, totalPages, setPage, setPerPage } =
-    usePagination({
-      products: sortedProducts,
-      params,
-      setParam,
-    });
+    usePagination({ products: sortedProducts, params, setParam });
 
   return (
     <section>
-      <h1>{TITLES[type]}</h1>
+      <h1>{TITLES[type]} page</h1>
 
-      <WithLoader loading={loading} error={error}>
+      <WithLoader
+        loading={loading}
+        error={error}
+        errorSlot={
+          <div className="error">
+            <p>Something went wrong</p>
+            <button onClick={() => window.location.reload()}>Reload</button>
+          </div>
+        }
+      >
         {filtered.length === 0 ? (
-          <p>There are no {TITLES[type]} yet</p>
+          <p>There are no {TITLES[type].toLowerCase()} yet</p>
         ) : (
           <>
             {/* Sort */}
@@ -74,12 +78,12 @@ export const ProductsPage: React.FC<Props> = ({ type }) => {
 
             <ProductsList products={paginatedProducts} />
 
-            {totalPages > 1 && (
+            {totalPages > 1 && perPage !== 'all' && (
               <Pagination
                 currentPage={page}
                 totalPages={totalPages}
                 onPageChange={setPage}
-                total={filtered.length}
+                total={sortedProducts.length}
               />
             )}
           </>

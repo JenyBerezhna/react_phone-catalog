@@ -1,20 +1,22 @@
 import { useRef } from 'react';
-import { Product } from '../../../../types/Product';
-import styles from '../../components/ProductsSlider/ProductsSlider.module.scss';
+import { Model } from '../../../../types/Model';
+import styles from './ProductsSlider.module.scss';
 
 type Props = {
   title: string;
-  products: Product[];
+  products: Model[];
+  showDiscount: boolean;
 };
 
-export const ProductsSlider: React.FC<Props> = ({ title, products }) => {
+export const ProductsSlider: React.FC<Props> = ({
+  title,
+  products,
+  showDiscount,
+}) => {
   const ref = useRef<HTMLDivElement>(null);
 
   const scroll = (offset: number) => {
-    ref.current?.scrollBy({
-      left: offset,
-      behavior: 'smooth',
-    });
+    ref.current?.scrollBy({ left: offset, behavior: 'smooth' });
   };
 
   return (
@@ -29,12 +31,29 @@ export const ProductsSlider: React.FC<Props> = ({ title, products }) => {
       </div>
 
       <div className={styles.list} ref={ref}>
-        {products.map(product => (
-          <div key={product.id} className={styles.card}>
-            <img src={`/${product.image}`} alt={product.name} />
-            <p>{product.name}</p>
-          </div>
-        ))}
+        {products.map(model => {
+          const hasDiscount = model.priceDiscount < model.priceRegular;
+
+          return (
+            <div key={model.id} className={styles.card}>
+              <img src={`/${model.images[0]}`} alt={model.name} />
+              <p>{model.name}</p>
+
+              <div className={styles.prices}>
+                {showDiscount && hasDiscount ? (
+                  <>
+                    <p className={styles.priceDiscount}>
+                      ${model.priceDiscount}
+                    </p>
+                    <p className={styles.priceFull}>${model.priceRegular}</p>
+                  </>
+                ) : (
+                  <p className={styles.priceDiscount}>${model.priceDiscount}</p>
+                )}
+              </div>
+            </div>
+          );
+        })}
       </div>
     </section>
   );

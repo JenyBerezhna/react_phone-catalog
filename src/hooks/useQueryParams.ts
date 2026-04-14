@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import { useCallback, useMemo } from 'react';
 import { useSearchParams } from 'react-router-dom';
 
 type ParamValue = string | null;
@@ -6,7 +6,11 @@ type ParamValue = string | null;
 export const useQueryParams = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  const params = Object.fromEntries(searchParams) as Record<string, string>;
+  // Memoize params object for stability
+  const params = useMemo(
+    () => Object.fromEntries(searchParams) as Record<string, string>,
+    [searchParams],
+  );
 
   // Update a single param
   const setParam = useCallback(
@@ -19,11 +23,15 @@ export const useQueryParams = () => {
         next.set(key, value);
       }
 
-      setSearchParams(next);
+      // Avoid unnecessary updates
+      if (next.toString() !== searchParams.toString()) {
+        setSearchParams(next);
+      }
     },
     [searchParams, setSearchParams],
   );
 
+  // Update multiple params at once
   const setParams = useCallback(
     (updates: Record<string, ParamValue>) => {
       const next = new URLSearchParams(searchParams);
@@ -36,7 +44,10 @@ export const useQueryParams = () => {
         }
       });
 
-      setSearchParams(next);
+      // Avoid unnecessary updates
+      if (next.toString() !== searchParams.toString()) {
+        setSearchParams(next);
+      }
     },
     [searchParams, setSearchParams],
   );

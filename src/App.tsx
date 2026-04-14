@@ -7,7 +7,7 @@ import { Layout } from './components/Layout';
 import { NotFoundPage } from './modules/NotFoundPage/NotFoundPage';
 
 import { HomePage } from './modules/HomePage/HomePage';
-import { ProductsPage } from './modules/ProductPage/ProductPage';
+import { CatalogPage } from './modules/CatalogPage/CatalogPage';
 // eslint-disable-next-line max-len
 import { ProductDetailsPage } from './modules/ProductDetailsPage/ProductDetailsPage';
 import { FavoritesPage } from './modules/FavoritesPage/FavoritesPage';
@@ -20,11 +20,11 @@ export const App = () => (
         <Route element={<Layout />}>
           <Route index element={<HomePage />} />
 
-          <Route path="/phones" element={<ProductsPage type="phones" />} />
-          <Route path="/tablets" element={<ProductsPage type="tablets" />} />
+          <Route path="/phones" element={<CatalogPage type="phones" />} />
+          <Route path="/tablets" element={<CatalogPage type="tablets" />} />
           <Route
             path="/accessories"
-            element={<ProductsPage type="accessories" />}
+            element={<CatalogPage type="accessories" />}
           />
 
           <Route path="/product/:productId" element={<ProductDetailsPage />} />
@@ -32,7 +32,10 @@ export const App = () => (
           <Route path="/favorites" element={<FavoritesPage />} />
           <Route path="/cart" element={<CartPage />} />
 
-          <Route path="*" element={<NotFoundPage />} />
+          <Route path="/product">
+            <Route path=":productId" element={<ProductDetailsPage />} />
+            <Route path="*" element={<NotFoundPage />} />
+          </Route>
         </Route>
       </Routes>
     </CartProvider>

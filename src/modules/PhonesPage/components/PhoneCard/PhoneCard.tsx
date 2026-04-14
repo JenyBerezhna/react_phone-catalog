@@ -1,4 +1,4 @@
-import { Breadcrumbs } from '../../../Breadcrumbs/Breadcrumbs';
+import { Breadcrumbs } from '../../../../components/Breadcrumbs/Breadcrumbs';
 
 export const PhonesPage = () => {
   return (

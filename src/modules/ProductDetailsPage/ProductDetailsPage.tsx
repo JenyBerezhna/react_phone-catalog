@@ -1,6 +1,6 @@
 import { useParams } from 'react-router-dom';
 import { useState } from 'react';
-import { Breadcrumbs } from '../../modules/Breadcrumbs/Breadcrumbs';
+import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import { WithLoader } from '../../components/WithLoader';
 import { useProductDetails } from '../../hooks/useProductDetails';
 import { useSuggestedProducts } from '../../hooks/useSuggestedProducts';

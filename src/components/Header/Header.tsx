@@ -21,7 +21,7 @@ export const Header = () => {
           className={styles.logo}
           aria-label="Go to homepage"
         >
-          <img src="/public/img/logo/Logo.png" alt="Logo" />
+          <img src="/img/logo/Logo.png" alt="Logo" />
         </NavLink>
 
         {/* Desktop/Tablet navigation */}

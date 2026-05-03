@@ -1,0 +1,10 @@
+@mixin hover-scale($scale: 1.1) {
+  transition: transform $transition;
+  &:hover {
+    transform: scale($scale);
+  }
+}
+
+@mixin smooth-hover {
+  transition: color $transition, background-color $transition, border-color $transition, transform $transition;
+}

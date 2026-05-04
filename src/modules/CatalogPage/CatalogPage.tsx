@@ -1,4 +1,5 @@
 import { useMemo } from 'react';
+import styles from './CatalogPage.module.scss';
 
 import { ProductsList } from './components/ProductsList';
 import { Pagination } from '../../components/Pagination/Pagination';
@@ -21,17 +22,17 @@ const TITLES = {
   accessories: 'Accessories',
 } as const;
 
-export const ProductsPage: React.FC<Props> = ({ type }) => {
+export const CatalogPage: React.FC<Props> = ({ type }) => {
   const { products, loading, error } = useProducts();
   const { params, setParam } = useQueryParams();
 
-  // Filter by category
+  // 1. Filter by category
   const filtered = useMemo(
     () => products.filter((p: Product) => p.category === type),
     [products, type],
   );
 
-  // Sorting
+  // 2. Sorting
   const { sort, sortedProducts, setSort } = useSort(filtered, params, setParam);
 
   // Pagination
@@ -39,7 +40,7 @@ export const ProductsPage: React.FC<Props> = ({ type }) => {
     usePagination({ products: sortedProducts, params, setParam });
 
   return (
-    <section>
+    <section className={styles.catalog}>
       <h1>{TITLES[type]} page</h1>
 
       <WithLoader
@@ -56,28 +57,35 @@ export const ProductsPage: React.FC<Props> = ({ type }) => {
           <p>There are no {TITLES[type].toLowerCase()} yet</p>
         ) : (
           <>
-            {/* Sort */}
-            <select
-              value={sort}
-              onChange={e =>
-                setSort(e.target.value as 'age' | 'title' | 'price')
-              }
-            >
-              <option value="age">Newest</option>
-              <option value="title">Alphabetically</option>
-              <option value="price">Cheapest</option>
-            </select>
+            {/* Top bar */}
+            <div className={styles.topbar}>
+              {/* Sort */}
+              <select
+                value={sort}
+                onChange={e =>
+                  setSort(e.target.value as 'age' | 'title' | 'price')
+                }
+              >
+                <option value="age">Newest</option>
+                <option value="title">Alphabetically</option>
+                <option value="price">Cheapest</option>
+              </select>
 
-            {/* Per page */}
-            <select value={perPage} onChange={e => setPerPage(e.target.value)}>
-              <option value="4">4</option>
-              <option value="8">8</option>
-              <option value="16">16</option>
-              <option value="all">All</option>
-            </select>
+              {/* Per page */}
+              <select
+                value={perPage}
+                onChange={e => setPerPage(e.target.value)}
+              >
+                <option value="4">4</option>
+                <option value="8">8</option>
+                <option value="16">16</option>
+                <option value="all">All</option>
+              </select>
+            </div>
 
             <ProductsList products={paginatedProducts} />
 
+            {/* Pagination */}
             {totalPages > 1 && perPage !== 'all' && (
               <Pagination
                 currentPage={page}

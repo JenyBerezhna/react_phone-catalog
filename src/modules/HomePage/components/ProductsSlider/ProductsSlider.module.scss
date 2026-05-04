@@ -1,12 +1,11 @@
-
 .slider {
   margin-bottom: $space-6;
 }
 
-/* Title + arrows */
+/* Header: title + arrows */
 .header {
   @include flex-between;
-
+  
   margin-bottom: $space-4;
 }
 
@@ -14,28 +13,38 @@
   font-size: 32px;
   font-weight: 700;
   color: $text-primary;
+
+  @include mobile {
+    font-size: 24px;
+  }
 }
 
 /* Arrow buttons */
 .controls {
   display: flex;
   gap: $space-2;
-}
 
-.controls button {
-  width: 32px;
-  height: 32px;
-  border: none;
-  border-radius: 50%;
-  background: $surface-2;
-  color: $text-primary;
-  font-size: 20px;
-  cursor: pointer;
-  transition: $transition, transform $transition;
+  button {
+    width: 32px;
+    height: 32px;
+    border: none;
+    border-radius: 50%;
+    background: $surface-2;
+    color: $text-primary;
+    font-size: 20px;
+    cursor: pointer;
+    transition: background $transition, transform $transition;
 
-  &:hover {
-    background: $surface-3;
-    transform: scale(1.1);
+    &:hover {
+      background: $surface-3;
+      transform: scale(1.1);
+    }
+
+    @include mobile {
+      width: 28px;
+      height: 28px;
+      font-size: 18px;
+    }
   }
 }
 
@@ -46,15 +55,18 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   padding-bottom: $space-2;
-  scrollbar-width: none;
+  scrollbar-width: none; // Firefox
 
   &::-webkit-scrollbar {
-    display: none;
+    display: none; // Chrome/Safari
   }
+
+  scroll-snap-type: x mandatory;
 }
 
 /* Product card */
 .card {
+  scroll-snap-align: start;
   min-width: 212px;
   background: $surface-1;
   border-radius: $radius-m;
@@ -62,26 +74,46 @@
   display: flex;
   flex-direction: column;
   gap: $space-2;
-  transition: transform $transition;
+  transition: transform $transition, box-shadow $transition;
 
   &:hover {
     transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   }
 
   img {
     width: 100%;
-    height: auto;
+    height: 200px;
     object-fit: contain;
     transition: transform $transition;
   }
 
   &:hover img {
-    transform: scale(1.1);
+    transform: scale(1.08);
   }
 
   p {
     font-size: 14px;
     color: $text-primary;
     margin: 0;
+  }
+}
+
+/* Price block */
+.prices {
+  display: flex;
+  align-items: baseline;
+  gap: $space-2;
+
+  .priceDiscount {
+    font-size: 22px;
+    font-weight: 700;
+    color: $text-primary;
+  }
+
+  .priceFull {
+    font-size: 14px;
+    color: $text-secondary;
+    text-decoration: line-through;
   }
 }

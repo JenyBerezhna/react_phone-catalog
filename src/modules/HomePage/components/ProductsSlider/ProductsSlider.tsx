@@ -15,8 +15,21 @@ export const ProductsSlider: React.FC<Props> = ({
 }) => {
   const ref = useRef<HTMLDivElement>(null);
 
-  const scroll = (offset: number) => {
-    ref.current?.scrollBy({ left: offset, behavior: 'smooth' });
+  const scroll = (direction: 'left' | 'right') => {
+    if (!ref.current) {
+      return;
+    }
+
+    const card = ref.current.querySelector(`.${styles.card}`) as HTMLElement;
+
+    if (!card) {
+      return;
+    }
+
+    const cardWidth = card.offsetWidth + 16; // include gap
+    const offset = direction === 'left' ? -cardWidth : cardWidth;
+
+    ref.current.scrollBy({ left: offset, behavior: 'smooth' });
   };
 
   return (
@@ -25,8 +38,8 @@ export const ProductsSlider: React.FC<Props> = ({
         <h2 className={styles.title}>{title}</h2>
 
         <div className={styles.controls}>
-          <button onClick={() => scroll(-300)}>‹</button>
-          <button onClick={() => scroll(300)}>›</button>
+          <button onClick={() => scroll('left')}>‹</button>
+          <button onClick={() => scroll('right')}>›</button>
         </div>
       </div>
 
@@ -37,7 +50,8 @@ export const ProductsSlider: React.FC<Props> = ({
           return (
             <div key={model.id} className={styles.card}>
               <img src={`/${model.images[0]}`} alt={model.name} />
-              <p>{model.name}</p>
+
+              <p className={styles.name}>{model.name}</p>
 
               <div className={styles.prices}>
                 {showDiscount && hasDiscount ? (

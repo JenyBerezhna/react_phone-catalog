@@ -1,5 +1,10 @@
 .list {
   display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-  gap: 24px;
+  grid-template-columns: repeat(auto-fill, minmax(272px, 1fr));
+  gap: $space-4;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+    gap: $space-3;
+  }
 }

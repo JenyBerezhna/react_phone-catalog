@@ -4,10 +4,9 @@
   height: 400px;
   overflow: hidden;
   border-radius: $radius-l;
+  background: $bg-primary;
 
   @include flex-center;
-
-  background: $bg-primary;
 
   @include tablet {
     height: 320px;
@@ -17,7 +16,19 @@
     height: 240px;
   }
 
-  /* Arrows */
+  /* IMAGE */
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    transition: transform $transition;
+  }
+
+  &:hover img {
+    transform: scale(1.05);
+  }
+
+  /* ARROWS */
   > button {
     position: absolute;
     top: 50%;
@@ -30,7 +41,7 @@
     color: white;
     font-size: 24px;
     cursor: pointer;
-    transition: $transition, transform $transition;
+    transition: background $transition, transform $transition;
 
     &:hover {
       background: rgba(255, 255, 255, 0.2);
@@ -52,7 +63,7 @@
     }
   }
 
-  /* Dots */
+  /* DOTS */
   .dots {
     position: absolute;
     bottom: $space-3;
@@ -78,17 +89,5 @@
         background: white;
       }
     }
-  }
-
-  /* Image */
-  img {
-    width: 100%;
-    height: 100%;
-    object-fit: cover;
-    transition: transform $transition;
-  }
-
-  &:hover img {
-    transform: scale(1.05);
   }
 }

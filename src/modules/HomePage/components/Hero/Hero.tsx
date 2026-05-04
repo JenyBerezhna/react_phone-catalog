@@ -24,7 +24,7 @@ export const Hero = () => {
           {images.map((_, i) => (
             <button
               key={i}
-              className={i === index ? styles.active : ''}
+              className={i === index ? 'active' : undefined}
               onClick={() => goTo(i)}
             />
           ))}

@@ -1,19 +1,38 @@
+// Media mixins
+@mixin mobile {
+  @media (max-width: #{$mobile-max}) {
+    @content;
+  }
+}
+
+@mixin tablet {
+  @media (min-width: #{$tablet-min}) and (max-width: #{$tablet-max}) {
+    @content;
+  }
+}
+
+@mixin desktop {
+  @media (min-width: #{$desktop-min}) {
+    @content;
+  }
+}
+
+// Container
 @mixin container {
   width: 100%;
   margin-inline: auto;
 
-
   @include mobile {
-    padding-inline: 16px;
+    padding-inline: $container-padding-mobile;
   }
 
   @include tablet {
-    padding-inline: 24px;
+    padding-inline: $container-padding-tablet;
   }
 
   @include desktop {
-    max-width: 1136px;
-    padding-inline: 0;
+    max-width: $container-width-desktop;
+    padding-inline: $container-padding-desktop;
   }
 }
 

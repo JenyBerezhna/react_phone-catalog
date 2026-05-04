@@ -1,8 +1,56 @@
+.catalog {
+  width: 100%;
+  max-width: $container-width-desktop;
+  margin: 0 auto;
 
-.productpage {
+  padding: $space-6 $container-padding-tablet;
+
   display: flex;
   flex-direction: column;
+  gap: $space-6;
+
+  background: $bg-primary;
+  color: $text-primary;
+
+  @include mobile {
+    padding: $space-5 $container-padding-mobile;
+    gap: $space-5;
+  }
+}
+
+.catalog h1 {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: $space-3;
+
+  @include mobile {
+    font-size: 24px;
+  }
+}
+
+.topbar {
+  display: flex;
+  justify-content: space-between;
   align-items: center;
-  padding: 20px;
-  background-color:  #161827;
+  gap: $space-4;
+
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: $space-3;
+  }
+}
+
+.topbar select {
+  padding: $space-2 $space-3;
+  background: $surface-2;
+  border-radius: $radius-s;
+  border: 1px solid $surface-3;
+  color: $text-primary;
+  cursor: pointer;
+  transition: background $transition;
+
+  &:hover {
+    background: $surface-3;
+  }
 }

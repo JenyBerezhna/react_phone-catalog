@@ -1,52 +1,48 @@
 .categories {
-  margin-bottom: 64px;
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
 }
 
 .title {
   font-size: 32px;
   font-weight: 700;
-  color: var(--text-primary);
-  margin-bottom: 24px;
+  color: $text-primary;
+
+  @include mobile {
+    font-size: 24px;
+  }
 }
 
-/* Grid of 3 category items */
 .list {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  gap: $space-4;
+
+  @include mobile {
+    grid-template-columns: 1fr;
+  }
 }
 
-/* Each category tile */
 .item {
   display: flex;
   flex-direction: column;
-  gap: 16px;
-
+  gap: $space-2;
   text-decoration: none;
-  color: $text-primary;
 
-  transition: transform 0.3s ease;
-}
+  img {
+    width: 100%;
+    border-radius: $radius-m;
+    background: $surface-2;
+    transition: transform $transition;
+  }
 
-.item:hover {
-  transform: translateY(-4px);
-}
+  &:hover img {
+    transform: scale(1.05);
+  }
 
-/* Category image */
-.item img {
-  width: 100%;
-  height: auto;
-  border-radius: 8px;
-
-  transition: transform 0.3s ease;
-}
-
-.item:hover img {
-  transform: scale(1.1);
-}
-
-/* Category label */
-.item span {
-  font-size: 18px;
-  font-weight: 700;
+  span {
+    font-size: 14px;
+    color: $text-primary;
+  }
 }

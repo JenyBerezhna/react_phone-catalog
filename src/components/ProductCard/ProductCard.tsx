@@ -3,7 +3,7 @@ import { Product } from '../../types/Product';
 
 type Props = {
   product: Product;
-  showDiscount: boolean; // новий проп
+  showDiscount: boolean;
 };
 
 export const ProductCard: React.FC<Props> = ({ product, showDiscount }) => {

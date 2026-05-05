@@ -1,22 +1,3 @@
-// Media mixins
-@mixin mobile {
-  @media (max-width: #{$mobile-max}) {
-    @content;
-  }
-}
-
-@mixin tablet {
-  @media (min-width: #{$tablet-min}) and (max-width: #{$tablet-max}) {
-    @content;
-  }
-}
-
-@mixin desktop {
-  @media (min-width: #{$desktop-min}) {
-    @content;
-  }
-}
-
 // Container
 @mixin container {
   width: 100%;

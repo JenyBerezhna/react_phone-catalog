@@ -4,7 +4,7 @@ import { Model } from '../../types/Model';
 export const getModels = (products: Product[]): Model[] => {
   const map = new Map<string, Model>();
 
-  products.forEach(p => {
+  for (const p of products) {
     const existing = map.get(p.namespaceId);
 
     if (!existing) {
@@ -19,7 +19,7 @@ export const getModels = (products: Product[]): Model[] => {
       existing.newestYear = Math.max(existing.newestYear, p.year);
       existing.lowestPrice = Math.min(existing.lowestPrice, p.price);
     }
-  });
+  }
 
   return Array.from(map.values());
 };

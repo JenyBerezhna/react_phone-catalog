@@ -1,16 +1,18 @@
-export type Product = {
+export interface Product {
   id: string;
   category: 'phones' | 'tablets' | 'accessories';
+  namespaceId: string;
   name: string;
+
   price: number;
   fullPrice: number;
-  year: number;
-  itemId: string;
-  image: string;
-  imageUrl?: string;
-  namespaceId: string;
+
   screen: string;
   capacity: string;
   color: string;
   ram: string;
-};
+  year: number;
+
+  image: string;
+  itemId: string;
+}

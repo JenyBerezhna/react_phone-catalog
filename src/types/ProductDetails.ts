@@ -1,18 +1,30 @@
 export interface ProductDetails {
-  id: number;
-  name: string;
+  id: string;
   category: string;
-  itemId: string;
-  fullPrice: number;
-  price: number;
-  screen: string;
+  namespaceId: string;
+  name: string;
+
+  capacityAvailable: string[];
   capacity: string;
+
+  priceRegular: number;
+  priceDiscount: number;
+
+  colorsAvailable: string[];
   color: string;
-  ram: string;
-  year: number;
-  image: string;
+
+  images: string[];
+
   description: {
     title: string;
     text: string[];
   }[];
+
+  screen: string;
+  resolution: string;
+  processor: string;
+  ram: string;
+  camera: string;
+  zoom: string;
+  cell: string[];
 }

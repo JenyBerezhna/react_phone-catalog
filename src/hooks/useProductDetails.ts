@@ -1,7 +1,8 @@
 import { useEffect, useState } from 'react';
 import { getProductDetails } from '../shared/helpers/products';
 // eslint-disable-next-line max-len
-import { ProductDetails } from '../modules/ProductDetailsPage/ProductDetailsPage';
+
+import type { ProductDetails } from '../types/ProductDetails';
 
 export const useProductDetails = (productId: string) => {
   const [product, setProduct] = useState<ProductDetails | null>(null);

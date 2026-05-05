@@ -24,7 +24,6 @@ export const usePagination = ({
   // Parse page
   const page = Number(params.page) > 0 ? Number(params.page) : 1;
 
-  // Total pages
   const totalPages =
     perPage === 'all'
       ? 1
@@ -68,7 +67,7 @@ export const usePagination = ({
       setParam('perPage', value);
     }
 
-    // Always reset page
+    //  reset page
     setParam('page', null);
   };
 

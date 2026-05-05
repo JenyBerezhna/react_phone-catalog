@@ -6,7 +6,11 @@ export type Product = {
   fullPrice: number;
   year: number;
   itemId: string;
-  imageUrl: string;
   image: string;
+  imageUrl?: string;
   namespaceId: string;
+  screen: string;
+  capacity: string;
+  color: string;
+  ram: string;
 };

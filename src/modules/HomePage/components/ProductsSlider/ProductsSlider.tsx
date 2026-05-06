@@ -1,10 +1,10 @@
 import { useRef } from 'react';
-import { Model } from '../../../../types/Model';
+import { Product } from '../../../../types/Product';
 import styles from './ProductsSlider.module.scss';
 
 type Props = {
   title: string;
-  products: Model[];
+  products: Product[];
   showDiscount: boolean;
 };
 
@@ -26,7 +26,7 @@ export const ProductsSlider: React.FC<Props> = ({
       return;
     }
 
-    const cardWidth = card.offsetWidth + 16; // include gap
+    const cardWidth = card.offsetWidth + 16;
     const offset = direction === 'left' ? -cardWidth : cardWidth;
 
     ref.current.scrollBy({ left: offset, behavior: 'smooth' });
@@ -44,25 +44,27 @@ export const ProductsSlider: React.FC<Props> = ({
       </div>
 
       <div className={styles.list} ref={ref}>
-        {products.map(model => {
-          const hasDiscount = model.priceDiscount < model.priceRegular;
+        {products.map(product => {
+          const hasDiscount = product.price < product.fullPrice;
 
           return (
-            <div key={model.id} className={styles.card}>
-              <img src={`/${model.images[0]}`} alt={model.name} />
+            <div key={product.id} className={styles.card}>
+              <img
+                src={`/${product.image}`}
+                alt={product.name}
+                className={styles.image}
+              />
 
-              <p className={styles.name}>{model.name}</p>
+              <p className={styles.name}>{product.name}</p>
 
               <div className={styles.prices}>
                 {showDiscount && hasDiscount ? (
                   <>
-                    <p className={styles.priceDiscount}>
-                      ${model.priceDiscount}
-                    </p>
-                    <p className={styles.priceFull}>${model.priceRegular}</p>
+                    <p className={styles.priceDiscount}>${product.price}</p>
+                    <p className={styles.priceFull}>${product.fullPrice}</p>
                   </>
                 ) : (
-                  <p className={styles.priceDiscount}>${model.priceDiscount}</p>
+                  <p className={styles.priceDiscount}>${product.price}</p>
                 )}
               </div>
             </div>

@@ -6,6 +6,15 @@
   padding: $space-3 0;
   border-bottom: 1px solid $surface-2;
 
+  opacity: 1;
+  transform: translateY(0);
+  transition: opacity $transition, transform $transition;
+
+  &.fadeOut {
+    opacity: 0;
+    transform: translateY(-8px);
+  }
+
   @include tablet {
     grid-template-columns: 80px 1fr auto auto auto;
     gap: $space-4;

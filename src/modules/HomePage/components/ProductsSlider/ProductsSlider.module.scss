@@ -5,18 +5,8 @@
 /* Header: title + arrows */
 .header {
   @include flex-between;
-  
+
   margin-bottom: $space-4;
-}
-
-.title {
-  font-size: 32px;
-  font-weight: 700;
-  color: $text-primary;
-
-  @include mobile {
-    font-size: 24px;
-  }
 }
 
 /* Arrow buttons */
@@ -24,26 +14,52 @@
   display: flex;
   gap: $space-2;
 
-  button {
-    width: 32px;
-    height: 32px;
-    border: none;
-    border-radius: 50%;
-    background: $surface-2;
-    color: $text-primary;
-    font-size: 20px;
-    cursor: pointer;
-    transition: background $transition, transform $transition;
+  /* 🔥 REPLACED old button styles with Figma-accurate arrow styles */
+  .arrow { // 🔥 CHANGED
+    width: 32px; // 🔥 CHANGED
+    height: 32px; // 🔥 CHANGED
 
-    &:hover {
+    display: flex; // 🔥 CHANGED
+    align-items: center; // 🔥 CHANGED
+    justify-content: center; // 🔥 CHANGED
+
+    background: $surface-2; // 🔥 CHANGED
+    border: 1px solid rgba(255, 255, 255, 0.2); // 🔥 CHANGED
+    border-radius: 50%; // 🔥 CHANGED
+
+    color: $text-primary;
+    cursor: pointer;
+
+    transition:
+      background-color $transition,
+      border-color $transition,
+      transform $transition; // 🔥 CHANGED
+
+    svg { // 🔥 ADDED
+      width: 16px;
+      height: 16px;
+      stroke-width: 2;
+      pointer-events: none;
+    }
+
+    &:hover { // 🔥 CHANGED
       background: $surface-3;
+      border-color: rgba(255, 255, 255, 0.4);
       transform: scale(1.1);
     }
 
+    &:active { // 🔥 ADDED
+      transform: scale(0.95);
+    }
+
     @include mobile {
-      width: 28px;
-      height: 28px;
-      font-size: 18px;
+      width: 28px; // 🔥 CHANGED
+      height: 28px; // 🔥 CHANGED
+
+      svg { // 🔥 ADDED
+        width: 14px;
+        height: 14px;
+      }
     }
   }
 }
@@ -55,10 +71,10 @@
   overflow-x: auto;
   scroll-behavior: smooth;
   padding-bottom: $space-2;
-  scrollbar-width: none; // Firefox
+  scrollbar-width: none;
 
   &::-webkit-scrollbar {
-    display: none; // Chrome/Safari
+    display: none;
   }
 
   scroll-snap-type: x mandatory;

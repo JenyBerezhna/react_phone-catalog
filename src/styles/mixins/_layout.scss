@@ -1,4 +1,7 @@
-// Container
+@use './breakpoints' as *;
+@use '../variables' as *;
+
+
 @mixin container {
   width: 100%;
   margin-inline: auto;
@@ -28,4 +31,28 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
+}
+
+.page-transition {
+  min-height: 100%;
+}
+
+/* Entering */
+.fade-enter {
+  opacity: 0;
+}
+
+.fade-enter-active {
+  opacity: 1;
+  transition: opacity 0.3s ease;
+}
+
+/* Exiting */
+.fade-exit {
+  opacity: 1;
+}
+
+.fade-exit-active {
+  opacity: 0;
+  transition: opacity 0.3s ease;
 }

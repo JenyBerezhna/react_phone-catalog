@@ -1,6 +1,7 @@
 import { useRef } from 'react';
 import { Product } from '../../../../types/Product';
 import styles from './ProductsSlider.module.scss';
+import { ArrowLeft, ArrowRight } from '../../../../Arrows_Icon/Arrows';
 
 type Props = {
   title: string;
@@ -35,11 +36,16 @@ export const ProductsSlider: React.FC<Props> = ({
   return (
     <section className={styles.slider}>
       <div className={styles.header}>
-        <h2 className={styles.title}>{title}</h2>
+        <h2 className={styles.pageTitle}>{title}</h2>
 
         <div className={styles.controls}>
-          <button onClick={() => scroll('left')}>‹</button>
-          <button onClick={() => scroll('right')}>›</button>
+          <button className={styles.arrow} onClick={() => scroll('left')}>
+            <ArrowLeft />
+          </button>
+
+          <button className={styles.arrow} onClick={() => scroll('right')}>
+            <ArrowRight />
+          </button>
         </div>
       </div>
 

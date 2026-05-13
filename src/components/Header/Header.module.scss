@@ -1,6 +1,136 @@
-/* 1. BASE (typography, lowest specificity) */
+/* Header */
+.header {
+  position: sticky;
+  top: 0;
+  z-index: 100;
+  height: 48px;
 
-.header__link {
+  border-bottom: 1px solid $surface-2;
+  background: linear-gradient(180deg, $bg-primary 0%, $bg-secondary 100%);
+
+  @include flex-center;
+
+  @include desktop {
+    height: 64px;
+  }
+}
+
+/* Container */
+.container {
+  @include container;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+
+  width: 100%;
+  max-width: 1200px;
+}
+
+/* Icon wrapper */
+.icon {
+  position: relative;
+
+  @include flex-center;
+}
+
+/* Shared icon images */
+.icon img {
+  width: 16px;
+  height: 16px;
+
+  @include hover-scale;
+
+  @include tablet {
+    width: 28px;
+    height: 28px;
+  }
+
+  @include desktop {
+    width: 32px;
+    height: 32px;
+  }
+}
+
+/* Burger button */
+.burger {
+  display: block;
+
+  padding: 0;
+  border: none;
+  background: none;
+
+  img {
+    width: 24px;
+    height: 24px;
+  }
+
+  @include tablet {
+    display: none;
+  }
+
+  @include desktop {
+    display: none;
+  }
+}
+
+/* Mobile logo */
+.mobileLogo img {
+  width: 96px;
+  height: 48px;
+}
+
+/* Close button */
+.close img {
+  width: 48px;
+  height: 48px;
+}
+
+/* Logo */
+.logo img {
+  width: 64px;
+  height: 24px;
+
+  transition: transform $transition;
+
+  &:hover {
+    transform: scale(1.1);
+  }
+
+  @include desktop {
+    width: 80px;
+    height: 28px;
+  }
+}
+
+/* Mobile actions images */
+.mobileActions .icon img {
+  width: 24px;
+  height: 24px;
+}
+
+/* Desktop navigation */
+.navDesktop {
+  display: none;
+
+  @include tablet {
+    display: flex;
+    flex: 1;
+    justify-content: flex-start;
+    gap: $space-4;
+    margin-left: $space-5;
+  }
+
+  @include desktop {
+    display: flex;
+    flex: 1;
+    gap: $space-5;
+    margin-left: $space-6;
+  }
+}
+
+/* Links */
+.link {
   @include menu-typography(
     $menu-font-size,
     $menu-line-height,
@@ -9,161 +139,50 @@
   );
 
   position: relative;
-  text-decoration: none;
+
   color: $text-secondary;
+  font-weight: $menu-font-weight;
+  letter-spacing: $menu-letter-spacing;
+  text-decoration: none;
+  text-transform: uppercase;
+
   transition: color $transition;
-
-  @include mobile {
-    font-size: 12px;
-  }
-
-  @include desktop {
-    font-size: 16px;
-  }
 
   &:hover {
     color: $text-primary;
   }
-}
-
-.header__link--active {
-  color: $text-primary;
 
   &::after {
     content: "";
+
     position: absolute;
-    bottom: -22px;
     left: 0;
-    width: 100%;
+    bottom: -4px;
+
+    width: 0;
     height: 2px;
-    background: $text-primary;
+
+    background: $accent-primary;
     border-radius: $radius-s;
+
+    transition: width $transition;
+  }
+
+  &:hover::after {
+    width: 100%;
   }
 }
 
-/* 2. MEDIA ELEMENTS */
+.active {
+  color: $text-primary;
 
-/* Lowest specificity */
-.header__icon-img {
-  width: 16px;
-  height: 16px;
-
-  @include tablet {
-    width: 48px;
-    height: 48px;
-  }
-
-  @include desktop {
-    width: 52px;
-    height: 52px;
-  }
-
-  @include hover-scale;
-}
-
-/* Medium specificity */
-.header__burger-img {
-  width: 24px;
-  height: 24px;
-  transition: transform $transition;
-
-  &:hover {
-    transform: scale(1.05);
+  &::after {
+    width: 100%;
   }
 }
 
-/* Highest specificity */
-.header__logo-img {
-  height: 32px;
-  transition: transform $transition;
-
-  @include tablet {
-    height: 40px;
-  }
-
-  &:hover {
-    transform: scale(1.1);
-  }
-}
-
-/* 3. COMPONENT ELEMENTS */
-
-.header__icon {
-  position: relative;
-
-  @include flex-center;
-}
-
-.header__burger {
-  display: block;
-  background: none;
-  border: none;
-  padding: 0;
-
-  @include tablet {
-    display: none;
-  }
-}
-
-.header__logo {
-  display: flex;
-  align-items: center;
-}
-
-/* 4. BLOCK (layout container) */
-
-.header {
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  border-bottom: 1px solid $surface-2;
-
-  height: 64px;
-  background: linear-gradient(180deg, $bg-primary 0%, $bg-secondary 100%);
-
-  @include flex-center;
-
-  @include mobile {
-    height: 48px;
-  }
-}
-
-.header__container {
-  @include container;
-  @include flex-between;
-
-  align-items: center;
-}
-
-/* 5. NAVIGATION */
-
-.header__nav--desktop {
-  display: none;
-
-  @include tablet {
-    display: flex;
-    gap: $space-4;
-  }
-
-  @include desktop {
-    gap: $space-5;
-  }
-}
-
-.header__nav--mobile {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
-
-.header__nav--mobile .header__link {
-  font-size: 18px;
-  line-height: 1.4;
-}
-
-/* 6. ACTIONS */
-
-.header__actions--desktop {
+/* Desktop actions */
+.actionsDesktop {
   display: none;
 
   @include tablet {
@@ -172,67 +191,91 @@
   }
 
   @include desktop {
+    display: flex;
     gap: $space-4;
   }
 }
 
-/* 7. COUNTER BADGE */
-
-.header__counter {
+/* Counter badge */
+.counter {
   position: absolute;
   top: -4px;
   right: -6px;
 
-  width: 14px;
-  height: 14px;
+  width: 16px;
+  height: 16px;
+
   border-radius: 50%;
 
   background: $accent-primary;
   color: $text-primary;
 
-  font-family: $font-family-primary;
   font-size: 10px;
   font-weight: 700;
 
   @include flex-center;
 
-  @include tablet {
-    width: 18px;
-    height: 18px;
-    font-size: 11px;
-  }
-
   @include desktop {
-    width: 20px;
-    height: 20px;
+    width: 28px;
+    height: 28px;
     font-size: 12px;
   }
 }
 
-/* 8. MOBILE MENU */
-
-.header__menu {
+/* Mobile menu */
+.mobileMenu {
   position: fixed;
   inset: 0;
+  z-index: 1000;
 
   display: flex;
   flex-direction: column;
-  gap: 24px;
 
   padding: 24px;
 
   background: $bg-primary;
-  z-index: 1000;
 }
 
-.header__close {
-  align-self: flex-end;
-  background: none;
-  border: none;
-  font-size: 28px;
-  color: $text-primary;
+/* Mobile top bar */
+.mobileTop {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
 
-  &:hover {
-    opacity: 0.8;
+  padding-bottom: 24px;
+}
+
+/* Mobile navigation */
+.navMobile {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+
+  margin-top: auto;
+  margin-bottom: auto;
+}
+
+/* Mobile actions */
+.mobileActions {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 24px;
+
+  height: 64px;
+  margin-top: auto;
+  padding-top: 24px;
+
+  border-top: 1px solid $surface-2;
+
+  .icon {
+    position: relative;
+
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+    width: 64px;
+    height: 64px;
   }
 }

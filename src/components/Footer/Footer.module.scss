@@ -3,13 +3,13 @@
   padding: $space-6 0;
 }
 
-/* CONTAINER */
 .container {
   @include container;
   @include flex-between;
 
   align-items: center;
   gap: $space-4;
+  flex-wrap: wrap;
 
   @include mobile {
     flex-direction: column;
@@ -17,8 +17,6 @@
     gap: $space-5;
   }
 }
-
-/* NAVIGATION */
 
 .nav {
   display: flex;
@@ -38,7 +36,6 @@
   }
 }
 
-/* Shared link mixin */
 @mixin nav-link {
   @include body-text;
 
@@ -55,7 +52,6 @@
   }
 }
 
-
 .github {
   @include nav-link;
 }
@@ -68,18 +64,34 @@
   @include nav-link;
 }
 
-
 .backToTop {
+  display: flex;
+  align-items: center;
+  gap: $space-3;
+
+  background: transparent;
+  border: none;
+  cursor: pointer;
+}
+
+.backToTopText {
+  @include body-text;
+
+  color: $text-secondary;
+  font-weight: 600;
+  letter-spacing: 0.5px;
+  white-space: nowrap;
+}
+
+.backToTopIcon {
   width: 32px;
   height: 32px;
 
   background: $surface-2;
   border-radius: $radius-s;
-  border: none;
 
   @include flex-center;
 
-  cursor: pointer;
   transition: all $transition;
 
   &:hover {

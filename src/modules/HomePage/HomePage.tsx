@@ -1,3 +1,4 @@
+/* eslint-disable max-len */
 import styles from './HomePage.module.scss';
 
 import { Hero } from './components/Hero/Hero';
@@ -25,10 +26,15 @@ export const HomePage = () => {
       <>
         <h1 className={styles.visuallyHidden}>Product Catalog</h1>
 
+        {/* Page title */}
+        <h2 className={styles.pageTitle}>Welcome to Nice Gadgets store!</h2>
+
+        {/* Hero section */}
         <section className={styles.section}>
           <Hero />
         </section>
 
+        {/* Brand new models */}
         <section className={styles.section}>
           <ProductsSlider
             title="Brand new models"

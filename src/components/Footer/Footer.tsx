@@ -49,6 +49,7 @@ export const Footer = () => {
           className={styles.backToTop}
           aria-label="Back to top"
         >
+          <span className={styles.backToTopText}>Back to top</span>
           <img src="/img/icons/back-to-button.png" alt="" />
         </button>
       </div>

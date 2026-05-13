@@ -1,3 +1,5 @@
+@use './breakpoints' as *;
+@use '../variables' as *;
 
 @mixin typography(
   $size,

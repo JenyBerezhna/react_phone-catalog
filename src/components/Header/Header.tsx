@@ -15,16 +15,12 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        <NavLink
-          to="/"
-          replace
-          className={styles.logo}
-          aria-label="Go to homepage"
-        >
+        {/* Logo */}
+        <NavLink to="/" replace className={styles.logo}>
           <img src="/img/logo/Logo.png" alt="Logo" />
         </NavLink>
 
-        {/* Desktop/Tablet navigation */}
+        {/* Desktop navigation */}
         <nav className={styles.navDesktop}>
           <NavLink to="/" end className={getNavClass}>
             Home
@@ -40,21 +36,17 @@ export const Header = () => {
           </NavLink>
         </nav>
 
-        {/* Desktop/Tablet actions */}
+        {/* Desktop actions */}
         <div className={styles.actionsDesktop}>
-          <NavLink
-            to="/favorites"
-            className={styles.icon}
-            aria-label="Favorites"
-          >
-            <img src="/img/icons/Favourites.png" alt="Favourites" />
+          <NavLink to="/favorites" className={styles.icon}>
+            <img src="/img/icons/Favourites.png" alt="Favorites" />
             {favorites.length > 0 && (
               <span className={styles.counter}>{favorites.length}</span>
             )}
           </NavLink>
 
-          <NavLink to="/cart" className={styles.icon} aria-label="Cart">
-            <img src="/img/icons/Cart.png" alt="Shopping cart" />
+          <NavLink to="/cart" className={styles.icon}>
+            <img src="/img/icons/Cart.png" alt="Cart" />
             {cartCount > 0 && (
               <span className={styles.counter}>{cartCount}</span>
             )}
@@ -62,25 +54,33 @@ export const Header = () => {
         </div>
 
         {/* Mobile burger */}
-        <button
-          className={styles.burger}
-          aria-label="Open menu"
-          onClick={() => setIsMenuOpen(true)}
-        >
+        <button className={styles.burger} onClick={() => setIsMenuOpen(true)}>
           <img src="/img/icons/Menu.png" alt="Menu" />
         </button>
 
-        {/* Mobile menu overlay */}
+        {/* Mobile menu */}
         {isMenuOpen && (
           <div className={styles.mobileMenu}>
-            <button
-              className={styles.close}
-              aria-label="Close menu"
-              onClick={() => setIsMenuOpen(false)}
-            >
-              ✕
-            </button>
+            {/* Top bar: Logo + Close */}
+            <div className={styles.mobileTop}>
+              <NavLink
+                to="/"
+                replace
+                className={styles.mobileLogo}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <img src="/img/logo/Logo.png" alt="Logo" />
+              </NavLink>
 
+              <button
+                className={styles.close}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <img src="/img/icons/Close.png" alt="Close" />
+              </button>
+            </div>
+
+            {/* Centered navigation */}
             <nav className={styles.navMobile}>
               <NavLink
                 to="/"
@@ -112,6 +112,31 @@ export const Header = () => {
                 Accessories
               </NavLink>
             </nav>
+
+            {/* Bottom actions */}
+            <div className={styles.mobileActions}>
+              <NavLink
+                to="/favorites"
+                className={styles.icon}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <img src="/img/icons/Favourites.png" alt="Favorites" />
+                {favorites.length > 0 && (
+                  <span className={styles.counter}>{favorites.length}</span>
+                )}
+              </NavLink>
+
+              <NavLink
+                to="/cart"
+                className={styles.icon}
+                onClick={() => setIsMenuOpen(false)}
+              >
+                <img src="/img/icons/Cart.png" alt="Cart" />
+                {cartCount > 0 && (
+                  <span className={styles.counter}>{cartCount}</span>
+                )}
+              </NavLink>
+            </div>
           </div>
         )}
       </div>

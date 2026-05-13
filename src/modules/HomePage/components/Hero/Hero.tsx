@@ -12,7 +12,6 @@ export const Hero = () => {
 
   return (
     <>
-      <h1>Welcome to Nice Gadgets store!</h1>
       <div className={styles.slider}>
         <button onClick={prev}>‹</button>
 
@@ -24,7 +23,7 @@ export const Hero = () => {
           {images.map((_, i) => (
             <button
               key={i}
-              className={i === index ? 'active' : undefined}
+              className={i === index ? styles.active : undefined}
               onClick={() => goTo(i)}
             />
           ))}

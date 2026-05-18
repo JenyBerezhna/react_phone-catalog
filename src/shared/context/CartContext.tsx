@@ -21,30 +21,23 @@ type CartContextType = {
 
 const CartContext = createContext<CartContextType | null>(null);
 
+// eslint-disable-next-line max-len
 export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
-  const [items, setItems] = useState<CartItem[]>([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  // Load from localStorage on app start
-  useEffect(() => {
+  // Load from localStorage once (no isLoading needed)
+  const [items, setItems] = useState<CartItem[]>(() => {
     const stored = localStorage.getItem('cart');
 
-    if (stored) {
-      setItems(JSON.parse(stored));
-    }
+    return stored ? JSON.parse(stored) : [];
+  });
 
-    setIsLoading(false);
-  }, []);
-
-  //  Save on every change
+  // Save to localStorage on every change
   useEffect(() => {
-    if (!isLoading) {
-      localStorage.setItem('cart', JSON.stringify(items));
-    }
-  }, [items, isLoading]);
+    localStorage.setItem('cart', JSON.stringify(items));
+  }, [items]);
 
+  // Derived values
   const totalCount = useMemo(
     () => items.reduce((sum, item) => sum + item.quantity, 0),
     [items],
@@ -56,14 +49,13 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     [items],
   );
 
+  // Actions
   const addToCart = (product: Product) => {
-    setItems(prev => {
-      if (prev.some(item => item.id === product.id)) {
-        return prev;
-      }
-
-      return [...prev, { id: product.id, product, quantity: 1 }];
-    });
+    setItems(prev =>
+      prev.some(item => item.id === product.id)
+        ? prev
+        : [...prev, { id: product.id, product, quantity: 1 }],
+    );
   };
 
   const removeFromCart = (id: string) => {
@@ -88,26 +80,24 @@ export const CartProvider: React.FC<{ children: React.ReactNode }> = ({
     );
   };
 
-  const clearCart = () => {
-    setItems([]);
-  };
+  const clearCart = () => setItems([]);
 
-  return (
-    <CartContext.Provider
-      value={{
-        items,
-        totalCount,
-        totalPrice,
-        addToCart,
-        removeFromCart,
-        increase,
-        decrease,
-        clearCart,
-      }}
-    >
-      {children}
-    </CartContext.Provider>
+  // Memoize to prevent unnecessary re-renders
+  const value = useMemo(
+    () => ({
+      items,
+      totalCount,
+      totalPrice,
+      addToCart,
+      removeFromCart,
+      increase,
+      decrease,
+      clearCart,
+    }),
+    [items, totalCount, totalPrice],
   );
+
+  return <CartContext.Provider value={value}>{children}</CartContext.Provider>;
 };
 
 export const useCart = () => {

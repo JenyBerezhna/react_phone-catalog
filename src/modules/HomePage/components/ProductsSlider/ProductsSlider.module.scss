@@ -2,64 +2,65 @@
   margin-bottom: $space-6;
 }
 
-/* Header: title + arrows */
 .header {
   @include flex-between;
 
+  align-items: center;
   margin-bottom: $space-4;
+}
+
+.title {
+  @include h2;
 }
 
 /* Arrow buttons */
 .controls {
   display: flex;
-  gap: $space-2;
+  gap: 12px;
+}
 
-  /* 🔥 REPLACED old button styles with Figma-accurate arrow styles */
-  .arrow { // 🔥 CHANGED
-    width: 32px; // 🔥 CHANGED
-    height: 32px; // 🔥 CHANGED
+.arrow {
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-    display: flex; // 🔥 CHANGED
-    align-items: center; // 🔥 CHANGED
-    justify-content: center; // 🔥 CHANGED
+  width: 32px;
+  height: 32px;
 
-    background: $surface-2; // 🔥 CHANGED
-    border: 1px solid rgba(255, 255, 255, 0.2); // 🔥 CHANGED
-    border-radius: 50%; // 🔥 CHANGED
+  border: none;
+  border-radius: 4px;
 
-    color: $text-primary;
-    cursor: pointer;
+  background: $surface-2;
+  color: $text-primary;
+  cursor: pointer;
 
-    transition:
-      background-color $transition,
-      border-color $transition,
-      transform $transition; // 🔥 CHANGED
+  transition:
+    background 0.2s ease,
+    transform 0.2s ease,
+    opacity 0.2s ease;
 
-    svg { // 🔥 ADDED
+    img {
       width: 16px;
       height: 16px;
-      stroke-width: 2;
-      pointer-events: none;
+      object-fit: contain;
+      background: transparent;
     }
 
-    &:hover { // 🔥 CHANGED
-      background: $surface-3;
-      border-color: rgba(255, 255, 255, 0.4);
-      transform: scale(1.1);
-    }
+  &:hover {
+    background: $surface-3;
+  }
 
-    &:active { // 🔥 ADDED
-      transform: scale(0.95);
-    }
+  &:active {
+    transform: scale(0.96);
+  }
 
-    @include mobile {
-      width: 28px; // 🔥 CHANGED
-      height: 28px; // 🔥 CHANGED
+  @include mobile {
+    width: 28px;
+    height: 28px;
 
-      svg { // 🔥 ADDED
-        width: 14px;
-        height: 14px;
-      }
+    svg {
+      width: 14px;
+      height: 14px;
     }
   }
 }
@@ -67,69 +68,16 @@
 /* Horizontal scroll list */
 .list {
   display: flex;
-  gap: $space-3;
+  flex-wrap: nowrap;
+  gap: $space-3; // 16px
   overflow-x: auto;
   scroll-behavior: smooth;
   padding-bottom: $space-2;
   scrollbar-width: none;
+  scroll-snap-type: x mandatory;
 
   &::-webkit-scrollbar {
     display: none;
   }
-
-  scroll-snap-type: x mandatory;
 }
 
-/* Product card */
-.card {
-  scroll-snap-align: start;
-  min-width: 212px;
-  background: $surface-1;
-  border-radius: $radius-m;
-  padding: $space-3;
-  display: flex;
-  flex-direction: column;
-  gap: $space-2;
-  transition: transform $transition, box-shadow $transition;
-
-  &:hover {
-    transform: translateY(-4px);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-  }
-
-  img {
-    width: 100%;
-    height: 200px;
-    object-fit: contain;
-    transition: transform $transition;
-  }
-
-  &:hover img {
-    transform: scale(1.08);
-  }
-
-  p {
-    font-size: 14px;
-    color: $text-primary;
-    margin: 0;
-  }
-}
-
-/* Price block */
-.prices {
-  display: flex;
-  align-items: baseline;
-  gap: $space-2;
-
-  .priceDiscount {
-    font-size: 22px;
-    font-weight: 700;
-    color: $text-primary;
-  }
-
-  .priceFull {
-    font-size: 14px;
-    color: $text-secondary;
-    text-decoration: line-through;
-  }
-}

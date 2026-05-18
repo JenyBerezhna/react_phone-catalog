@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { Product } from '../../../../types/Product';
 import styles from './ProductsSlider.module.scss';
-import { ArrowLeft, ArrowRight } from '../../../../Arrows_Icon/Arrows';
+import { ProductCard } from '../../components/ProductCard/ProductCard';
 
 type Props = {
   title: string;
@@ -21,13 +21,15 @@ export const ProductsSlider: React.FC<Props> = ({
       return;
     }
 
-    const card = ref.current.querySelector(`.${styles.card}`) as HTMLElement;
+    const firstCard = ref.current.querySelector(
+      `.${styles.cardWrapper}`,
+    ) as HTMLElement;
 
-    if (!card) {
+    if (!firstCard) {
       return;
     }
 
-    const cardWidth = card.offsetWidth + 16;
+    const cardWidth = firstCard.offsetWidth + 16; // gap = 16px
     const offset = direction === 'left' ? -cardWidth : cardWidth;
 
     ref.current.scrollBy({ left: offset, behavior: 'smooth' });
@@ -35,47 +37,36 @@ export const ProductsSlider: React.FC<Props> = ({
 
   return (
     <section className={styles.slider}>
+      {/* Header with title + rectangular arrows */}
       <div className={styles.header}>
-        <h2 className={styles.pageTitle}>{title}</h2>
+        <h2 className={styles.title}>{title}</h2>
 
         <div className={styles.controls}>
-          <button className={styles.arrow} onClick={() => scroll('left')}>
-            <ArrowLeft />
+          <button
+            className={styles.arrow}
+            onClick={() => scroll('left')}
+            aria-label="Previous products"
+          >
+            <img src="/img/icons/arrowLeft.png" alt="Previous" />
           </button>
 
-          <button className={styles.arrow} onClick={() => scroll('right')}>
-            <ArrowRight />
+          <button
+            className={styles.arrow}
+            onClick={() => scroll('right')}
+            aria-label="Next products"
+          >
+            <img src="/img/icons/arrowRight.png" alt="Next" />
           </button>
         </div>
       </div>
 
+      {/* Horizontal scroll list */}
       <div className={styles.list} ref={ref}>
-        {products.map(product => {
-          const hasDiscount = product.price < product.fullPrice;
-
-          return (
-            <div key={product.id} className={styles.card}>
-              <img
-                src={`/${product.image}`}
-                alt={product.name}
-                className={styles.image}
-              />
-
-              <p className={styles.name}>{product.name}</p>
-
-              <div className={styles.prices}>
-                {showDiscount && hasDiscount ? (
-                  <>
-                    <p className={styles.priceDiscount}>${product.price}</p>
-                    <p className={styles.priceFull}>${product.fullPrice}</p>
-                  </>
-                ) : (
-                  <p className={styles.priceDiscount}>${product.price}</p>
-                )}
-              </div>
-            </div>
-          );
-        })}
+        {products.map(product => (
+          <div key={product.id} className={styles.cardWrapper}>
+            <ProductCard product={product} showDiscount={showDiscount} />
+          </div>
+        ))}
       </div>
     </section>
   );

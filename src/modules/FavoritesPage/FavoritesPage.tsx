@@ -1,16 +1,16 @@
 import { WithLoader } from '../../components/WithLoader';
 // eslint-disable-next-line max-len
 import { ProductsList } from '../CatalogPage/components/ProductsList';
-import { useFavorites } from '../../hooks/useFavorites';
+import { useFavorites } from '../../shared/context/FavoritesContext';
 
 export const FavoritesPage = () => {
-  const { favorites, loading, error } = useFavorites();
+  const { favorites } = useFavorites();
 
   return (
     <section className="favorites-page">
       <h1>My Favorites</h1>
 
-      <WithLoader loading={!!loading} error={error ?? undefined}>
+      <WithLoader loading={false} error={undefined}>
         {favorites.length === 0 ? (
           <p>No favorites yet</p>
         ) : (

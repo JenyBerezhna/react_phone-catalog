@@ -11,14 +11,26 @@ export const Hero = () => {
   const { index, next, prev, goTo } = useSlider(images.length, 5000);
 
   return (
-    <>
-      <div className={styles.slider}>
-        <button onClick={prev}>‹</button>
+    <section className={styles.hero}>
+      {/* Left arrow */}
+      <button className={`${styles.arrow} ${styles.arrowLeft}`} onClick={prev}>
+        <img src="/img/icons/arrowLeft.png" alt="Previous slide" />
+      </button>
 
-        <img src={images[index]} alt="Banner" />
+      {/* Banner image */}
+      <img
+        src={images[index]}
+        alt={`Banner ${index + 1}`}
+        className={styles.bannerImage}
+      />
 
-        <button onClick={next}>›</button>
+      {/* Right arrow */}
+      <button className={`${styles.arrow} ${styles.arrowRight}`} onClick={next}>
+        <img src="/img/icons/arrowRight.png" alt="Next slide" />
+      </button>
 
+      {/* Dots */}
+      <div className={styles.dotsWrapper}>
         <div className={styles.dots}>
           {images.map((_, i) => (
             <button
@@ -29,6 +41,6 @@ export const Hero = () => {
           ))}
         </div>
       </div>
-    </>
+    </section>
   );
 };

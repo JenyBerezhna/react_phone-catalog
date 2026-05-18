@@ -8,18 +8,17 @@ import { CategoryCard } from '../../components/CategoryCard/CategoryCard';
 import { useProducts } from '../../hooks/useProducts';
 import { WithLoader } from '../../components/WithLoader';
 
-import { getModels } from '../../shared/helpers/getModels';
-
 export const HomePage = () => {
   const { products, loading, error } = useProducts();
 
-  const models = getModels(products);
+  const brandNew = [...products].sort((a, b) => b.year - a.year);
 
-  const brandNewModels = [...models].sort((a, b) => b.year! - a.year!);
+  const hotPrices = [...products].sort((a, b) => {
+    const discountA = a.fullPrice - a.price;
+    const discountB = b.fullPrice - b.price;
 
-  const hotPrices = [...models].sort(
-    (a, b) => a.priceDiscount - b.priceDiscount,
-  );
+    return discountB - discountA;
+  });
 
   return (
     <WithLoader loading={loading} error={error}>
@@ -38,7 +37,7 @@ export const HomePage = () => {
         <section className={styles.section}>
           <ProductsSlider
             title="Brand new models"
-            products={brandNewModels}
+            products={brandNew}
             showDiscount={false}
           />
         </section>

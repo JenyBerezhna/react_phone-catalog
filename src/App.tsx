@@ -1,6 +1,7 @@
 import './App.scss';
 import { Routes, Route } from 'react-router-dom';
 import { CartProvider } from './shared/context/CartContext';
+import { FavoritesProvider } from './shared/context/FavoritesContext';
 
 import { Layout } from './components/Layout';
 import { NotFoundPage } from './modules/NotFoundPage/NotFoundPage';
@@ -14,29 +15,34 @@ import { CartPage } from './modules/CartPage/CartPage';
 
 export const App = () => (
   <div className="App">
-    <CartProvider>
-      <Routes>
-        <Route element={<Layout />}>
-          <Route index element={<HomePage />} />
+    <FavoritesProvider>
+      <CartProvider>
+        <Routes>
+          <Route element={<Layout />}>
+            <Route index element={<HomePage />} />
 
-          <Route path="/phones" element={<CatalogPage type="phones" />} />
-          <Route path="/tablets" element={<CatalogPage type="tablets" />} />
-          <Route
-            path="/accessories"
-            element={<CatalogPage type="accessories" />}
-          />
+            <Route path="/phones" element={<CatalogPage type="phones" />} />
+            <Route path="/tablets" element={<CatalogPage type="tablets" />} />
+            <Route
+              path="/accessories"
+              element={<CatalogPage type="accessories" />}
+            />
 
-          <Route path="/product/:productId" element={<ProductDetailsPage />} />
+            <Route
+              path="/product/:productId"
+              element={<ProductDetailsPage />}
+            />
 
-          <Route path="/favorites" element={<FavoritesPage />} />
-          <Route path="/cart" element={<CartPage />} />
+            <Route path="/favorites" element={<FavoritesPage />} />
+            <Route path="/cart" element={<CartPage />} />
 
-          <Route path="/product">
-            <Route path=":productId" element={<ProductDetailsPage />} />
-            <Route path="*" element={<NotFoundPage />} />
+            <Route path="/product">
+              <Route path=":productId" element={<ProductDetailsPage />} />
+              <Route path="*" element={<NotFoundPage />} />
+            </Route>
           </Route>
-        </Route>
-      </Routes>
-    </CartProvider>
+        </Routes>
+      </CartProvider>
+    </FavoritesProvider>
   </div>
 );

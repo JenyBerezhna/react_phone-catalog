@@ -124,17 +124,17 @@ export const Header = () => {
             {/* Bottom actions */}
             <div className={styles.mobileActions}>
               <NavLink
-                to="/favourites"
+                to="/favorites"
                 className={styles.icon}
                 onClick={() => setIsMenuOpen(false)}
               >
                 <img
                   src={
                     favorites.length === 0
-                      ? '/img/icons/FavouriteEmpty.svg'
-                      : '/img/icons/FavouriteFilled.svg'
+                      ? '/img/icons/FavoriteEmpty.svg'
+                      : '/img/icons/FavoritesFilled.svg'
                   }
-                  alt="Favourites"
+                  alt="Favorites"
                 />
 
                 {favorites.length > 0 && (

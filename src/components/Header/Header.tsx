@@ -17,7 +17,7 @@ export const Header = () => {
       <div className={styles.container}>
         {/* Logo */}
         <NavLink to="/" replace className={styles.logo}>
-          <img src="/img/logo/Logo.png" alt="Logo" />
+          <img src="/img/logo/Nice Gadgets.svg" alt="Logo" />
         </NavLink>
 
         {/* Desktop navigation */}
@@ -39,14 +39,22 @@ export const Header = () => {
         {/* Desktop actions */}
         <div className={styles.actionsDesktop}>
           <NavLink to="/favorites" className={styles.icon}>
-            <img src="/img/icons/Favourites.png" alt="Favorites" />
+            <img src="/img/icons/Favourites (Heart Like).svg" alt="Favorites" />
             {favorites.length > 0 && (
               <span className={styles.counter}>{favorites.length}</span>
             )}
           </NavLink>
 
           <NavLink to="/cart" className={styles.icon}>
-            <img src="/img/icons/Cart.png" alt="Cart" />
+            <img
+              src={
+                cartCount === 0
+                  ? '/img/icons/CartEmpty.svg'
+                  : '/img/icons/CartCounter.svg'
+              }
+              alt="Cart"
+            />
+
             {cartCount > 0 && (
               <span className={styles.counter}>{cartCount}</span>
             )}
@@ -55,7 +63,7 @@ export const Header = () => {
 
         {/* Mobile burger */}
         <button className={styles.burger} onClick={() => setIsMenuOpen(true)}>
-          <img src="/img/icons/Menu.png" alt="Menu" />
+          <img src="/img/icons/Menu.svg" alt="Menu" />
         </button>
 
         {/* Mobile menu */}
@@ -69,14 +77,14 @@ export const Header = () => {
                 className={styles.mobileLogo}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <img src="/img/logo/Logo.png" alt="Logo" />
+                <img src="/img/logo/Nice Gadgets.svg" alt="Logo" />
               </NavLink>
 
               <button
                 className={styles.close}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <img src="/img/icons/Close.png" alt="Close" />
+                <img src="/img/icons/Close.svg" alt="Close" />
               </button>
             </div>
 
@@ -116,11 +124,19 @@ export const Header = () => {
             {/* Bottom actions */}
             <div className={styles.mobileActions}>
               <NavLink
-                to="/favorites"
+                to="/favourites"
                 className={styles.icon}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <img src="/img/icons/Favourites.png" alt="Favorites" />
+                <img
+                  src={
+                    favorites.length === 0
+                      ? '/img/icons/FavouriteEmpty.svg'
+                      : '/img/icons/FavouriteFilled.svg'
+                  }
+                  alt="Favourites"
+                />
+
                 {favorites.length > 0 && (
                   <span className={styles.counter}>{favorites.length}</span>
                 )}
@@ -131,7 +147,14 @@ export const Header = () => {
                 className={styles.icon}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <img src="/img/icons/Cart.png" alt="Cart" />
+                <img
+                  src={
+                    cartCount === 0
+                      ? '/img/icons/CartEmpty.svg'
+                      : '/img/icons/CartCount.svg'
+                  }
+                  alt="Cart"
+                />
                 {cartCount > 0 && (
                   <span className={styles.counter}>{cartCount}</span>
                 )}

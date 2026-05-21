@@ -18,6 +18,9 @@ export const CartItem: React.FC<CartItemProps> = ({
 
   return (
     <div className={styles.item}>
+      <button className={styles.remove} onClick={() => remove(item.id)}>
+        <img src="public/img/icons/Close.svg" alt="Remove" />
+      </button>
       <img
         src={product.image}
         alt={product.name}
@@ -28,21 +31,17 @@ export const CartItem: React.FC<CartItemProps> = ({
 
       <div className={styles.quantity}>
         <button className={styles.qtyBtn} onClick={() => decrease(item.id)}>
-          <img src="/img/icons/Icons/Minus.png" alt="Decrease" />
+          <img src="public/img/icons/Minus.svg" alt="Decrease" />
         </button>
 
         <span className={styles.qtyValue}>{quantity}</span>
 
         <button className={styles.qtyBtn} onClick={() => increase(item.id)}>
-          <img src="/img/icons/Icons/Plus.png" alt="Increase" />
+          <img src="public/img/icons/Plus.svg" alt="Increase" />
         </button>
       </div>
 
       <span className={styles.price}>${product.price * quantity}</span>
-
-      <button className={styles.remove} onClick={() => remove(item.id)}>
-        <img src="/img/icons/Icons/Close.png" alt="Remove" />
-      </button>
     </div>
   );
 };

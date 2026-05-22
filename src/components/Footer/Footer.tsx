@@ -19,7 +19,7 @@ export const Footer = () => {
           className={styles.logo}
           aria-label="Go to homepage"
         >
-          <img src="/img/logo/Logo.png" alt="Logo" />
+          <img src="/img/logo/Logo.svg" alt="Logo" />
         </NavLink>
 
         {/* Navigation */}
@@ -50,7 +50,7 @@ export const Footer = () => {
           aria-label="Back to top"
         >
           <span className={styles.backToTopText}>Back to top</span>
-          <img src="/img/icons/back-to-button.svg" alt="" />
+          <img src="public/img/icons/Back-to-top.svg" alt="" />
         </button>
       </div>
     </footer>

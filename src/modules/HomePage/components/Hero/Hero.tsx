@@ -14,7 +14,7 @@ export const Hero = () => {
     <section className={styles.hero}>
       {/* Left arrow */}
       <button className={`${styles.arrow} ${styles.arrowLeft}`} onClick={prev}>
-        <img src="/img/icons/arrowLeft.png" alt="Previous slide" />
+        <img src="/img/icons/ArrowLeft.svg" alt="Previous slide" />
       </button>
 
       {/* Banner image */}
@@ -26,7 +26,7 @@ export const Hero = () => {
 
       {/* Right arrow */}
       <button className={`${styles.arrow} ${styles.arrowRight}`} onClick={next}>
-        <img src="/img/icons/arrowRight.png" alt="Next slide" />
+        <img src="/img/icons/ArrowRight.svg" alt="Next slide" />
       </button>
 
       {/* Dots */}

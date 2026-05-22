@@ -11,13 +11,14 @@ export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
+  const favoritesCount = favorites.length;
 
   return (
     <header className={styles.header}>
       <div className={styles.container}>
         {/* Logo */}
         <NavLink to="/" replace className={styles.logo}>
-          <img src="/img/logo/Nice Gadgets.svg" alt="Logo" />
+          <img src="/img/logo/Logo.svg" alt="Logo" />
         </NavLink>
 
         {/* Desktop navigation */}
@@ -38,19 +39,29 @@ export const Header = () => {
 
         {/* Desktop actions */}
         <div className={styles.actionsDesktop}>
+          {/* Favorites */}
           <NavLink to="/favorites" className={styles.icon}>
-            <img src="/img/icons/Favourites (Heart Like).svg" alt="Favorites" />
-            {favorites.length > 0 && (
-              <span className={styles.counter}>{favorites.length}</span>
+            <img
+              src={
+                favoritesCount === 0
+                  ? '/img/icons/FavoriteEmpty.svg'
+                  : '/img/icons/FavoritesFilled.svg'
+              }
+              alt="Favorites"
+            />
+
+            {favoritesCount > 0 && (
+              <span className={styles.counter}>{favoritesCount}</span>
             )}
           </NavLink>
 
+          {/* Cart */}
           <NavLink to="/cart" className={styles.icon}>
             <img
               src={
                 cartCount === 0
                   ? '/img/icons/CartEmpty.svg'
-                  : '/img/icons/CartCounter.svg'
+                  : '/img/icons/CartFilled.svg'
               }
               alt="Cart"
             />
@@ -69,7 +80,7 @@ export const Header = () => {
         {/* Mobile menu */}
         {isMenuOpen && (
           <div className={styles.mobileMenu}>
-            {/* Top bar: Logo + Close */}
+            {/* Top bar */}
             <div className={styles.mobileTop}>
               <NavLink
                 to="/"
@@ -77,7 +88,7 @@ export const Header = () => {
                 className={styles.mobileLogo}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <img src="/img/logo/Nice Gadgets.svg" alt="Logo" />
+                <img src="/img/logo/Logo.svg" alt="Logo" />
               </NavLink>
 
               <button
@@ -88,7 +99,7 @@ export const Header = () => {
               </button>
             </div>
 
-            {/* Centered navigation */}
+            {/* Mobile navigation */}
             <nav className={styles.navMobile}>
               <NavLink
                 to="/"
@@ -121,8 +132,9 @@ export const Header = () => {
               </NavLink>
             </nav>
 
-            {/* Bottom actions */}
+            {/* Mobile actions */}
             <div className={styles.mobileActions}>
+              {/* Favorites */}
               <NavLink
                 to="/favorites"
                 className={styles.icon}
@@ -130,18 +142,19 @@ export const Header = () => {
               >
                 <img
                   src={
-                    favorites.length === 0
+                    favoritesCount === 0
                       ? '/img/icons/FavoriteEmpty.svg'
                       : '/img/icons/FavoritesFilled.svg'
                   }
                   alt="Favorites"
                 />
 
-                {favorites.length > 0 && (
-                  <span className={styles.counter}>{favorites.length}</span>
+                {favoritesCount > 0 && (
+                  <span className={styles.counter}>{favoritesCount}</span>
                 )}
               </NavLink>
 
+              {/* Cart */}
               <NavLink
                 to="/cart"
                 className={styles.icon}
@@ -151,10 +164,11 @@ export const Header = () => {
                   src={
                     cartCount === 0
                       ? '/img/icons/CartEmpty.svg'
-                      : '/img/icons/CartCount.svg'
+                      : '/img/icons/CartFilled.svg'
                   }
                   alt="Cart"
                 />
+
                 {cartCount > 0 && (
                   <span className={styles.counter}>{cartCount}</span>
                 )}

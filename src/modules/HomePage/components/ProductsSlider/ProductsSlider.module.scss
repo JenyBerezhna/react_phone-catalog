@@ -69,7 +69,7 @@
 .list {
   display: flex;
   flex-wrap: nowrap;
-  gap: $space-3; // 16px
+  gap: 16px; // 16px
   overflow-x: auto;
   scroll-behavior: smooth;
   padding-bottom: $space-2;

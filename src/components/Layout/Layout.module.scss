@@ -37,3 +37,33 @@
     margin-top: $space-4;
   }
 }
+
+/* Slide + Fade Transition */
+.slide-fade-enter {
+  opacity: 0;
+  transform: translateX(20px);
+}
+
+.slide-fade-enter-active {
+  opacity: 1;
+  transform: translateX(0);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+.slide-fade-exit {
+  opacity: 1;
+  transform: translateX(0);
+}
+
+.slide-fade-exit-active {
+  opacity: 0;
+  transform: translateX(-20px);
+  transition: opacity 300ms ease, transform 300ms ease;
+}
+
+/* Optional wrapper */
+.page-transition {
+  width: 100%;
+  height: 100%;
+}
+

@@ -17,27 +17,32 @@ export const ProductsSlider: React.FC<Props> = ({
   const ref = useRef<HTMLDivElement>(null);
 
   const scroll = (direction: 'left' | 'right') => {
-    if (!ref.current) {
+    const container = ref.current;
+
+    if (!container) {
       return;
     }
 
-    const firstCard = ref.current.querySelector(
+    const firstCard = container.querySelector(
       `.${styles.cardWrapper}`,
-    ) as HTMLElement;
+    ) as HTMLElement | null;
 
     if (!firstCard) {
       return;
     }
 
-    const cardWidth = firstCard.offsetWidth + 16; // gap = 16px
-    const offset = direction === 'left' ? -cardWidth : cardWidth;
+    const cardWidth = firstCard.getBoundingClientRect().width;
+    const gap = 16;
+    const offset = direction === 'left' ? -(cardWidth + gap) : cardWidth + gap;
 
-    ref.current.scrollBy({ left: offset, behavior: 'smooth' });
+    container.scrollBy({
+      left: offset,
+      behavior: 'smooth',
+    });
   };
 
   return (
     <section className={styles.slider}>
-      {/* Header with title + rectangular arrows */}
       <div className={styles.header}>
         <h2 className={styles.title}>{title}</h2>
 
@@ -47,7 +52,7 @@ export const ProductsSlider: React.FC<Props> = ({
             onClick={() => scroll('left')}
             aria-label="Previous products"
           >
-            <img src="/img/icons/arrowLeft.png" alt="Previous" />
+            <img src="/img/icons/ArrowLeft.svg" alt="Previous" />
           </button>
 
           <button
@@ -55,12 +60,11 @@ export const ProductsSlider: React.FC<Props> = ({
             onClick={() => scroll('right')}
             aria-label="Next products"
           >
-            <img src="/img/icons/arrowRight.png" alt="Next" />
+            <img src="/img/icons/ArrowRight.svg" alt="Next" />
           </button>
         </div>
       </div>
 
-      {/* Horizontal scroll list */}
       <div className={styles.list} ref={ref}>
         {products.map(product => (
           <div key={product.id} className={styles.cardWrapper}>

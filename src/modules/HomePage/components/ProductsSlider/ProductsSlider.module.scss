@@ -13,6 +13,12 @@
   @include h2;
 }
 
+.cardWrapper {
+  flex: 0 0 auto;
+  scroll-snap-align: start;
+}
+
+
 /* Arrow buttons */
 .controls {
   display: flex;

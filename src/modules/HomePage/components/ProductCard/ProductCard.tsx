@@ -2,6 +2,8 @@ import { useCart } from '../../../../shared/context/CartContext';
 import { useFavorites } from '../../../../shared/context/FavoritesContext';
 import { Product } from '../../../../types/Product';
 import styles from './ProductCard.module.scss';
+import HeartFilled from '/img/icons/FavouritesFilled.svg';
+import HeartEmpty from '/img/icons/FavoriteEmpty.svg';
 
 type Props = {
   product: Product;
@@ -26,26 +28,15 @@ export const ProductCard: React.FC<Props> = ({ product, showDiscount }) => {
 
   return (
     <div className={styles.card}>
+      {/* IMAGE */}
       <div className={styles.imageWrapper}>
-        <button
-          className={styles.heartButton}
-          onClick={() => toggleFavorite(product)}
-        >
-          <img
-            src={
-              isFavorite
-                ? '/img/icons/Favourites Filled (Heart Like).png'
-                : '/img/icons/Favourites.png'
-            }
-            alt="Favorite"
-          />
-        </button>
-
         <img src={product.image} alt={product.name} className={styles.image} />
       </div>
 
+      {/* NAME */}
       <h3 className={styles.name}>{product.name}</h3>
 
+      {/* PRICES */}
       <div className={styles.prices}>
         <span className={styles.priceCurrent}>${price}</span>
 
@@ -56,14 +47,25 @@ export const ProductCard: React.FC<Props> = ({ product, showDiscount }) => {
 
       <div className={styles.divider} />
 
-      <button
-        disabled={isInCart}
-        onClick={handleAddToCart}
-        className={styles.addButton}
-      >
-        {isInCart ? 'Added to cart' : 'Add to cart'}
-      </button>
+      {/* ACTION ROW: ADD TO CART + HEART */}
+      <div className={styles.actionsRow}>
+        <button
+          disabled={isInCart}
+          onClick={handleAddToCart}
+          className={styles.addButton}
+        >
+          {isInCart ? 'Added to cart' : 'Add to cart'}
+        </button>
 
+        <button
+          className={styles.heartButton}
+          onClick={() => toggleFavorite(product)}
+        >
+          <img src={isFavorite ? HeartFilled : HeartEmpty} alt="Favorite" />
+        </button>
+      </div>
+
+      {/* SPECS */}
       <div className={styles.specs}>
         <div className={styles.specRow}>
           <span>Screen</span>

@@ -2,8 +2,8 @@ import { useCart } from '../../../../shared/context/CartContext';
 import { useFavorites } from '../../../../shared/context/FavoritesContext';
 import { Product } from '../../../../types/Product';
 import styles from './ProductCard.module.scss';
-import HeartFilled from '/img/icons/FavouritesFilled.svg';
-import HeartEmpty from '/img/icons/FavoriteEmpty.svg';
+import FavoriteFilled from 'img/icons/FavoriteFilled.svg';
+import FavoriteEmpty from '.img/icons/FavoriteEmpty.svg';
 
 type Props = {
   product: Product;
@@ -61,7 +61,10 @@ export const ProductCard: React.FC<Props> = ({ product, showDiscount }) => {
           className={styles.heartButton}
           onClick={() => toggleFavorite(product)}
         >
-          <img src={isFavorite ? HeartFilled : HeartEmpty} alt="Favorite" />
+          <img
+            src={isFavorite ? FavoriteFilled : FavoriteEmpty}
+            alt="Favorite"
+          />
         </button>
       </div>
 

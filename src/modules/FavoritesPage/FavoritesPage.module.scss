@@ -1,11 +1,40 @@
-.heart-btn {
+.heartButton {
   background: none;
   border: none;
   cursor: pointer;
-  font-size: 20px;
-  color: #aaa;
+  padding: 0;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  width: 32px;
+  height: 32px;
+
+  border-radius: 50%;
+  transition: background-color $hover-transition;
+
+  img {
+    width: 20px;
+    height: 20px;
+    transition: transform $transition, opacity $transition;
+    opacity: 0.8;
+  }
+
+  &:hover {
+    background-color: $surface-3;
+
+    img {
+      transform: scale(1.1);
+      opacity: 1;
+    }
+  }
 
   &.active {
-    color: red;
+    background-color: rgba($color-red, 0.1);
+
+    img {
+      transform: scale(1.15);
+      opacity: 1;
+    }
   }
 }

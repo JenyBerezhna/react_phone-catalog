@@ -2,8 +2,8 @@ import { useCart } from '../../../../shared/context/CartContext';
 import { useFavorites } from '../../../../shared/context/FavoritesContext';
 import { Product } from '../../../../types/Product';
 import styles from './ProductCard.module.scss';
-import FavoriteFilled from 'img/icons/FavoriteFilled.svg';
-import FavoriteEmpty from '.img/icons/FavoriteEmpty.svg';
+import FavoriteFilled from '/img/icons/FavoriteFilled.svg';
+import FavoriteEmpty from '/img/icons/FavoriteEmpty.svg';
 
 type Props = {
   product: Product;

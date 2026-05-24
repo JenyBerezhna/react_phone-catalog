@@ -1,14 +1,20 @@
 import { NavLink } from 'react-router-dom';
 import { useState } from 'react';
-import { useAppContext } from '../../shared/context/AppContext';
+
+import { useFavorites } from '../../shared/context/FavoritesContext';
+import { useCart } from '../../shared/context/CartContext';
+
 import styles from './Header.module.scss';
 
 const getNavClass = ({ isActive }: { isActive: boolean }) =>
   isActive ? `${styles.link} ${styles.active}` : styles.link;
 
 export const Header = () => {
-  const { favorites, cart } = useAppContext();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
+
+  // ✅ Get real data from your contexts
+  const { favorites } = useFavorites();
+  const { items: cart } = useCart();
 
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const favoritesCount = favorites.length;

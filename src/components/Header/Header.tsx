@@ -12,7 +12,6 @@ const getNavClass = ({ isActive }: { isActive: boolean }) =>
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
-  // ✅ Get real data from your contexts
   const { favorites } = useFavorites();
   const { items: cart } = useCart();
 
@@ -22,7 +21,6 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.container}>
-        {/* Logo */}
         <NavLink to="/" replace className={styles.logo}>
           <img src="/img/logo/Logo.svg" alt="Logo" />
         </NavLink>
@@ -45,7 +43,6 @@ export const Header = () => {
 
         {/* Desktop actions */}
         <div className={styles.actionsDesktop}>
-          {/* Favorites */}
           <NavLink to="/favorites" className={styles.icon}>
             <img
               src={

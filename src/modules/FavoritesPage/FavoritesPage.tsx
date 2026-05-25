@@ -8,12 +8,12 @@ export const FavoritesPage = () => {
 
   return (
     <section className="favorites-page">
-      <h1>Favorites</h1>
+      <h1>Favourites</h1>
       <p className={styles.counter}>{favorites.length} items</p>
 
       <WithLoader loading={false} error={undefined}>
         {favorites.length === 0 ? (
-          <p>No favorites yet</p>
+          <p>No favourites yet</p>
         ) : (
           <div className={styles.favoritesGrid}>
             {favorites.map(product => (

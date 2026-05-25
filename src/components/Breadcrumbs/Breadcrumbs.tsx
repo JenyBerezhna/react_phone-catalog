@@ -1,4 +1,4 @@
-import { NavLink, useNavigate } from 'react-router-dom';
+import { NavLink } from 'react-router-dom';
 import styles from './Breadcrumbs.module.scss';
 
 type Crumb = {
@@ -11,22 +11,19 @@ type Props = {
 };
 
 export const Breadcrumbs = ({ items }: Props) => {
-  const navigate = useNavigate();
-
   return (
     <div className={styles.wrapper}>
+      {/* Home icon */}
       <NavLink to="/" className={styles.iconButton} aria-label="Go to homepage">
-        <img src="/img/icons/Home.png" alt="" />
+        <img src="/img/icons/Home.svg" alt="" />
       </NavLink>
 
-      <button
-        className={styles.iconButton}
-        aria-label="Go back"
-        onClick={() => navigate(-1)}
-      >
-        <img src="/img/icons/arrow-left.svg" alt="" />
-      </button>
+      {/* Arrow after home if crumbs exist */}
+      {items.length > 0 && (
+        <img src="/img/icons/ArrowRight.svg" alt="" className={styles.arrow} />
+      )}
 
+      {/* Breadcrumb items */}
       <nav className={styles.breadcrumbs} aria-label="Breadcrumb">
         {items.map((item, index) => {
           const isLast = index === items.length - 1;
@@ -41,7 +38,14 @@ export const Breadcrumbs = ({ items }: Props) => {
                 <span className={styles.current}>{item.label}</span>
               )}
 
-              {!isLast && <span className={styles.separator}>/</span>}
+              {/* Arrow between items */}
+              {!isLast && (
+                <img
+                  src="/img/icons/ArrowRight.svg"
+                  alt=""
+                  className={styles.arrow}
+                />
+              )}
             </span>
           );
         })}

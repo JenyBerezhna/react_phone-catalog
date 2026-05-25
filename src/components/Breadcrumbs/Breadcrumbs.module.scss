@@ -1,4 +1,4 @@
-.breadcrumbs {
+.wrapper {
   display: flex;
   align-items: center;
   gap: 8px;
@@ -11,9 +11,32 @@
   }
 }
 
+.iconButton {
+  display: flex;
+  align-items: center;
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+}
+
+.arrow {
+  width: 16px;
+  height: 16px;
+  opacity: 0.6;
+}
+
+.breadcrumbs {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+}
+
 .item {
   display: flex;
   align-items: center;
+  gap: 8px;
 }
 
 .link {
@@ -37,9 +60,4 @@
   @include tablet {
     font-size: 14px;
   }
-}
-
-.separator {
-  margin: 0 4px;
-  color: $text-secondary;
 }

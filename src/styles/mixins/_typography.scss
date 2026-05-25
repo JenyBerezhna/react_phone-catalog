@@ -70,3 +70,13 @@
     $mobile-line-height
   );
 }
+
+@mixin counter-text {
+  @include typography(
+    14px,
+    21px,
+    600,
+    0,        // letter-spacing
+    none      // text-transform
+  );
+}

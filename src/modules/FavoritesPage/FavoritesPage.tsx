@@ -1,6 +1,6 @@
 import { WithLoader } from '../../components/WithLoader';
-// eslint-disable-next-line max-len
-import { ProductsList } from '../CatalogPage/components/ProductsList';
+import { ProductCard } from '../HomePage/components/ProductCard';
+import styles from './FavoritesPage.module.scss';
 import { useFavorites } from '../../shared/context/FavoritesContext';
 
 export const FavoritesPage = () => {
@@ -8,13 +8,22 @@ export const FavoritesPage = () => {
 
   return (
     <section className="favorites-page">
-      <h1>My Favorites</h1>
+      <h1>Favorites</h1>
+      <p className={styles.counter}>{favorites.length} items</p>
 
       <WithLoader loading={false} error={undefined}>
         {favorites.length === 0 ? (
           <p>No favorites yet</p>
         ) : (
-          <ProductsList products={favorites} />
+          <div className={styles.favoritesGrid}>
+            {favorites.map(product => (
+              <ProductCard
+                key={product.id}
+                product={product}
+                showDiscount={false}
+              />
+            ))}
+          </div>
         )}
       </WithLoader>
     </section>

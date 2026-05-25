@@ -1,3 +1,20 @@
+.favoritesGrid {
+  @include container;
+
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(212px, 1fr));
+  gap: $space-4;
+  padding-block: $space-4;
+}
+
+.counter {
+  @include counter-text;
+  
+  color: $text-secondary;
+  margin-bottom: $space-6;
+}
+
+
 .heartButton {
   background: none;
   border: none;

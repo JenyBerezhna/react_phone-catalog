@@ -1,0 +1,29 @@
+@use '../../styles/typography' as *;
+@use '../../styles/variables' as *;
+
+.locationButton {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+
+  text-decoration: none;
+  color: $text-secondary;
+  transition: color $transition;
+
+  &:hover {
+    color: $text-primary;
+  }
+}
+
+.homeIcon,
+.arrowIcon {
+  width: 16px;
+  height: 16px;
+  display: block;
+}
+
+.text {
+  @include small-text;
+
+  line-height: 21px;
+}

@@ -51,7 +51,7 @@ export const Header = () => {
               src={
                 favoritesCount === 0
                   ? '/img/icons/FavoriteEmpty.svg'
-                  : '/img/icons/FavoritesFilled.svg'
+                  : '/img/icons/FavoriteFilled.svg'
               }
               alt="Favorites"
             />
@@ -67,7 +67,7 @@ export const Header = () => {
               src={
                 cartCount === 0
                   ? '/img/icons/CartEmpty.svg'
-                  : '/img/icons/CartFilled.svg'
+                  : '/img/icons/Cart.svg'
               }
               alt="Cart"
             />
@@ -150,7 +150,7 @@ export const Header = () => {
                   src={
                     favoritesCount === 0
                       ? '/img/icons/FavoriteEmpty.svg'
-                      : '/img/icons/FavoritesFilled.svg'
+                      : '/img/icons/FavoriteFilled.svg'
                   }
                   alt="Favorites"
                 />
@@ -170,7 +170,7 @@ export const Header = () => {
                   src={
                     cartCount === 0
                       ? '/img/icons/CartEmpty.svg'
-                      : '/img/icons/CartFilled.svg'
+                      : '/img/icons/Cart.svg'
                   }
                   alt="Cart"
                 />

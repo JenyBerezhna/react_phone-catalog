@@ -11,25 +11,30 @@ export const Hero = () => {
   const { index, next, prev, goTo } = useSlider(images.length, 5000);
 
   return (
-    <section className={styles.hero}>
-      {/* Left arrow */}
-      <button className={`${styles.arrow} ${styles.arrowLeft}`} onClick={prev}>
-        <img src="/img/icons/ArrowLeft.svg" alt="Previous slide" />
-      </button>
+    <>
+      <section className={styles.hero}>
+        <div className={styles.slider}>
+          <button
+            className={`${styles.arrow} ${styles.arrowLeft}`}
+            onClick={prev}
+          >
+            <img src="/img/icons/ArrowLeft.svg" alt="Previous slide" />
+          </button>
 
-      {/* Banner image */}
-      <img
-        src={images[index]}
-        alt={`Banner ${index + 1}`}
-        className={styles.bannerImage}
-      />
+          <img
+            src={images[index]}
+            alt={`Banner ${index + 1}`}
+            className={styles.bannerImage}
+          />
 
-      {/* Right arrow */}
-      <button className={`${styles.arrow} ${styles.arrowRight}`} onClick={next}>
-        <img src="/img/icons/ArrowRight.svg" alt="Next slide" />
-      </button>
-
-      {/* Dots */}
+          <button
+            className={`${styles.arrow} ${styles.arrowRight}`}
+            onClick={next}
+          >
+            <img src="/img/icons/ArrowRight.svg" alt="Next slide" />
+          </button>
+        </div>
+      </section>
       <div className={styles.dotsWrapper}>
         <div className={styles.dots}>
           {images.map((_, i) => (
@@ -41,6 +46,6 @@ export const Hero = () => {
           ))}
         </div>
       </div>
-    </section>
+    </>
   );
 };

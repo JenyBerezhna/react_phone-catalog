@@ -27,22 +27,27 @@
 .item {
   display: flex;
   flex-direction: column;
-  gap: $space-2;
   text-decoration: none;
+  background: $surface-1;
+  border-radius: $radius-m;
+  overflow: hidden;
+  transition: transform $transition, box-shadow $transition;
 
   img {
     width: 100%;
-    border-radius: $radius-m;
-    background: $surface-2;
-    transition: transform $transition;
-  }
-
-  &:hover img {
-    transform: scale(1.05);
+    aspect-ratio: 1.2; // equal height
+    object-fit: cover;
   }
 
   span {
-    font-size: 14px;
+    padding: $space-3;
+    font-size: 18px;
+    font-weight: 600;
     color: $text-primary;
+  }
+
+  &:hover {
+    transform: translateY(-4px);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.3);
   }
 }

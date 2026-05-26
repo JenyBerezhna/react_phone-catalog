@@ -43,26 +43,28 @@ export const HomePage = () => {
         </section>
 
         <section className={styles.section}>
-          <h2 className={styles.sectionTitle}>Shop by category</h2>
+          <div className={styles.container}>
+            <h2 className={styles.sectionTitle}>Shop by category</h2>
 
-          <div className={styles.categories}>
-            <CategoryCard
-              title="Mobile phones"
-              image="/img/category/category-phones.png"
-              link="/phones"
-            />
+            <div className={styles.categories}>
+              <CategoryCard
+                title="Mobile phones"
+                image="/img/category/category-phones.png"
+                link="/phones"
+              />
 
-            <CategoryCard
-              title="Tablets"
-              image="/img/category/category-tablets.png"
-              link="/tablets"
-            />
+              <CategoryCard
+                title="Tablets"
+                image="/img/category/category-tablets.png"
+                link="/tablets"
+              />
 
-            <CategoryCard
-              title="Accessories"
-              image="/img/category/category-accessories.png"
-              link="/accessories"
-            />
+              <CategoryCard
+                title="Accessories"
+                image="/img/category/category-accessories.png"
+                link="/accessories"
+              />
+            </div>
           </div>
         </section>
 

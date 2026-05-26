@@ -17,7 +17,7 @@ export const Layout = () => {
       <Header />
 
       <main className={styles.main}>
-        <Breadcrumbs items={items} />
+        {location.pathname !== '/' && <Breadcrumbs items={items} />}
 
         <TransitionGroup component={null}>
           <CSSTransition

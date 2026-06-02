@@ -1,6 +1,7 @@
 import { useCart } from '../../shared/context/CartContext';
 import { CartItem } from '../../modules/CartItem/CartItem';
 import styles from './CartPage.module.scss';
+import { BackButton } from '../../components/BackButton/BackButton';
 
 export const CartPage = () => {
   const { items, totalPrice, removeFromCart, increase, decrease, clearCart } =
@@ -31,6 +32,7 @@ export const CartPage = () => {
   /* FILLED CART */
   return (
     <section className={styles.cart}>
+      <BackButton />
       <h1 className={styles.title}>Cart</h1>
 
       <div className={styles.items}>
@@ -46,7 +48,10 @@ export const CartPage = () => {
       </div>
 
       <div className={styles.summary}>
-        <h2>Total: ${totalPrice}</h2>
+        <div className={styles.totalBlock}>
+          <h2>${totalPrice}</h2>
+          <p className={styles.count}>Total for {items.length} items</p>
+        </div>
         <button className={styles.checkout} onClick={handleCheckout}>
           Checkout
         </button>

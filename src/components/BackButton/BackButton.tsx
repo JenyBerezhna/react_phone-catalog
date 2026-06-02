@@ -5,7 +5,11 @@ export const BackButton = ({ className = '' }) => {
 
   return (
     <button className={`back-button ${className}`} onClick={() => navigate(-1)}>
-      <img src="/img/icons/arrow-left.svg" alt="" />
+      <img
+        className="back-button__icon"
+        src="/img/icons/ArrowLeft.svg"
+        alt=""
+      />
       Back
     </button>
   );

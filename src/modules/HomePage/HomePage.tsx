@@ -10,6 +10,11 @@ import { WithLoader } from '../../components/WithLoader';
 
 export const HomePage = () => {
   const { products, loading, error } = useProducts();
+  const phonesCount = products.filter(p => p.category === 'phones').length;
+  const tabletsCount = products.filter(p => p.category === 'tablets').length;
+  const accessoriesCount = products.filter(
+    p => p.category === 'accessories',
+  ).length;
 
   const brandNew = [...products].sort((a, b) => b.year - a.year);
 
@@ -51,18 +56,21 @@ export const HomePage = () => {
                 title="Mobile phones"
                 image="/img/category/category-phones.png"
                 link="/phones"
+                models={phonesCount}
               />
 
               <CategoryCard
                 title="Tablets"
                 image="/img/category/category-tablets.png"
                 link="/tablets"
+                models={tabletsCount}
               />
 
               <CategoryCard
                 title="Accessories"
                 image="/img/category/category-accessories.png"
                 link="/accessories"
+                models={accessoriesCount}
               />
             </div>
           </div>

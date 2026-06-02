@@ -1,30 +1,49 @@
-
 .card {
   display: flex;
   flex-direction: column;
-  gap: $space-3;
   text-decoration: none;
   color: $text-primary;
-  transition: transform $transition;
+  transition: transform $transition, box-shadow $transition;
 
   &:hover {
     transform: translateY(-4px);
   }
+}
 
-  img {
-    width: 100%;
-    height: auto;
-    border-radius: $radius-m;
-    transition: transform $transition;
-  }
+.imageWrapper {
+  position: relative;
+  width: 100%;
+  aspect-ratio: 1.15;
+  background: $surface-1;
+  overflow: hidden;
+}
 
-  &:hover img {
-    transform: scale(1.1);
-  }
+.image {
+  position: absolute;
+  height: 100%;
+  width: auto;
+  right: -15px;
+  bottom: -20px;
+  object-fit: contain;
+  transition: transform $transition;
+}
 
-  h3 {
-    font-size: 18px;
-    font-weight: 700;
-    margin: 0;
-  }
+
+.card:hover .image {
+  transform: scale(1.04);
+}
+
+.info {
+  padding-top: $space-3;
+}
+
+h3 {
+  margin: 0 0 4px;
+  font-size: 22px;
+  font-weight: 700;
+}
+
+.models {
+  font-size: 14px;
+  color: $text-secondary;
 }

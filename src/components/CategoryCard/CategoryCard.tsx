@@ -5,11 +5,23 @@ type Props = {
   title: string;
   image: string;
   link: string;
+  models?: number;
 };
 
-export const CategoryCard: React.FC<Props> = ({ title, image, link }) => (
+export const CategoryCard: React.FC<Props> = ({
+  title,
+  image,
+  link,
+  models,
+}) => (
   <Link to={link} className={styles.card}>
-    <img src={image} alt={title} />
-    <h3>{title}</h3>
+    <div className={styles.imageWrapper}>
+      <img src={image} alt={title} className={styles.image} />
+    </div>
+
+    <div className={styles.info}>
+      <h3>{title}</h3>
+      <span className={styles.models}>{models} models</span>
+    </div>
   </Link>
 );

@@ -2,3 +2,11 @@
 @forward './mixins/index';
 @forward './globals';
 
+html, body {
+  overflow-x: hidden;
+}
+
+* {
+  min-width: 0;
+}
+

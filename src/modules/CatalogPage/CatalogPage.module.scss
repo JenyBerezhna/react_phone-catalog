@@ -1,56 +1,90 @@
+/* PAGE WRAPPER */
 .catalog {
-  width: 100%;
-  max-width: $container-width-desktop;
-  margin: 0 auto;
-
-  padding: $space-6 $container-padding-tablet;
+  @include container;
 
   display: flex;
   flex-direction: column;
   gap: $space-6;
+  padding-block: $space-6;
 
   background: $bg-primary;
   color: $text-primary;
+  min-width: 0;
 
   @include mobile {
-    padding: $space-5 $container-padding-mobile;
+    padding-block: $space-5;
     gap: $space-5;
   }
 }
 
-.catalog h1 {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: $space-3;
 
-  @include mobile {
-    font-size: 24px;
-  }
+.title {
+  @include h2;
+
+  margin-bottom: $space-2;
+  color: $text-primary;
 }
 
+.counter {
+  @include counter-text;
+
+  color: $text-secondary;
+  margin-bottom: $space-4;
+}
+
+/* TOP BAR (Sort + Items per page) */
 .topbar {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: $space-4;
+  min-width: 0;
 
   @include mobile {
     flex-direction: column;
     align-items: flex-start;
     gap: $space-3;
   }
+
+  .control {
+    display: flex;
+    flex-direction: column;
+    gap: $space-1;
+
+    label {
+      @include small-text;
+
+      color: $text-secondary;
+    }
+
+  select {
+    @include body-text;
+
+    padding: $space-2 $space-3;
+
+    background: $surface-2;
+    border-radius: $radius-s;
+    border: 1px solid $surface-3;
+    color: $text-primary;
+
+    cursor: pointer;
+    transition: background $transition;
+    min-width: 0;
+    max-width: 100%;
+
+    &:hover {
+      background: $surface-3;
+    }
+  }
 }
 
-.topbar select {
-  padding: $space-2 $space-3;
-  background: $surface-2;
-  border-radius: $radius-s;
-  border: 1px solid $surface-3;
-  color: $text-primary;
-  cursor: pointer;
-  transition: background $transition;
+.catalogGrid {
+  @include container;
 
-  &:hover {
-    background: $surface-3;
-  }
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(212px, 1fr));
+  gap: $space-4;
+  padding-block: $space-4;
+  min-width: 0;
+}
 }

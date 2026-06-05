@@ -16,6 +16,7 @@
 .cardWrapper {
   flex: 0 0 auto;
   scroll-snap-align: start;
+  min-width: 0;
 }
 
 
@@ -81,6 +82,10 @@
   padding-bottom: $space-2;
   scrollbar-width: none;
   scroll-snap-type: x mandatory;
+  
+    min-width: 0;
+
+
 
   &::-webkit-scrollbar {
     display: none;

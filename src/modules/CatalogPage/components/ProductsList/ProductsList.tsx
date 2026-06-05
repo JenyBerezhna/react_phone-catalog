@@ -3,11 +3,12 @@ import { Product } from '../../../../types/Product';
 
 type Props = {
   products: Product[];
+  className?: string;
 };
 
-export const ProductsList: React.FC<Props> = ({ products }) => {
+export const ProductsList: React.FC<Props> = ({ products, className }) => {
   return (
-    <div className={styles.list}>
+    <div className={className ?? styles.list}>
       {products.map(product => {
         const hasDiscount = product.price < product.fullPrice;
 

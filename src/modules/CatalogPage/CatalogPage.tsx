@@ -17,7 +17,7 @@ type Props = {
 };
 
 const TITLES = {
-  phones: 'Phones',
+  phones: 'Mobile phones',
   tablets: 'Tablets',
   accessories: 'Accessories',
 } as const;
@@ -26,13 +26,13 @@ export const CatalogPage: React.FC<Props> = ({ type }) => {
   const { products, loading, error } = useProducts();
   const { params, setParam } = useQueryParams();
 
-  // 1. Filter by category
+  // Filter by category
   const filtered = useMemo(
     () => products.filter((p: Product) => p.category === type),
     [products, type],
   );
 
-  // 2. Sorting
+  // Sorting
   const { sort, sortedProducts, setSort } = useSort(filtered, params, setParam);
 
   // Pagination
@@ -41,7 +41,18 @@ export const CatalogPage: React.FC<Props> = ({ type }) => {
 
   return (
     <section className={styles.catalog}>
-      <h1>{TITLES[type]} page</h1>
+      {/* Breadcrumb */}
+      <div className={styles.breadcrumb}>
+        <span>Home</span>
+        <span className={styles.separator}>/</span>
+        <span>{TITLES[type]}</span>
+      </div>
+
+      {/* Title */}
+      <h1 className={styles.title}>{TITLES[type]}</h1>
+
+      {/* Models count */}
+      <p className={styles.counter}>{filtered.length} models</p>
 
       <WithLoader
         loading={loading}
@@ -59,31 +70,39 @@ export const CatalogPage: React.FC<Props> = ({ type }) => {
           <>
             {/* Top bar */}
             <div className={styles.topbar}>
-              {/* Sort */}
-              <select
-                value={sort}
-                onChange={e =>
-                  setSort(e.target.value as 'age' | 'title' | 'price')
-                }
-              >
-                <option value="age">Newest</option>
-                <option value="title">Alphabetically</option>
-                <option value="price">Cheapest</option>
-              </select>
+              <div className={styles.control}>
+                <label htmlFor="sort">Sort by</label>
+                <select
+                  value={sort}
+                  onChange={e =>
+                    setSort(e.target.value as 'age' | 'title' | 'price')
+                  }
+                >
+                  <option value="age">Newest</option>
+                  <option value="title">Alphabetically</option>
+                  <option value="price">Cheapest</option>
+                </select>
+              </div>
 
-              {/* Per page */}
-              <select
-                value={perPage}
-                onChange={e => setPerPage(e.target.value)}
-              >
-                <option value="4">4</option>
-                <option value="8">8</option>
-                <option value="16">16</option>
-                <option value="all">All</option>
-              </select>
+              <div className={styles.control}>
+                <label htmlFor="perpage">Items on page</label>
+                <select
+                  value={perPage}
+                  onChange={e => setPerPage(e.target.value)}
+                >
+                  <option value="4">4</option>
+                  <option value="8">8</option>
+                  <option value="16">16</option>
+                  <option value="all">All</option>
+                </select>
+              </div>
             </div>
 
-            <ProductsList products={paginatedProducts} />
+            {/* Grid */}
+            <ProductsList
+              products={paginatedProducts}
+              className={styles.catalogGrid}
+            />
 
             {/* Pagination */}
             {totalPages > 1 && perPage !== 'all' && (

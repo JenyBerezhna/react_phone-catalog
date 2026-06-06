@@ -1,5 +1,5 @@
 import { useCart } from '../../shared/context/CartContext';
-import { CartItem } from '../../modules/CartItem/CartItem';
+import { CartItem } from './CartItem/CartItem';
 import styles from './CartPage.module.scss';
 import { BackButton } from '../../components/BackButton/BackButton';
 

@@ -1,5 +1,5 @@
 import styles from './CartItem.module.scss';
-import { CartItem as CartItemType } from '../../types';
+import { CartItem as CartItemType } from '../../../types';
 
 interface CartItemProps {
   item: CartItemType;

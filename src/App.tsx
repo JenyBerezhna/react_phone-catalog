@@ -9,7 +9,6 @@ import { NotFoundPage } from './modules/NotFoundPage/NotFoundPage';
 import { HomePage } from './modules/HomePage/HomePage';
 import { CatalogPage } from './modules/CatalogPage/CatalogPage';
 // eslint-disable-next-line max-len
-import { ProductDetailsPage } from './modules/ProductDetailsPage/ProductDetailsPage';
 import { FavoritesPage } from './modules/FavoritesPage/FavoritesPage';
 import { CartPage } from './modules/CartPage/CartPage';
 import { ItemPage } from './modules/ItemPage/ItemPage';
@@ -29,10 +28,7 @@ export const App = () => (
               element={<CatalogPage type="accessories" />}
             />
 
-            <Route
-              path="/product/:productId"
-              element={<ProductDetailsPage />}
-            />
+            <Route path="/product/:productId" element={<ItemPage />} />
 
             <Route path="/favorites" element={<FavoritesPage />} />
             <Route path="/cart" element={<CartPage />} />

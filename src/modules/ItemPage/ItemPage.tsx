@@ -7,7 +7,7 @@ import { ItemInfo } from './ItemInfo/ItemInfo';
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import { BackButton } from '../../components/BackButton/BackButton';
 import { WithLoader } from '../../components/WithLoader';
-import { ProductsSlider } from '../HomePage/components/ProductCardSlider';
+import { ProductsSlider } from '../HomePage/components/ProductsSlider';
 
 import { useItemDetails } from '../../shared/helpers/useItemDetails';
 import { useSuggestedProducts } from '../../hooks/useSuggestedProducts';

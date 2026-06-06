@@ -1,26 +1,35 @@
-import styles from './ProductsList.module.scss';
+import styles from './ProductsSlider.module.scss';
 import { Product } from '../../../../types/Product';
 import { Card } from '../../../Card/Card';
 
 type Props = {
+  title: string;
   products: Product[];
-  className?: string;
+  showDiscount?: boolean;
 };
 
-export const ProductsList: React.FC<Props> = ({ products, className }) => {
+export const ProductsList: React.FC<Props> = ({
+  title,
+  products,
+  showDiscount = true,
+}) => {
   return (
-    <div className={className ?? styles.list}>
-      {products.map(product => (
-        <Card
-          key={product.id}
-          product={product}
-          variant="catalog"
-          showPrices
-          showSpecs
-          showActions
-          showDiscount
-        />
-      ))}
+    <div className={styles.sliderBlock}>
+      <h2 className={styles.title}>{title}</h2>
+
+      <div className={styles.slider}>
+        {products.map(product => (
+          <Card
+            key={product.id}
+            product={product}
+            variant="slider"
+            showPrices
+            showSpecs={false}
+            showActions
+            showDiscount={showDiscount}
+          />
+        ))}
+      </div>
     </div>
   );
 };

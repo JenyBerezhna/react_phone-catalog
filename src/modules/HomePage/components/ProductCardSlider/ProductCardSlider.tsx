@@ -1,7 +1,7 @@
 import { useRef } from 'react';
 import { Product } from '../../../../types/Product';
-import styles from './ProductsSlider.module.scss';
-import { ProductCard } from '../../components/ProductCard/ProductCard';
+import styles from './ProductsCardSlider.module.scss';
+import { Card } from '../../../Card/Card';
 
 type Props = {
   title: string;
@@ -68,7 +68,7 @@ export const ProductsSlider: React.FC<Props> = ({
       <div className={styles.list} ref={ref}>
         {products.map(product => (
           <div key={product.id} className={styles.cardWrapper}>
-            <ProductCard product={product} showDiscount={showDiscount} />
+            <Card product={product} showDiscount={showDiscount} />
           </div>
         ))}
       </div>

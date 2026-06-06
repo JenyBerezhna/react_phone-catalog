@@ -1,7 +1,7 @@
 import { WithLoader } from '../../components/WithLoader';
-import { ProductCard } from '../HomePage/components/ProductCard';
 import styles from './FavoritesPage.module.scss';
 import { useFavorites } from '../../shared/context/FavoritesContext';
+import { Card } from '../../modules/Card/Card';
 
 export const FavoritesPage = () => {
   const { favorites } = useFavorites();
@@ -17,10 +17,14 @@ export const FavoritesPage = () => {
         ) : (
           <div className={styles.favoritesGrid}>
             {favorites.map(product => (
-              <ProductCard
+              <Card
                 key={product.id}
                 product={product}
-                showDiscount={false}
+                variant="favorite"
+                showPrices
+                showSpecs
+                showActions={false}
+                showDiscount
               />
             ))}
           </div>

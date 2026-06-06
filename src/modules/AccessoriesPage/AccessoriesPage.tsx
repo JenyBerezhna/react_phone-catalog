@@ -2,7 +2,6 @@ import { useSearchParams } from 'react-router-dom';
 import { useProducts } from '../../hooks/useProducts';
 import { useSort } from '../../hooks/useSort';
 import { WithLoader } from '../../components/WithLoader';
-// eslint-disable-next-line max-len
 import { ProductsList } from '../CatalogPage/components/ProductsList';
 import { Pagination } from '../../components/Pagination';
 import { SortSelect } from '../../modules/SortSelect/SortSelect';
@@ -47,7 +46,7 @@ export const AccessoriesPage = () => {
           />
         </div>
 
-        <ProductsList products={sortedProducts} />
+        <ProductsList title="Accessories" products={sortedProducts} />
       </div>
     </WithLoader>
   );

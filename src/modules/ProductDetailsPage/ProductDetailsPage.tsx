@@ -5,7 +5,7 @@ import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import { WithLoader } from '../../components/WithLoader';
 import { useProductDetails } from '../../hooks/useProductDetails';
 import { useSuggestedProducts } from '../../hooks/useSuggestedProducts';
-import { ProductsSlider } from '../HomePage/components/ProductsSlider';
+import { ProductsSlider } from '../HomePage/components/ProductCardSlider';
 import { BackButton } from '../../components/BackButton/BackButton';
 
 export const ProductDetailsPage = () => {

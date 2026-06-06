@@ -4,24 +4,31 @@
 
   display: flex;
   flex-direction: column;
-  gap: $space-6;
-  padding-block: $space-6;
+  gap: $space-4;
 
   background: $bg-primary;
   color: $text-primary;
   min-width: 0;
+  padding-inline: 0;
 
   @include mobile {
-    padding-block: $space-5;
-    gap: $space-5;
+    gap: $space-4;
+    padding-inline: 0 ;
   }
+}
+
+.headerBlock {
+  display: flex;
+  flex-direction: column;
+  gap: $space-1;
+  margin-bottom: $space-4;
 }
 
 
 .title {
   @include h2;
 
-  margin-bottom: $space-2;
+  margin-bottom: $space-1;
   color: $text-primary;
 }
 
@@ -29,19 +36,18 @@
   @include counter-text;
 
   color: $text-secondary;
-  margin-bottom: $space-4;
+  margin-bottom: $space-2;
 }
 
 /* TOP BAR (Sort + Items per page) */
 .topbar {
   display: flex;
-  justify-content: space-between;
+  justify-content: flex-start;
   align-items: center;
   gap: $space-4;
   min-width: 0;
 
   @include mobile {
-    flex-direction: column;
     align-items: flex-start;
     gap: $space-3;
   }
@@ -77,14 +83,12 @@
     }
   }
 }
+}
 
 .catalogGrid {
-  @include container;
-
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(212px, 1fr));
   gap: $space-4;
-  padding-block: $space-4;
   min-width: 0;
 }
-}
+

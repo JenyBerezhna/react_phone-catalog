@@ -41,19 +41,11 @@ export const CatalogPage: React.FC<Props> = ({ type }) => {
 
   return (
     <section className={styles.catalog}>
-      {/* Breadcrumb */}
-      <div className={styles.breadcrumb}>
-        <span>Home</span>
-        <span className={styles.separator}>/</span>
-        <span>{TITLES[type]}</span>
-      </div>
-
       {/* Title */}
-      <h1 className={styles.title}>{TITLES[type]}</h1>
-
-      {/* Models count */}
-      <p className={styles.counter}>{filtered.length} models</p>
-
+      <div className={styles.headerBlock}>
+        <h1 className={styles.title}>{TITLES[type]}</h1>
+        <p className={styles.counter}>{filtered.length} models</p>
+      </div>
       <WithLoader
         loading={loading}
         error={error}
@@ -73,6 +65,7 @@ export const CatalogPage: React.FC<Props> = ({ type }) => {
               <div className={styles.control}>
                 <label htmlFor="sort">Sort by</label>
                 <select
+                  id="sort"
                   value={sort}
                   onChange={e =>
                     setSort(e.target.value as 'age' | 'title' | 'price')
@@ -87,6 +80,7 @@ export const CatalogPage: React.FC<Props> = ({ type }) => {
               <div className={styles.control}>
                 <label htmlFor="perpage">Items on page</label>
                 <select
+                  id="perpage"
                   value={perPage}
                   onChange={e => setPerPage(e.target.value)}
                 >

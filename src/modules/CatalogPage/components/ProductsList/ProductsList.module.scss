@@ -1,6 +1,4 @@
 .list {
-  @include container;
-
   display: grid;
   grid-template-columns: repeat(auto-fill, minmax(212px, 1fr));
   gap: $space-4;
@@ -28,7 +26,7 @@
 
 .name {
   @include small-text;
-  
+
   font-weight: 600;
   color: $text-primary;
   min-height: 40px;

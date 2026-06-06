@@ -1,4 +1,4 @@
-import styles from './ProductsSlider.module.scss';
+import styles from './ProductsList.module.scss';
 import { Product } from '../../../../types/Product';
 import { Card } from '../../../Card/Card';
 
@@ -6,6 +6,7 @@ type Props = {
   title: string;
   products: Product[];
   showDiscount?: boolean;
+  className?: string;
 };
 
 export const ProductsList: React.FC<Props> = ({

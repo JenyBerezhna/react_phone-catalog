@@ -94,6 +94,7 @@ export const CatalogPage: React.FC<Props> = ({ type }) => {
 
             {/* Grid */}
             <ProductsList
+              title={TITLES[type]}
               products={paginatedProducts}
               className={styles.catalogGrid}
             />

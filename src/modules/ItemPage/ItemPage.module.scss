@@ -1,0 +1,23 @@
+@use '../../styles/mixins' as *;
+
+.page {
+  padding-block: 32px;
+
+  @include desktop {
+    padding-block: 48px;
+  }
+}
+
+.container {
+  display: grid;
+  gap: 32px;
+
+  @include tablet {
+    grid-template-columns: 1fr 1fr;
+  }
+
+  @include desktop {
+    grid-template-columns: 0.6fr 1fr 1fr;
+    gap: 48px;
+  }
+}

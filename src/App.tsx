@@ -12,6 +12,7 @@ import { CatalogPage } from './modules/CatalogPage/CatalogPage';
 import { ProductDetailsPage } from './modules/ProductDetailsPage/ProductDetailsPage';
 import { FavoritesPage } from './modules/FavoritesPage/FavoritesPage';
 import { CartPage } from './modules/CartPage/CartPage';
+import { ItemPage } from './modules/ItemPage/ItemPage';
 
 export const App = () => (
   <div className="App">
@@ -37,7 +38,8 @@ export const App = () => (
             <Route path="/cart" element={<CartPage />} />
 
             <Route path="/product">
-              <Route path=":productId" element={<ProductDetailsPage />} />
+              <Route path="/items/:id" element={<ItemPage />} />
+
               <Route path="*" element={<NotFoundPage />} />
             </Route>
           </Route>

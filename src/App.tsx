@@ -8,7 +8,6 @@ import { NotFoundPage } from './modules/NotFoundPage/NotFoundPage';
 
 import { HomePage } from './modules/HomePage/HomePage';
 import { CatalogPage } from './modules/CatalogPage/CatalogPage';
-// eslint-disable-next-line max-len
 import { FavoritesPage } from './modules/FavoritesPage/FavoritesPage';
 import { CartPage } from './modules/CartPage/CartPage';
 import { ItemPage } from './modules/ItemPage/ItemPage';
@@ -28,16 +27,12 @@ export const App = () => (
               element={<CatalogPage type="accessories" />}
             />
 
-            <Route path="/product/:productId" element={<ItemPage />} />
+            <Route path="/items/:itemId" element={<ItemPage />} />
 
             <Route path="/favorites" element={<FavoritesPage />} />
             <Route path="/cart" element={<CartPage />} />
 
-            <Route path="/product">
-              <Route path="/items/:id" element={<ItemPage />} />
-
-              <Route path="*" element={<NotFoundPage />} />
-            </Route>
+            <Route path="*" element={<NotFoundPage />} />
           </Route>
         </Routes>
       </CartProvider>

@@ -1,5 +1,4 @@
 .card {
-  width: 212px;
   background: $surface-1;
   border-radius: $radius-m;
   padding: $space-3;
@@ -20,8 +19,19 @@
   }
 }
 
+/* GRID VARIANT */
+.card--grid {
+  width: 100%;
+}
+
+/* SLIDER VARIANT */
+.card--slider {
+  width: 212px;
+  flex: 0 0 auto;
+}
+
 /* IMAGE */
-.imageWrapper {
+.card__imageWrapper {
   position: relative;
   width: 100%;
   height: 200px;
@@ -35,7 +45,7 @@
   overflow: hidden;
 }
 
-.image {
+.card__image {
   width: 100%;
   height: 100%;
   object-fit: contain;
@@ -46,7 +56,8 @@
   }
 }
 
-.name {
+/* NAME */
+.card__name {
   font-size: 14px;
   font-weight: 600;
   color: $text-primary;
@@ -55,39 +66,39 @@
 }
 
 /* PRICES */
-.prices {
+.card__prices {
   display: flex;
   align-items: baseline;
   gap: 4px;
 }
 
-.priceCurrent {
+.card__priceCurrent {
   font-size: 22px;
   font-weight: 700;
   color: $text-primary;
 }
 
-.priceFull {
+.card__priceFull {
   font-size: 14px;
   color: $text-secondary;
   text-decoration: line-through;
 }
 
-.divider {
+.card__divider {
   width: 100%;
   height: 1px;
   background: $color-elements;
 }
 
 /* ACTIONS */
-.actionsRow {
+.card__actions {
   display: flex;
   justify-content: space-between;
   align-items: center;
   gap: 12px;
 }
 
-.addButton {
+.card__addButton {
   flex: 1;
   height: 40px;
   background: $accent-primary;
@@ -115,7 +126,7 @@
 }
 
 /* HEART BUTTON */
-.heartButton {
+.card__heart {
   width: 40px;
   height: 40px;
 
@@ -135,28 +146,23 @@
   }
 }
 
-.specs {
+/* SPECS */
+.card__specs {
   display: flex;
   flex-direction: column;
   gap: $space-1;
 }
 
-.specRow {
+.card__specRow {
   display: flex;
   justify-content: space-between;
   font-size: 12px;
   color: $text-secondary;
 }
 
-.specRow span:first-child {
-  // label
-  font-size: 12px;
-  color: $text-secondary;
-}
-
-.specValue {
+.card__specValue {
   @include small-text;
-
+  
   color: $text-primary;
   font-weight: 600;
 }

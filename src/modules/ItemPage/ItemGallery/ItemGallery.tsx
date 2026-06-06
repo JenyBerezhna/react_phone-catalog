@@ -1,7 +1,11 @@
 import { useState } from 'react';
 import styles from './ItemGallery.module.scss';
 
-export const ItemGallery = ({ images }) => {
+interface ItemGalleryProps {
+  images: string[];
+}
+
+export const ItemGallery = ({ images }: ItemGalleryProps) => {
   const [active, setActive] = useState(0);
 
   return (

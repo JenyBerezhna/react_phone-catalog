@@ -7,7 +7,7 @@ import { ItemInfo } from './ItemInfo/ItemInfo';
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import { BackButton } from '../../components/BackButton/BackButton';
 import { WithLoader } from '../../components/WithLoader';
-import { ProductsSlider } from '../HomePage/components/ProductsSlider';
+import { Card } from '../Card/Card';
 
 import { useItemDetails } from '../../shared/helpers/useItemDetails';
 import { useSuggestedProducts } from '../../hooks/useSuggestedProducts';
@@ -62,11 +62,11 @@ export const ItemPage = () => {
         {suggested.length > 0 && (
           <div className={styles.suggested}>
             <h2>You may also like</h2>
-            <ProductsSlider
-              title="You may also like"
-              products={suggested}
-              showDiscount
-            />
+            <div className="layout--slider">
+              {suggested.map(p => (
+                <Card key={p.id} product={p} variant="slider" />
+              ))}
+            </div>
           </div>
         )}
       </WithLoader>

@@ -1,6 +1,6 @@
 import { useRef } from 'react';
 import { Product } from '../../../../types/Product';
-import styles from './ProductsCardSlider.module.scss';
+import styles from './ProductsSlider.module.scss';
 import { Card } from '../../../Card/Card';
 
 type Props = {
@@ -23,22 +23,17 @@ export const ProductsSlider: React.FC<Props> = ({
       return;
     }
 
-    const firstCard = container.querySelector(
-      `.${styles.cardWrapper}`,
-    ) as HTMLElement | null;
+    const card = container.querySelector('.card--slider') as HTMLElement | null;
 
-    if (!firstCard) {
+    if (!card) {
       return;
     }
 
-    const cardWidth = firstCard.getBoundingClientRect().width;
+    const cardWidth = card.getBoundingClientRect().width;
     const gap = 16;
     const offset = direction === 'left' ? -(cardWidth + gap) : cardWidth + gap;
 
-    container.scrollBy({
-      left: offset,
-      behavior: 'smooth',
-    });
+    container.scrollBy({ left: offset, behavior: 'smooth' });
   };
 
   return (
@@ -65,11 +60,18 @@ export const ProductsSlider: React.FC<Props> = ({
         </div>
       </div>
 
-      <div className={styles.list} ref={ref}>
+      {/* LAYOUT SYSTEM */}
+      <div className="layout--slider" ref={ref}>
         {products.map(product => (
-          <div key={product.id} className={styles.cardWrapper}>
-            <Card product={product} showDiscount={showDiscount} />
-          </div>
+          <Card
+            key={product.id}
+            product={product}
+            variant="slider"
+            showPrices
+            showSpecs
+            showActions
+            showDiscount={showDiscount}
+          />
         ))}
       </div>
     </section>

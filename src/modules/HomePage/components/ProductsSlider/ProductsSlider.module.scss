@@ -72,23 +72,5 @@
   }
 }
 
-/* Horizontal scroll list */
-.list {
-  display: flex;
-  flex-wrap: nowrap;
-  gap: 16px; // 16px
-  overflow-x: auto;
-  scroll-behavior: smooth;
-  padding-bottom: $space-2;
-  scrollbar-width: none;
-  scroll-snap-type: x mandatory;
-  
-    min-width: 0;
 
-
-
-  &::-webkit-scrollbar {
-    display: none;
-  }
-}
 

@@ -10,7 +10,7 @@ import FavoriteEmpty from '/img/icons/FavoriteEmpty.svg';
 import styles from './Card.module.scss';
 import { Product } from '../../types/Product';
 
-type CardVariant = 'catalog' | 'category' | 'slider' | 'favorite';
+type CardVariant = 'grid' | 'slider';
 
 type Props = {
   product: Product;
@@ -24,7 +24,7 @@ type Props = {
 
 export const Card: React.FC<Props> = ({
   product,
-  variant = 'catalog',
+  variant = 'grid',
   showPrices = true,
   showSpecs = true,
   showActions = true,
@@ -35,50 +35,45 @@ export const Card: React.FC<Props> = ({
 
   const isInCart = items.some(item => item.id === product.id);
   const isFavorite = favorites.some(fav => fav.id === product.id);
-
   const hasDiscount = product.fullPrice > product.price;
 
   return (
     <div className={classNames(styles.card, styles[`card--${variant}`])}>
       {/* IMAGE */}
-      <div className={styles.card__imageWrapper}>
-        <img
-          src={product.image}
-          alt={product.name}
-          className={styles.card__image}
-        />
+      <div className={styles.imageWrapper}>
+        <img src={product.image} alt={product.name} className={styles.image} />
       </div>
 
       {/* NAME */}
-      <h3 className={styles.card__name}>{product.name}</h3>
+      <h3 className={styles.name}>{product.name}</h3>
 
       {/* PRICES */}
       {showPrices && (
-        <div className={styles.card__prices}>
-          <span className={styles.card__priceCurrent}>${product.price}</span>
+        <div className={styles.prices}>
+          <span className={styles.priceCurrent}>${product.price}</span>
 
           {showDiscount && hasDiscount && (
-            <span className={styles.card__priceFull}>${product.fullPrice}</span>
+            <span className={styles.priceFull}>${product.fullPrice}</span>
           )}
         </div>
       )}
 
       {/* DIVIDER */}
-      {(showPrices || showSpecs) && <div className={styles.card__divider} />}
+      {(showPrices || showSpecs) && <div className={styles.divider} />}
 
       {/* ACTIONS */}
       {showActions && (
-        <div className={styles.card__actions}>
+        <div className={styles.actions}>
           <button
             disabled={isInCart}
             onClick={() => addToCart(product)}
-            className={styles.card__addButton}
+            className={styles.addButton}
           >
             {isInCart ? 'Added to cart' : 'Add to cart'}
           </button>
 
           <button
-            className={styles.card__heart}
+            className={styles.heart}
             onClick={() => toggleFavorite(product)}
           >
             <img
@@ -91,20 +86,20 @@ export const Card: React.FC<Props> = ({
 
       {/* SPECS */}
       {showSpecs && (
-        <div className={styles.card__specs}>
-          <div className={styles.card__specRow}>
+        <div className={styles.specs}>
+          <div className={styles.specRow}>
             <span>Screen</span>
-            <span className={styles.card__specValue}>{product.screen}</span>
+            <span className={styles.specValue}>{product.screen}</span>
           </div>
 
-          <div className={styles.card__specRow}>
+          <div className={styles.specRow}>
             <span>Capacity</span>
-            <span className={styles.card__specValue}>{product.capacity}</span>
+            <span className={styles.specValue}>{product.capacity}</span>
           </div>
 
-          <div className={styles.card__specRow}>
+          <div className={styles.specRow}>
             <span>RAM</span>
-            <span className={styles.card__specValue}>{product.ram}</span>
+            <span className={styles.specValue}>{product.ram}</span>
           </div>
         </div>
       )}

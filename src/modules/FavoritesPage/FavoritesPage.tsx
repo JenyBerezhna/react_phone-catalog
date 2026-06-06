@@ -15,12 +15,12 @@ export const FavoritesPage = () => {
         {favorites.length === 0 ? (
           <p>No favourites yet</p>
         ) : (
-          <div className={styles.favoritesGrid}>
+          <div className="layout--grid">
             {favorites.map(product => (
               <Card
                 key={product.id}
                 product={product}
-                variant="favorite"
+                variant="grid"
                 showPrices
                 showSpecs
                 showActions={false}

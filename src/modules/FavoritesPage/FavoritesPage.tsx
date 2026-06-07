@@ -2,6 +2,7 @@ import { WithLoader } from '../../components/WithLoader';
 import styles from './FavoritesPage.module.scss';
 import { useFavorites } from '../../shared/context/FavoritesContext';
 import { Card } from '../../modules/Card/Card';
+import layoutStyles from '../../components/Layout/Layout.module.scss';
 
 export const FavoritesPage = () => {
   const { favorites } = useFavorites();
@@ -15,7 +16,7 @@ export const FavoritesPage = () => {
         {favorites.length === 0 ? (
           <p>No favourites yet</p>
         ) : (
-          <div className="layout--grid">
+          <div className={layoutStyles['layout--grid']}>
             {favorites.map(product => (
               <Card
                 key={product.id}

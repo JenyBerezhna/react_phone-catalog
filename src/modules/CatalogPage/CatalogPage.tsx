@@ -1,7 +1,9 @@
 import { useMemo } from 'react';
+
+import layoutStyles from '../../components/Layout/Layout.module.scss';
 import styles from './CatalogPage.module.scss';
 
-import { ProductsList } from './components/ProductsList';
+import { Card } from '../../modules/Card/Card';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { WithLoader } from '../../components/WithLoader';
 
@@ -41,21 +43,13 @@ export const CatalogPage: React.FC<Props> = ({ type }) => {
 
   return (
     <section className={styles.catalog}>
-      {/* Title */}
+      {/* Header */}
       <div className={styles.headerBlock}>
         <h1 className={styles.title}>{TITLES[type]}</h1>
         <p className={styles.counter}>{filtered.length} models</p>
       </div>
-      <WithLoader
-        loading={loading}
-        error={error}
-        errorSlot={
-          <div className="error">
-            <p>Something went wrong</p>
-            <button onClick={() => window.location.reload()}>Reload</button>
-          </div>
-        }
-      >
+
+      <WithLoader loading={loading} error={error}>
         {filtered.length === 0 ? (
           <p>There are no {TITLES[type].toLowerCase()} yet</p>
         ) : (
@@ -92,12 +86,20 @@ export const CatalogPage: React.FC<Props> = ({ type }) => {
               </div>
             </div>
 
-            {/* Grid */}
-            <ProductsList
-              title={TITLES[type]}
-              products={paginatedProducts}
-              className={styles.catalogGrid}
-            />
+            {/* GRID — only paginated products */}
+            <div className={layoutStyles['layout--grid']}>
+              {paginatedProducts.map(product => (
+                <Card
+                  key={product.id}
+                  product={product}
+                  variant="grid"
+                  showPrices
+                  showSpecs
+                  showActions
+                  showDiscount
+                />
+              ))}
+            </div>
 
             {/* Pagination */}
             {totalPages > 1 && perPage !== 'all' && (

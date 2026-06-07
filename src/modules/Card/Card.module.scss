@@ -1,16 +1,17 @@
+/* BASE CARD */
 .card {
   background: $surface-1;
   border-radius: $radius-m;
-  padding: $space-3;
+  padding: 24px;
 
   display: flex;
   flex-direction: column;
-  gap: $space-2;
+  gap: 16px;
 
-  transition: transform $transition, box-shadow $transition;
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
 
   * {
-    background-color: transparent;
+    background-color: transparent !important;
   }
 
   &:hover {
@@ -19,23 +20,11 @@
   }
 }
 
-/* GRID VARIANT */
-.card--grid {
-  width: 100%;
-}
 
-/* SLIDER VARIANT */
-.card--slider {
-  width: 212px;
-  flex: 0 0 auto;
-}
-
-/* IMAGE */
+/* IMAGE WRAPPER */
 .card__imageWrapper {
-  position: relative;
   width: 100%;
-  height: 200px;
-
+  height: 212px;
   display: flex;
   align-items: center;
   justify-content: center;
@@ -46,13 +35,13 @@
 }
 
 .card__image {
-  width: 100%;
-  height: 100%;
+  max-height: 85%;
+  width: auto;
   object-fit: contain;
   transition: transform $transition;
 
   .card:hover & {
-    transform: scale(1.04);
+    transform: scale(1.02);
   }
 }
 
@@ -62,18 +51,18 @@
   font-weight: 600;
   color: $text-primary;
   margin: 0;
-  min-height: 40px;
+  min-height: 48px;
 }
 
 /* PRICES */
 .card__prices {
   display: flex;
   align-items: baseline;
-  gap: 4px;
+  gap: 6px;
 }
 
 .card__priceCurrent {
-  font-size: 22px;
+  font-size: 20px;
   font-weight: 700;
   color: $text-primary;
 }
@@ -84,6 +73,7 @@
   text-decoration: line-through;
 }
 
+/* DIVIDER */
 .card__divider {
   width: 100%;
   height: 1px;
@@ -102,25 +92,20 @@
   flex: 1;
   height: 40px;
   background: $accent-primary;
+  border-radius: $radius-s;
 
   color: $text-primary;
   font-weight: 600;
   font-size: 14px;
 
   cursor: pointer;
-  transition: background $transition;
+  transition: background 0.2s ease;
 
-  &:disabled {
-    background: $surface-3;
-    cursor: default;
-    opacity: 0.6;
-  }
-
-  &:hover:not(:disabled) {
+  &:hover {
     background: $accent-hover;
   }
 
-  &:active:not(:disabled) {
+  &:active {
     background: $accent-active;
   }
 }
@@ -133,8 +118,10 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  cursor: pointer;
+
   background: $surface-2;
+  border-radius: $radius-s;
+  cursor: pointer;
 
   img {
     width: 20px;
@@ -150,7 +137,7 @@
 .card__specs {
   display: flex;
   flex-direction: column;
-  gap: $space-1;
+  gap: 4px;
 }
 
 .card__specRow {
@@ -161,8 +148,7 @@
 }
 
 .card__specValue {
-  @include small-text;
-  
-  color: $text-primary;
+  font-size: 12px;
   font-weight: 600;
+  color: $text-primary;
 }

@@ -1,53 +1,87 @@
-import { useSearchParams } from 'react-router-dom';
+import { useMemo } from 'react';
+
+import styles from './AccessoriesPage.module.scss';
+import layoutStyles from '../../components/Layout/Layout.module.scss';
+
+import { WithLoader } from '../../components/WithLoader';
+import { Pagination } from '../../components/Pagination/Pagination';
+import { SortSelect } from '../../modules/SortSelect/SortSelect';
+import { Card } from '../../modules/Card/Card';
+
 import { useProducts } from '../../hooks/useProducts';
 import { useSort } from '../../hooks/useSort';
-import { WithLoader } from '../../components/WithLoader';
-import { ProductsList } from '../CatalogPage/components/ProductsList';
-import { Pagination } from '../../components/Pagination';
-import { SortSelect } from '../../modules/SortSelect/SortSelect';
-import styles from './AccessoriesPage.module.scss';
+import { usePagination } from '../../hooks/usePagination';
+import { useQueryParams } from '../../hooks/useQueryParams';
 
 export const AccessoriesPage = () => {
   const { products, loading, error } = useProducts();
-  const [params, setParams] = useSearchParams();
+  const { params, setParam } = useQueryParams();
 
-  const setParam = (key: string, value: string | null) => {
-    const newParams = new URLSearchParams(params);
+  // Filter only accessories
+  const accessories = useMemo(
+    () => products.filter(p => p.category === 'accessories'),
+    [products],
+  );
 
-    if (value === null) {
-      newParams.delete(key);
-    } else {
-      newParams.set(key, value);
-    }
-
-    setParams(newParams);
-  };
-
-  const accessories = products.filter(p => p.category === 'accessories');
-
+  // Sorting
   const { sort, sortedProducts, setSort } = useSort(
     accessories,
-    Object.fromEntries(params),
+    params,
     setParam,
   );
 
+  // Pagination
+  const { paginatedProducts, page, perPage, totalPages, setPage, setPerPage } =
+    usePagination({ products: sortedProducts, params, setParam });
+
   return (
     <WithLoader loading={loading} error={error}>
-      <div className={styles.wrapper}>
+      <section className={styles.wrapper}>
         <h1 className={styles.title}>Accessories</h1>
 
+        {/* Top bar */}
         <div className={styles.topBar}>
           <SortSelect sort={sort} setSort={setSort} />
+
+          {/* Per-page selector */}
+          <div className={styles.control}>
+            <label htmlFor="perpage">Items on page</label>
+            <select
+              id="perpage"
+              value={perPage}
+              onChange={e => setPerPage(e.target.value)}
+            >
+              <option value="4">4</option>
+              <option value="8">8</option>
+              <option value="16">16</option>
+              <option value="all">All</option>
+            </select>
+          </div>
+
+          {/* Pagination */}
           <Pagination
+            currentPage={page}
+            totalPages={totalPages}
+            onPageChange={setPage}
             total={sortedProducts.length}
-            currentPage={1}
-            totalPages={Math.ceil(sortedProducts.length / 10)}
-            onPageChange={() => {}}
           />
         </div>
 
-        <ProductsList title="Accessories" products={sortedProducts} />
-      </div>
+        {/* GRID — paginated products */}
+        <div className={layoutStyles['layout--grid']}>
+          {paginatedProducts.map(product => (
+            <Card
+              key={product.id}
+              product={product}
+              variant="grid"
+              showPrices
+              showSpecs
+              showActions
+              showDiscount
+            />
+          ))}
+        </div>
+      </section>
     </WithLoader>
   );
 };

@@ -1,7 +1,9 @@
+/* eslint-disable max-len */
 import { useRef } from 'react';
 import { Product } from '../../../../types/Product';
 import styles from './ProductsSlider.module.scss';
 import { Card } from '../../../Card/Card';
+import layoutStyles from '../../../../components/Layout/Layout.module.scss';
 
 type Props = {
   title: string;
@@ -61,7 +63,7 @@ export const ProductsSlider: React.FC<Props> = ({
       </div>
 
       {/* LAYOUT SYSTEM */}
-      <div className="layout--slider" ref={ref}>
+      <div className={layoutStyles['layout--slider']} ref={ref}>
         {products.map(product => (
           <Card
             key={product.id}

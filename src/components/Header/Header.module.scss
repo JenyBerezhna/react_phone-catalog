@@ -15,7 +15,7 @@
 }
 
 /* Container */
-.container {
+.headerContainer {
   @include container;
 
   display: flex;
@@ -25,6 +25,7 @@
   width: 100%;
   max-width: 1200px;
 }
+
 
 /* Icon wrapper */
 .icon {

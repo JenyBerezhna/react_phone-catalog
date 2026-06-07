@@ -1,7 +1,7 @@
 .catalog {
   @include container;
 
-  padding-block: $space-6;
+  padding-inline: 0 !important;
 }
 
 .headerBlock {
@@ -64,4 +64,10 @@
       background: $surface-3;
     }
   }
+}
+
+.catalogGrid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(212px, 1fr));
+  gap: 24px;
 }

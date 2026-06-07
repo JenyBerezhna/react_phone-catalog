@@ -25,7 +25,9 @@ export const ProductsSlider: React.FC<Props> = ({
       return;
     }
 
-    const card = container.querySelector('.card--slider') as HTMLElement | null;
+    const card = container.querySelector(
+      '[class*="card--slider"]',
+    ) as HTMLElement | null;
 
     if (!card) {
       return;

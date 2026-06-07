@@ -14,27 +14,38 @@ export const Hero = () => {
     <>
       <section className={styles.hero}>
         <div className={styles.slider}>
+          {/* LEFT ARROW */}
           <button
             className={`${styles.arrow} ${styles.arrowLeft}`}
             onClick={prev}
+            aria-label="Previous slide"
           >
-            <img src="/img/icons/ArrowLeft.svg" alt="Previous slide" />
+            <span className={styles.arrowIcon}>
+              <img src="/img/icons/ArrowLeft.svg" alt="" />
+            </span>
           </button>
 
+          {/* BANNER IMAGE */}
           <img
             src={images[index]}
             alt={`Banner ${index + 1}`}
             className={styles.bannerImage}
           />
 
+          {/* RIGHT ARROW */}
           <button
             className={`${styles.arrow} ${styles.arrowRight}`}
             onClick={next}
+            aria-label="Next slide"
           >
-            <img src="/img/icons/ArrowRight.svg" alt="Next slide" />
+            <span className={styles.arrowIcon}>
+              <img src="/img/icons/ArrowRight.svg" alt="" />
+            </span>
           </button>
         </div>
       </section>
+
+      {/* DOTS */}
       <div className={styles.dotsWrapper}>
         <div className={styles.dots}>
           {images.map((_, i) => (
@@ -42,6 +53,7 @@ export const Hero = () => {
               key={i}
               className={i === index ? styles.active : undefined}
               onClick={() => goTo(i)}
+              aria-label={`Go to slide ${i + 1}`}
             />
           ))}
         </div>

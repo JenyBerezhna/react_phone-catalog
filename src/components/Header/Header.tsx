@@ -20,7 +20,7 @@ export const Header = () => {
 
   return (
     <header className={styles.header}>
-      <div className={styles.container}>
+      <div className={styles.headerContainer}>
         <NavLink to="/" replace className={styles.logo}>
           <img src="/img/logo/Logo.svg" alt="Logo" />
         </NavLink>

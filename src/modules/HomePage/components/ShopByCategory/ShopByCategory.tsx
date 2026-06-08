@@ -1,6 +1,6 @@
-import { Link } from 'react-router-dom';
-import styles from './ShopByCategory.module.scss';
+import { CategoryCard } from '../CategoryCard/CategoryCard';
 import { useProducts } from '../../../../hooks/useProducts';
+import styles from './ShopByCategory.module.scss';
 
 export const ShopByCategory = () => {
   const { products } = useProducts();
@@ -16,29 +16,26 @@ export const ShopByCategory = () => {
       <h2 className={styles.title}>Shop by category</h2>
 
       <div className={styles.grid}>
-        <Link to="/phones" className={styles.card}>
-          <div className={styles.imageWrapper}>
-            <img src="/img/PhonesCategory.svg" alt="Phones" />
-          </div>
-          <h3 className={styles.cardTitle}>Mobile phones</h3>
-          <p className={styles.cardSubtitle}>{phonesCount} models</p>
-        </Link>
+        <CategoryCard
+          title="Mobile phones"
+          image="/img/PhonesCategory.svg"
+          link="/phones"
+          models={phonesCount}
+        />
 
-        <Link to="/tablets" className={styles.card}>
-          <div className={styles.imageWrapper}>
-            <img src="/img/TabsCategory.svg" alt="Tablets" />
-          </div>
-          <h3 className={styles.cardTitle}>Tablets</h3>
-          <p className={styles.cardSubtitle}>{tabletsCount} models</p>
-        </Link>
+        <CategoryCard
+          title="Tablets"
+          image="/img/TabsCategory.svg"
+          link="/tablets"
+          models={tabletsCount}
+        />
 
-        <Link to="/accessories" className={styles.card}>
-          <div className={styles.imageWrapper}>
-            <img src="/img/AccessoriseCategory.svg" alt="Accessories" />
-          </div>
-          <h3 className={styles.cardTitle}>Accessories</h3>
-          <p className={styles.cardSubtitle}>{accessoriesCount} models</p>
-        </Link>
+        <CategoryCard
+          title="Accessories"
+          image="/img/AccessoriseCategory.svg"
+          link="/accessories"
+          models={accessoriesCount}
+        />
       </div>
     </section>
   );

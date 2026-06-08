@@ -5,7 +5,7 @@ type Props = {
   title: string;
   image: string;
   link: string;
-  models?: number;
+  models: number;
 };
 
 export const CategoryCard: React.FC<Props> = ({
@@ -20,7 +20,7 @@ export const CategoryCard: React.FC<Props> = ({
     </div>
 
     <div className={styles.info}>
-      <h3>{title}</h3>
+      <h3 className={styles.title}>{title}</h3>
       <span className={styles.models}>{models} models</span>
     </div>
   </Link>

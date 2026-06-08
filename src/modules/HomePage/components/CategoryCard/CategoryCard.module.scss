@@ -1,30 +1,4 @@
-.categories {
-  display: flex;
-  flex-direction: column;
-  gap: $space-6;
-}
-
-.title {
-  font-size: 32px;
-  font-weight: 700;
-  color: $text-primary;
-
-  @include mobile {
-    font-size: 24px;
-  }
-}
-
-.list {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: $space-6;
-
-  @include mobile {
-    grid-template-columns: 1fr;
-  }
-}
-
-.item {
+.card {
   display: flex;
   flex-direction: column;
   text-decoration: none;
@@ -52,24 +26,24 @@
   padding: $space-4;
 }
 
-
-.imageWrapper img {
+.image {
   width: 100%;
   height: 100%;
   object-fit: contain;
 }
 
-/* TITLE */
-.itemTitle {
-  padding: $space-3 $space-3 0;
+.info {
+  padding: $space-3;
+}
+
+.title {
   font-size: 20px;
   font-weight: 700;
   color: $text-primary;
+  margin-bottom: $space-1;
 }
 
-/* COUNTER */
-.itemCount {
-  padding: 0 $space-3 $space-3;
+.models {
   font-size: 16px;
   color: $text-secondary;
 }

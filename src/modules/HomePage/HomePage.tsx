@@ -3,18 +3,13 @@ import styles from './HomePage.module.scss';
 
 import { Hero } from './components/Hero/Hero';
 import { ProductsSlider } from './components/ProductsSlider/ProductsSlider';
-import { CategoryCard } from '../HomePage/components/CategoryCard/CategoryCard';
+import { ShopByCategory } from './components/ShopByCategory/ShopByCategory';
 
 import { useProducts } from '../../hooks/useProducts';
 import { WithLoader } from '../../components/WithLoader';
 
 export const HomePage = () => {
   const { products, loading, error } = useProducts();
-  const phonesCount = products.filter(p => p.category === 'phones').length;
-  const tabletsCount = products.filter(p => p.category === 'tablets').length;
-  const accessoriesCount = products.filter(
-    p => p.category === 'accessories',
-  ).length;
 
   const brandNew = [...products].sort((a, b) => b.year - a.year);
 
@@ -47,35 +42,12 @@ export const HomePage = () => {
           />
         </section>
 
+        {/* Shop by category */}
         <section className={styles.section}>
-          <div className={styles.container}>
-            <h2 className={styles.sectionTitle}>Shop by category</h2>
-
-            <div className={styles.categories}>
-              <CategoryCard
-                title="Mobile phones"
-                image="/img/category/category-phones.png"
-                link="/phones"
-                models={phonesCount}
-              />
-
-              <CategoryCard
-                title="Tablets"
-                image="/img/category/category-tablets.png"
-                link="/tablets"
-                models={tabletsCount}
-              />
-
-              <CategoryCard
-                title="Accessories"
-                image="/img/category/category-accessories.png"
-                link="/accessories"
-                models={accessoriesCount}
-              />
-            </div>
-          </div>
+          <ShopByCategory />
         </section>
 
+        {/* Hot prices */}
         <section className={styles.section}>
           <ProductsSlider
             title="Hot prices"

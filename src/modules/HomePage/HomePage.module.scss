@@ -10,11 +10,25 @@
   border: 0;
 }
 
-
-
-/* section wrapper */
+/* Section wrapper */
 .section {
   margin-bottom: 64px;
+
+  @include mobile {
+    margin-bottom: 48px;
+  }
+}
+
+
+.pageTitle {
+  font-size: 32px;
+  font-weight: 700;
+  margin-bottom: 24px;
+  color: $text-primary;
+
+  @include mobile {
+    font-size: 24px;
+  }
 }
 
 .sectionTitle {
@@ -22,11 +36,8 @@
   font-weight: 700;
   margin-bottom: 24px;
   color: $text-primary;
-}
 
-/* Categories grid */
-.categories {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 24px;
+  @include mobile {
+    font-size: 24px;
+  }
 }

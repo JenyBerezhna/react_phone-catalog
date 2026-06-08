@@ -26,7 +26,7 @@ export const ShopByCategory = () => {
 
         <Link to="/tablets" className={styles.card}>
           <div className={styles.imageWrapper}>
-            <img src="/img/TabletsCategory.svg" alt="Tablets" />
+            <img src="/img/TabsCategory.svg" alt="Tablets" />
           </div>
           <h3 className={styles.cardTitle}>Tablets</h3>
           <p className={styles.cardSubtitle}>{tabletsCount} models</p>

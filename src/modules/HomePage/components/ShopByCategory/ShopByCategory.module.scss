@@ -41,11 +41,23 @@
   }
 }
 
-/* IMAGE */
-.item img {
-  width: 100%;
+/* IMAGE WRAPPER — fixes SVG distortion */
+.imageWrapper {
   height: 200px;
-  object-fit: cover;
+  background: $surface-2;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  padding: $space-4;
+}
+
+/* IMAGE — stays proportional, never stretched */
+.imageWrapper img {
+  width: 100%;
+  height: 100%;
+  object-fit: contain;
 }
 
 /* TITLE */

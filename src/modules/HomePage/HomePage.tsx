@@ -3,7 +3,7 @@ import styles from './HomePage.module.scss';
 
 import { Hero } from './components/Hero/Hero';
 import { ProductsSlider } from './components/ProductsSlider/ProductsSlider';
-import { CategoryCard } from '../../components/CategoryCard/CategoryCard';
+import { CategoryCard } from '../HomePage/components/CategoryCard/CategoryCard';
 
 import { useProducts } from '../../hooks/useProducts';
 import { WithLoader } from '../../components/WithLoader';

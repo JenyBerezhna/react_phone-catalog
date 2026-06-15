@@ -2,11 +2,10 @@
   display: flex;
   flex-direction: column;
   text-decoration: none;
-
+  font-family: $font-family-primary;
   background: $surface-1;
   border-radius: $radius-m;
   overflow: hidden;
-
   transition: transform $transition, box-shadow $transition;
 
   &:hover {
@@ -15,35 +14,48 @@
   }
 }
 
+.card--category {
+  background: none;
+  border-radius: 0;
+  overflow: visible;
+}
+
+
 .imageWrapper {
   height: 200px;
-  background: $surface-2;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
-  padding: $space-4;
+  img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+  }
 }
 
-.image {
-  width: 100%;
-  height: 100%;
-  object-fit: contain;
+.imageWrapper--category {
+  height: auto;
+
+  img {
+    object-fit: contain; 
+  }
 }
 
 .info {
-  padding: $space-3;
+  padding: 0;
+  margin-top: $space-2;
 }
 
 .title {
   font-size: 20px;
   font-weight: 700;
   color: $text-primary;
-  margin-bottom: $space-1;
+  margin-bottom: 4px;
 }
 
 .models {
   font-size: 16px;
   color: $text-secondary;
 }
+

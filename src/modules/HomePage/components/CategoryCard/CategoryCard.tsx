@@ -6,6 +6,7 @@ type Props = {
   image: string;
   link: string;
   models: number;
+  variant?: 'default' | 'category';
 };
 
 export const CategoryCard: React.FC<Props> = ({
@@ -13,15 +14,28 @@ export const CategoryCard: React.FC<Props> = ({
   image,
   link,
   models,
-}) => (
-  <Link to={link} className={styles.card}>
-    <div className={styles.imageWrapper}>
-      <img src={image} alt={title} className={styles.image} />
-    </div>
+  variant = 'default',
+}) => {
+  const wrapperClass =
+    variant === 'category'
+      ? `${styles.imageWrapper} ${styles['imageWrapper--category']}`
+      : styles.imageWrapper;
 
-    <div className={styles.info}>
-      <h3 className={styles.title}>{title}</h3>
-      <span className={styles.models}>{models} models</span>
-    </div>
-  </Link>
-);
+  const cardClass =
+    variant === 'category'
+      ? `${styles.card} ${styles['card--category']}`
+      : styles.card;
+
+  return (
+    <Link to={link} className={cardClass}>
+      <div className={wrapperClass}>
+        <img src={image} alt={title} />
+      </div>
+
+      <div className={styles.info}>
+        <h3 className={styles.title}>{title}</h3>
+        <p className={styles.models}>{models} models</p>
+      </div>
+    </Link>
+  );
+};

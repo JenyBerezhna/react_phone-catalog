@@ -1,129 +1,68 @@
-@use '../../../styles/mixins' as *;
-
-.info {
+.description {
+  margin-top: 48px;
   display: flex;
   flex-direction: column;
   gap: 24px;
+}
 
-  @include desktop {
-    gap: 32px;
+.tabs {
+  display: flex;
+  gap: 24px;
+  border-bottom: 1px solid $color-elements;
+}
+
+.tab {
+  padding-bottom: 8px;
+  font-size: 16px;
+  font-weight: 600;
+  color: $text-secondary;
+  cursor: pointer;
+  background: none;
+  border: none;
+  outline: none;
+
+  &:hover {
+    color: $text-primary;
   }
+}
+
+.active {
+  color: $text-primary;
+  border-bottom: 2px solid $accent-primary;
+}
+
+.content {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
 }
 
 .title {
-  font-size: 24px;
+  font-size: 20px;
   font-weight: 700;
-
-  @include tablet {
-    font-size: 28px;
-  }
-
-  @include desktop {
-    font-size: 32px;
-  }
+  color: $text-primary;
 }
 
-/* Prices */
-.prices {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-
-  .current {
-    font-size: 28px;
-    font-weight: 700;
-
-    @include desktop {
-      font-size: 32px;
-    }
-  }
-
-  .full {
-    font-size: 16px;
-    text-decoration: line-through;
-    opacity: 0.6;
-  }
+.paragraph {
+  font-size: 14px;
+  line-height: 1.6;
+  color: $text-secondary;
 }
 
-/* Blocks (color, capacity) */
-.block {
+.specs {
   display: flex;
   flex-direction: column;
-  gap: 8px;
+  gap: 12px;
 }
 
-.label {
-  font-size: 14px;
-  opacity: 0.7;
-}
-
-/* Color selector */
-.colors {
+.specRow {
   display: flex;
-  gap: 8px;
-}
-
-.color {
-  width: 28px;
-  height: 28px;
-  border-radius: 50%;
-  border: 2px solid transparent;
-  cursor: pointer;
-
-  &.active {
-    border-color: var(--accent);
-  }
-}
-
-/* Capacity selector */
-.capacity {
-  display: flex;
-  gap: 8px;
-}
-
-.cap {
-  padding: 8px 16px;
-  border-radius: 8px;
-  border: 1px solid var(--surface-3);
-  background: var(--surface-1);
-  cursor: pointer;
+  justify-content: space-between;
   font-size: 14px;
+  color: $text-secondary;
 
-  &.active {
-    background: var(--accent);
-    color: white;
-    border-color: var(--accent);
-  }
-}
-
-/* Add to cart */
-.addToCart {
-  width: 100%;
-  padding: 12px;
-  border-radius: 8px;
-  background: var(--accent);
-  color: white;
-  font-weight: 600;
-  cursor: pointer;
-  text-align: center;
-
-  @include desktop {
-    padding: 14px;
-  }
-}
-
-/* Specs */
-.specs {
-  display: grid;
-  gap: 8px;
-
-  .row {
-    display: flex;
-    justify-content: space-between;
-    font-size: 14px;
-
-    @include desktop {
-      font-size: 15px;
-    }
+  span:last-child {
+    font-weight: 600;
+    color: $text-primary;
   }
 }

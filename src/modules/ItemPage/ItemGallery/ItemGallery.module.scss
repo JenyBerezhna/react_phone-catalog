@@ -1,12 +1,13 @@
-@use '../../../styles/mixins' as *;
 
+/* Root layout */
 .gallery {
   display: flex;
   flex-direction: column;
   gap: 16px;
 
   @include desktop {
-    flex-direction: row;
+    display: grid;
+    grid-template-columns: 80px 1fr;
     gap: 24px;
   }
 }
@@ -33,6 +34,14 @@
   background: var(--surface-2);
   cursor: pointer;
 
+  @include desktop {
+    width: 80px;
+    height: 80px;
+    padding: 4px;
+    border-radius: $radius-s;
+    background: $surface-1;
+  }
+
   &.active {
     border-color: var(--accent);
   }
@@ -51,6 +60,12 @@
   justify-content: center;
   align-items: center;
 
+  @include desktop {
+    height: 464px;
+    border-radius: $radius-m;
+    background: $surface-1;
+  }
+
   img {
     width: 100%;
     max-height: 420px;
@@ -61,7 +76,8 @@
     }
 
     @include desktop {
-      max-height: 520px;
+      max-height: 100%;
+      width: auto;
     }
   }
 }

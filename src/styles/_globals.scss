@@ -7,6 +7,10 @@
     box-sizing: border-box;
   }
 
+  html, body, * {
+    font-family: $font-family-primary;
+  }
+  
   body {
     margin: 0;
     background-color: $bg-primary;

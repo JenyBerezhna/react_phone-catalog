@@ -34,7 +34,6 @@ export const useSort = (
   }, [products, sort]);
 
   const setSort = (value: SortKey) => {
-    // Remove default from URL
     if (value === 'age') {
       setParam('sort', null);
     } else {

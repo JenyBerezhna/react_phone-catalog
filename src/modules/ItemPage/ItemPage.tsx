@@ -2,8 +2,11 @@ import { useParams } from 'react-router-dom';
 import { useState } from 'react';
 
 import styles from './ItemPage.module.scss';
+
 import { ItemGallery } from './ItemGallery/ItemGallery';
 import { ItemInfo } from './ItemInfo/ItemInfo';
+import { ItemSpec } from './ItemSpec/ItemSpec';
+
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import { BackButton } from '../../components/BackButton/BackButton';
 import { WithLoader } from '../../components/WithLoader';
@@ -15,6 +18,7 @@ import { useSuggestedProducts } from '../../hooks/useSuggestedProducts';
 export const ItemPage = () => {
   const { itemId } = useParams();
   const { item, loading, error } = useItemDetails(itemId!);
+
   const { suggested, loadingSuggested, errorSuggested } = useSuggestedProducts(
     itemId!,
   );
@@ -46,7 +50,9 @@ export const ItemPage = () => {
 
       <BackButton className={styles.back} />
 
-      <div className={styles.container}>
+      <h1 className={styles.title}>{item.name}</h1>
+
+      <div className={styles.columns}>
         <ItemGallery images={item.images} />
 
         <ItemInfo
@@ -57,6 +63,8 @@ export const ItemPage = () => {
           onCapacityChange={setSelectedCapacity}
         />
       </div>
+
+      <ItemSpec item={item} />
 
       <WithLoader loading={loadingSuggested} error={errorSuggested}>
         {suggested.length > 0 && (

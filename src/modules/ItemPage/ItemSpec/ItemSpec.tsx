@@ -1,16 +1,12 @@
 import { useState } from 'react';
-import styles from './ItemInfo.module.scss';
+import styles from './ItemSpec.module.scss';
 import type { ProductDetails } from '../../../types/ProductDetails';
 
-export interface ItemInfoProps {
+interface ItemSpecProps {
   item: ProductDetails;
-  selectedColor: string;
-  selectedCapacity: string;
-  onColorChange: (color: string) => void;
-  onCapacityChange: (capacity: string) => void;
 }
 
-export const ItemInfo: React.FC<ItemInfoProps> = ({ item }) => {
+export const ItemSpec: React.FC<ItemSpecProps> = ({ item }) => {
   const [activeTab, setActiveTab] = useState<'about' | 'camera' | 'specs'>(
     'about',
   );

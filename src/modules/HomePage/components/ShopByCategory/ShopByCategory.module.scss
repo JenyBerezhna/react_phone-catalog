@@ -1,7 +1,7 @@
 .categories {
   display: flex;
   flex-direction: column;
-  gap: $space-6;
+  gap: $space-3;
 }
 
 .title {
@@ -17,7 +17,7 @@
 .grid {
   display: grid;
   grid-template-columns: repeat(3, 1fr);
-  gap: $space-6;
+  gap: $space-3;
 
   @include tablet {
     grid-template-columns: repeat(2, 1fr);
@@ -29,19 +29,15 @@
 }
 
 /* IMAGE WRAPPER */
-.imageWrapper {
-  height: 200px;
-  background: $surface-2;
-
+.categoryImage {
+  height: auto;
   display: flex;
   align-items: center;
   justify-content: center;
-
-  padding: $space-4;
 }
 
 /* IMAGE */
-.imageWrapper img {
+.categoryImage img {
   width: 100%;
   height: 100%;
   object-fit: contain;

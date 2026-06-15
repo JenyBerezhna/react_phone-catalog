@@ -21,6 +21,7 @@ export const ShopByCategory = () => {
           image="/img/category/PhonesCategory.svg"
           link="/phones"
           models={phonesCount}
+          variant="category"
         />
 
         <CategoryCard
@@ -28,6 +29,7 @@ export const ShopByCategory = () => {
           image="/img/category/TabsCategory.svg"
           link="/tablets"
           models={tabletsCount}
+          variant="category"
         />
 
         <CategoryCard
@@ -35,6 +37,7 @@ export const ShopByCategory = () => {
           image="/img/category/AccessoriseCategory.svg"
           link="/accessories"
           models={accessoriesCount}
+          variant="category"
         />
       </div>
     </section>

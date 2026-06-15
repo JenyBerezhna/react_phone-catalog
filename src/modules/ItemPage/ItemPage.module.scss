@@ -21,3 +21,26 @@
     gap: 48px;
   }
 }
+
+.title {
+  font-size: 32px;
+  font-weight: 800;
+  margin: 24px 0;
+}
+
+.columns {
+  display: grid;
+  grid-template-columns: 1fr 320px;
+  gap: 32px;
+  margin-bottom: 48px;
+}
+
+.left {
+  display: grid;
+  grid-template-columns: 80px 1fr;
+  gap: 16px;
+}
+
+.description {
+  margin-top: 48px;
+}

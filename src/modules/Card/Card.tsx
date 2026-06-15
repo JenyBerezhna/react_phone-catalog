@@ -1,4 +1,5 @@
 import React from 'react';
+import { Link } from 'react-router-dom';
 import classNames from 'classnames';
 
 import { useCart } from '../../shared/context/CartContext';
@@ -38,14 +39,17 @@ export const Card: React.FC<Props> = ({
   const hasDiscount = product.fullPrice > product.price;
 
   return (
-    <div className={classNames(styles.card, styles[`card--${variant}`])}>
+    <Link
+      to={`/${product.category}/${product.itemId}`}
+      className={classNames(styles.card, styles[`card--${variant}`])}
+    >
       {/* IMAGE */}
       <div className={styles.imageWrapper}>
         <img src={product.image} alt={product.name} className={styles.image} />
       </div>
 
       {/* NAME */}
-      <h3 className={styles.name}>{product.name}</h3>
+      <span className={styles.name}>{product.name}</span>
 
       {/* PRICES */}
       {showPrices && (
@@ -66,7 +70,10 @@ export const Card: React.FC<Props> = ({
         <div className={styles.actions}>
           <button
             disabled={isInCart}
-            onClick={() => addToCart(product)}
+            onClick={e => {
+              e.preventDefault();
+              addToCart(product);
+            }}
             className={styles.addButton}
           >
             {isInCart ? 'Added to cart' : 'Add to cart'}
@@ -74,7 +81,10 @@ export const Card: React.FC<Props> = ({
 
           <button
             className={styles.heart}
-            onClick={() => toggleFavorite(product)}
+            onClick={e => {
+              e.preventDefault();
+              toggleFavorite(product);
+            }}
           >
             <img
               src={isFavorite ? FavoriteFilled : FavoriteEmpty}
@@ -103,6 +113,6 @@ export const Card: React.FC<Props> = ({
           </div>
         </div>
       )}
-    </div>
+    </Link>
   );
 };

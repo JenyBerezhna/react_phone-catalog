@@ -5,6 +5,7 @@
     padding: 24px;
     overflow: hidden;
     font-family: $font-family-primary;
+    text-decoration: none;
 
     display: flex;
     flex-direction: column;
@@ -12,7 +13,7 @@
 
     transition: transform 0.2s ease, box-shadow 0.2s ease;
 
-    /* PSEUDO BACKGROUND LAYER */
+
     &::before {
       content: "";
       position: absolute;
@@ -54,6 +55,7 @@
     width: auto;
     object-fit: contain;
     transition: transform $transition;
+    background: none;
   }
 
 
@@ -144,6 +146,7 @@
     img {
       width: 20px;
       height: 20px;
+      background: transparent;
     }
 
     &:hover {

@@ -1,89 +1,159 @@
 .item {
-  display: grid;
-
-  /* MOBILE LAYOUT */
-  grid-template-columns: 60px 1fr auto;
-  grid-template-areas:
-    "image name remove"
-    "image quantity price";
-
+  display: flex;
   align-items: center;
-  gap: $space-3;
-  padding: $space-3 0;
-  border-bottom: 1px solid $surface-2;
+  gap: 24px;
 
-  opacity: 1;
-  transform: translateY(0);
-  transition: opacity $transition, transform $transition;
+ 
+  height: 128px;
 
-  &.fadeOut {
-    opacity: 0;
-    transform: translateY(-8px);
-  }
+  padding: 24px;
+  background-color: #161827;
+  border-radius: 8px;
 
-  @include tablet {
-    grid-template-columns: 40px 80px 1fr auto auto auto;
-    grid-template-areas: "remove image name quantity price";
-    gap: $space-4;
-  }
-
-  @include desktop {
-    grid-template-columns: 48px 100px 1fr auto auto auto;
-    grid-template-areas: "remove image name quantity price";
-    gap: $space-5;
+  @include mobile {
+    flex-direction: column;
+    align-items: flex-start;
+    height: auto;
+    padding: 16px;
+    gap: 16px;
+    position: relative;
   }
 }
 
-.remove {
-  grid-area: remove;
+/* REMOVE BUTTON */
+.iconBtn {
+  width: 32px;
+  height: 32px;
+  background: #323542;
+  border: none;
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    background: #3a3d4d;
+  }
+
+  @include mobile {
+    position: absolute;
+    top: 16px;
+    right: 16px;
+
+    width: 28px;
+    height: 28px;
+
+    img {
+      width: 14px;
+      height: 14px;
+    }
+  }
 }
 
+/* IMAGE */
 .itemImage {
-  grid-area: image;
-  width: 60px;
-  height: 60px;
+  width: 80px;
+  height: 80px;
   object-fit: contain;
 
-  @include tablet {
-    width: 80px;
-    height: 80px;
-  }
-
-  @include desktop {
-    width: 100px;
-    height: 100px;
+  @include mobile {
+    width: 72px;
+    height: 72px;
   }
 }
 
+/* NAME */
 .itemName {
-  grid-area: name;
-  font-size: 14px;
+  flex: 1;
+  font-size: 16px;
   font-weight: 600;
   color: #fff;
 
-  @include tablet {
-    font-size: 15px;
-  }
-
-  @include desktop {
-    font-size: 16px;
+  @include mobile {
+    font-size: 14px;
+    width: calc(100% - 40px);
   }
 }
 
-.quantity {
-  grid-area: quantity;
+/* QUANTITY + PRICE */
+.bottomRow {
   display: flex;
   align-items: center;
-  gap: $space-2;
+  gap: 24px;
+
+  @include mobile {
+    justify-content: space-between;
+    width: 100%;
+    gap: 16px;
+  }
+}
+
+/* QUANTITY */
+.quantity {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+
+  @include mobile {
+    gap: 8px;
+  }
+}
+
+.qtyBtn {
+  width: 32px;
+  height: 32px;
+  background: #323542;
+  border: none;
+  border-radius: 4px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  img {
+    width: 16px;
+    height: 16px;
+  }
+
+  &:hover {
+    background: #3a3d4d;
+  }
+
+  @include mobile {
+    width: 28px;
+    height: 28px;
+
+    img {
+      width: 14px;
+      height: 14px;
+    }
+  }
+}
+
+.qtyValue {
+  font-size: 16px;
+  font-weight: 600;
+  color: #fff;
 }
 
 .price {
-  grid-area: price;
+  font-size: 20px;
   font-weight: 700;
   color: #fff;
-  font-size: 22px;
 
-  @include tablet {
-    font-size: 22px;
+  @include mobile {
+    font-size: 18px;
   }
 }

@@ -10,7 +10,7 @@
   html, body, * {
     font-family: $font-family-primary;
   }
-  
+
   body {
     margin: 0;
     background-color: $bg-primary;
@@ -20,20 +20,12 @@
 }
 
 button {
-  background-color: $surface-2;
-  color: $text-primary;
+  background: none;
   border: none;
-  border-radius: $radius-s;
-  transition: background $transition;
-
-  &:hover {
-    background-color: $surface-3;
-  }
-
-  &:active {
-    background-color: $accent-active;
-  }
+  padding: 0;
+  cursor: pointer;
+  font-family: inherit;
+  color: inherit;
 }
-
 
 

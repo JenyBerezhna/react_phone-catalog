@@ -31,30 +31,35 @@ export const CartPage = () => {
 
   /* FILLED CART */
   return (
-    <section className={styles.cart}>
+    <section className={styles.page}>
       <BackButton />
-      <h1 className={styles.title}>Cart</h1>
 
-      <div className={styles.items}>
-        {items.map(item => (
-          <CartItem
-            key={item.id}
-            item={item}
-            increase={increase}
-            decrease={decrease}
-            remove={removeFromCart}
-          />
-        ))}
-      </div>
+      {/* Grid container */}
+      <div className={styles.cart}>
+        <h1 className={styles.title}>Cart</h1>
 
-      <div className={styles.summary}>
-        <div className={styles.totalBlock}>
-          <h2>${totalPrice}</h2>
-          <p className={styles.count}>Total for {items.length} items</p>
+        <div className={styles.items}>
+          {items.map(item => (
+            <CartItem
+              key={item.id}
+              item={item}
+              increase={increase}
+              decrease={decrease}
+              remove={removeFromCart}
+            />
+          ))}
         </div>
-        <button className={styles.checkout} onClick={handleCheckout}>
-          Checkout
-        </button>
+
+        <div className={styles.summary}>
+          <div className={styles.totalBlock}>
+            <h2>${totalPrice}</h2>
+            <p className={styles.count}>Total for {items.length} items</p>
+          </div>
+
+          <button className={styles.checkout} onClick={handleCheckout}>
+            Checkout
+          </button>
+        </div>
       </div>
     </section>
   );

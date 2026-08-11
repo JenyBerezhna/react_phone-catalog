@@ -1,11 +1,18 @@
 
-.cart {
+.page {
   @include container;
+
+  max-width: 1400px;
+  margin-bottom: $space-4;
+}
+
+
+.cart {
+  max-width: 100%;
 
   display: grid;
   grid-template-columns: 1fr;
   gap: $space-6;
-  padding-block: $space-6;
 
   @include tablet {
     grid-template-columns: 2fr 1fr;
@@ -13,10 +20,11 @@
   }
 
   @include desktop {
-    grid-template-columns: 3fr 1fr;
+    grid-template-columns: 2fr 1fr;
   }
 }
 
+/* TITLE */
 .title {
   grid-column: 1 / -1;
 
@@ -32,32 +40,32 @@
 }
 
 /* ITEMS LIST */
-
 .items {
   display: flex;
   flex-direction: column;
   gap: $space-4;
-  border: none;
 
   @include desktop {
     gap: $space-5;
   }
 }
 
+
 .item {
   background: $surface-2;
   border-radius: $radius-m;
-  padding: $space-4;
   border: 1px solid $color-elements;
+  width: fit-content;
 }
 
 /* SUMMARY BOX */
-
 .summary {
   border: 1px solid $color-elements;
   padding: $space-5;
   height: fit-content;
-  width: 368px;
+
+  max-width: 368px;
+  width: 100%;
 
   display: flex;
   flex-direction: column;
@@ -84,7 +92,6 @@
   .count {
     @include body-text;
 
-
     color: $text-secondary;
     background: transparent;
     text-align: center;
@@ -94,9 +101,9 @@
       width: 100%;
     }
   }
-
 }
 
+/* CHECKOUT BUTTON */
 .checkout {
   padding: 14px 24px;
   background: $accent-primary;
@@ -120,7 +127,6 @@
 }
 
 /* EMPTY STATE */
-
 .empty {
   @include flex-center;
 
@@ -132,7 +138,7 @@
 
 .emptyText {
   @include h2;
-
+  
   color: $text-primary;
 
   @include tablet {
@@ -156,5 +162,22 @@
 
   @include desktop {
     width: 260px;
+  }
+}
+
+.btn {
+  background-color: $surface-2;
+  color: $text-primary;
+  border-radius: $radius-s;
+  padding: 12px 24px;
+  font-weight: 600;
+  transition: background $transition;
+
+  &:hover {
+    background-color: $surface-3;
+  }
+
+  &:active {
+    background-color: $accent-active;
   }
 }

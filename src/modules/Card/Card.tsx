@@ -62,19 +62,18 @@ export const Card: React.FC<Props> = ({
         </div>
       )}
 
-      {/* DIVIDER */}
       {(showPrices || showSpecs) && <div className={styles.divider} />}
 
       {/* ACTIONS */}
       {showActions && (
         <div className={styles.actions}>
           <button
+            className={styles.addButton}
             disabled={isInCart}
             onClick={e => {
               e.preventDefault();
               addToCart(product);
             }}
-            className={styles.addButton}
           >
             {isInCart ? 'Added to cart' : 'Add to cart'}
           </button>

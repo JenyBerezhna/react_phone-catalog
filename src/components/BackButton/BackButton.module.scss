@@ -1,4 +1,4 @@
-.back-button {
+.backButton {
   display: inline-flex;
   align-items: center;
   gap: $space-2;
@@ -23,5 +23,6 @@
     width: 16px;
     height: 16px;
     display: block;
+    color: $color-icons;
   }
 }

@@ -1,41 +1,37 @@
-
 .page {
-  @include container;
-
-  max-width: 1400px;
   margin-bottom: $space-4;
 }
 
-
+/* CART WRAPPER */
 .cart {
-  max-width: 100%;
-
-  display: grid;
-  grid-template-columns: 1fr;
-  gap: $space-6;
-
-  @include tablet {
-    grid-template-columns: 2fr 1fr;
-    align-items: start;
-  }
-
-  @include desktop {
-    grid-template-columns: 2fr 1fr;
-  }
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
 }
 
-/* TITLE */
 .title {
-  grid-column: 1 / -1;
-
   @include h2;
 
   color: $text-primary;
 
   @include desktop {
-    font-size: 48px;
-    line-height: 1.1;
-    font-weight: 800;
+    font-size: $h1-size;
+    line-height: $h1-line-height;
+    font-weight: $h1-weight;
+  }
+}
+
+/* ITEMS + SUMMARY LAYOUT */
+.content {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: $space-3;
+  min-height: 0;
+
+
+  @include desktop {
+    grid-template-columns: minmax(0, 1fr) 368px;
+    align-items: start;
   }
 }
 
@@ -43,37 +39,33 @@
 .items {
   display: flex;
   flex-direction: column;
-  gap: $space-4;
+  gap: $space-3;
+  width: 100%;
+  min-width: 0;
 
   @include desktop {
-    gap: $space-5;
+    gap: $space-3;
   }
-}
-
-
-.item {
-  background: $surface-2;
-  border-radius: $radius-m;
-  border: 1px solid $color-elements;
-  width: fit-content;
 }
 
 /* SUMMARY BOX */
 .summary {
-  border: 1px solid $color-elements;
+  width: 100%;
+  min-width: 0;
+
   padding: $space-5;
   height: fit-content;
+  align-self: start;
 
-  max-width: 368px;
-  width: 100%;
+  box-sizing: border-box;
+  border: 1px solid $color-elements;
 
   display: flex;
   flex-direction: column;
   gap: $space-4;
 
-  @include mobile {
-    order: 3;
-    width: 100%;
+  @include desktop {
+    max-width: 368px;
   }
 
   .totalBlock {
@@ -82,38 +74,29 @@
     border-bottom: 1px solid $color-elements;
   }
 
-  h1 {
-    color: $text-primary;
-    text-align: center;
-    background-color: transparent;
-    margin: 0;
-  }
-
   .count {
     @include body-text;
 
     color: $text-secondary;
-    background: transparent;
-    text-align: center;
     margin-top: $space-1;
-
-    @include mobile {
-      width: 100%;
-    }
   }
 }
 
 /* CHECKOUT BUTTON */
 .checkout {
+  width: 100%;
   padding: 14px 24px;
+
   background: $accent-primary;
   border: none;
   border-radius: $radius-s;
+
   color: $text-primary;
 
   @include body-text;
 
   font-weight: 700;
+
   cursor: pointer;
   transition: background $hover-transition;
 
@@ -154,7 +137,8 @@
 
 .emptyImage {
   width: 160px;
-  opacity: 0.9;
+  object-fit: contain;
+  background: transparent;
 
   @include tablet {
     width: 200px;
@@ -168,9 +152,14 @@
 .btn {
   background-color: $surface-2;
   color: $text-primary;
+
+  border: none;
   border-radius: $radius-s;
   padding: 12px 24px;
+
   font-weight: 600;
+
+  cursor: pointer;
   transition: background $transition;
 
   &:hover {

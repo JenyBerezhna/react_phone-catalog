@@ -25,6 +25,7 @@
   top: 0;
   bottom: 0;
   width: 48px;
+  background: $surface-2;
 
   display: flex;
   align-items: center;
@@ -37,11 +38,11 @@
   transition: background $transition;
 
   &:hover {
-    background: rgba(0, 0, 0, 0.2);
+    background: $color-icons;
   }
 
   &:active {
-    background: rgba(0, 0, 0, 0.3);
+    background: $color-icons;
   }
 }
 

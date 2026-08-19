@@ -21,8 +21,13 @@ export const Header = () => {
   return (
     <header className={styles.header}>
       <div className={styles.headerContainer}>
+        {/* Logo */}
         <NavLink to="/" replace className={styles.logo}>
-          <img src="/img/logo/Logo.svg" alt="Logo" />
+          <img
+            src="/img/logo/Logo.svg"
+            alt="Logo"
+            className={styles.logoImage}
+          />
         </NavLink>
 
         {/* Desktop navigation */}
@@ -41,43 +46,52 @@ export const Header = () => {
           </NavLink>
         </nav>
 
-        {/* Desktop actions */}
-        <div className={styles.actionsDesktop}>
+        {/* actions */}
+        <div className={styles.actionsButtons}>
+          {/* Favorites */}
           <NavLink to="/favorites" className={styles.icon}>
-            <img
-              src={
-                favoritesCount === 0
-                  ? '/img/icons/FavoriteEmpty.svg'
-                  : '/img/icons/FavoriteFilled.svg'
-              }
-              alt="Favorites"
-            />
-
-            {favoritesCount > 0 && (
-              <span className={styles.counter}>{favoritesCount}</span>
-            )}
+            <div className={styles.iconInner}>
+              <img
+                className={styles.iconImage}
+                src={
+                  favoritesCount === 0
+                    ? '/img/icons/FavoriteEmpty.svg'
+                    : '/img/icons/FavoriteFilled.svg'
+                }
+                alt="Favorites"
+              />
+              {favoritesCount > 0 && (
+                <span className={styles.counter}>{favoritesCount}</span>
+              )}
+            </div>
           </NavLink>
 
           {/* Cart */}
           <NavLink to="/cart" className={styles.icon}>
-            <img
-              src={
-                cartCount === 0
-                  ? '/img/icons/CartEmpty.svg'
-                  : '/img/icons/Cart.svg'
-              }
-              alt="Cart"
-            />
-
-            {cartCount > 0 && (
-              <span className={styles.counter}>{cartCount}</span>
-            )}
+            <div className={styles.iconInner}>
+              <img
+                className={styles.iconImage}
+                src={
+                  cartCount === 0
+                    ? '/img/icons/CartEmpty.svg'
+                    : '/img/icons/Cart.svg'
+                }
+                alt="Cart"
+              />
+              {cartCount > 0 && (
+                <span className={styles.counter}>{cartCount}</span>
+              )}
+            </div>
           </NavLink>
         </div>
 
         {/* Mobile burger */}
         <button className={styles.burger} onClick={() => setIsMenuOpen(true)}>
-          <img src="/img/icons/Menu.svg" alt="Menu" />
+          <img
+            className={styles.burgerImage}
+            src="/img/icons/Menu.svg"
+            alt="Menu"
+          />
         </button>
 
         {/* Mobile menu */}
@@ -91,14 +105,22 @@ export const Header = () => {
                 className={styles.mobileLogo}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <img src="/img/logo/Logo.svg" alt="Logo" />
+                <img
+                  className={styles.mobileLogoImage}
+                  src="/img/logo/Logo.svg"
+                  alt="Logo"
+                />
               </NavLink>
 
               <button
                 className={styles.close}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <img src="/img/icons/Close.svg" alt="Close" />
+                <img
+                  className={styles.closeImage}
+                  src="/img/icons/Close.svg"
+                  alt="Close"
+                />
               </button>
             </div>
 
@@ -143,18 +165,20 @@ export const Header = () => {
                 className={styles.icon}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <img
-                  src={
-                    favoritesCount === 0
-                      ? '/img/icons/FavoriteEmpty.svg'
-                      : '/img/icons/FavoriteFilled.svg'
-                  }
-                  alt="Favorites"
-                />
-
-                {favoritesCount > 0 && (
-                  <span className={styles.counter}>{favoritesCount}</span>
-                )}
+                <div className={styles.iconInner}>
+                  <img
+                    className={styles.iconImage}
+                    src={
+                      favoritesCount === 0
+                        ? '/img/icons/FavoriteEmpty.svg'
+                        : '/img/icons/FavoriteFilled.svg'
+                    }
+                    alt="Favorites"
+                  />
+                  {favoritesCount > 0 && (
+                    <span className={styles.counter}>{favoritesCount}</span>
+                  )}
+                </div>
               </NavLink>
 
               {/* Cart */}
@@ -163,18 +187,20 @@ export const Header = () => {
                 className={styles.icon}
                 onClick={() => setIsMenuOpen(false)}
               >
-                <img
-                  src={
-                    cartCount === 0
-                      ? '/img/icons/CartEmpty.svg'
-                      : '/img/icons/Cart.svg'
-                  }
-                  alt="Cart"
-                />
-
-                {cartCount > 0 && (
-                  <span className={styles.counter}>{cartCount}</span>
-                )}
+                <div className={styles.iconInner}>
+                  <img
+                    className={styles.iconImage}
+                    src={
+                      cartCount === 0
+                        ? '/img/icons/CartEmpty.svg'
+                        : '/img/icons/Cart.svg'
+                    }
+                    alt="Cart"
+                  />
+                  {cartCount > 0 && (
+                    <span className={styles.counter}>{cartCount}</span>
+                  )}
+                </div>
               </NavLink>
             </div>
           </div>

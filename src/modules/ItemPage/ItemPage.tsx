@@ -17,7 +17,7 @@ import { useSuggestedProducts } from '../../hooks/useSuggestedProducts';
 
 export const ItemPage = () => {
   const { itemId } = useParams();
-  const { item, loading, error } = useItemDetails(itemId!);
+  const { product, loading, error } = useItemDetails(itemId!);
 
   const { suggested, loadingSuggested, errorSuggested } = useSuggestedProducts(
     itemId!,
@@ -34,7 +34,7 @@ export const ItemPage = () => {
     );
   }
 
-  if (!item) {
+  if (!product) {
     return <p>Item not found</p>;
   }
 
@@ -43,20 +43,20 @@ export const ItemPage = () => {
       <Breadcrumbs
         items={[
           { label: 'Home', to: '/' },
-          { label: item.category, to: `/${item.category}` },
-          { label: item.name },
+          { label: product.category, to: `/${product.category}` },
+          { label: product.name },
         ]}
       />
 
       <BackButton className={styles.back} />
 
-      <h1 className={styles.title}>{item.name}</h1>
+      <h1 className={styles.title}>{product.name}</h1>
 
       <div className={styles.columns}>
-        <ItemGallery images={item.images} />
+        <ItemGallery images={product.images} />
 
         <ItemInfo
-          item={item}
+          product={product}
           selectedColor={selectedColor}
           selectedCapacity={selectedCapacity}
           onColorChange={setSelectedColor}
@@ -64,7 +64,7 @@ export const ItemPage = () => {
         />
       </div>
 
-      <ItemSpec item={item} />
+      <ItemSpec product={product} />
 
       <WithLoader loading={loadingSuggested} error={errorSuggested}>
         {suggested.length > 0 && (

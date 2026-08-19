@@ -4,7 +4,7 @@ import { getProductDetails } from '../shared/helpers/products';
 
 import type { ProductDetails } from '../types/ProductDetails';
 
-export const useProductDetails = (productId: string) => {
+export const useProductDetails = (itemId: string) => {
   const [product, setProduct] = useState<ProductDetails | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -13,11 +13,18 @@ export const useProductDetails = (productId: string) => {
     setLoading(true);
     setError(false);
 
-    getProductDetails(productId)
+    if (!itemId) {
+      setError(true);
+      setLoading(false);
+
+      return;
+    }
+
+    getProductDetails(itemId)
       .then(setProduct)
       .catch(() => setError(true))
       .finally(() => setLoading(false));
-  }, [productId]);
+  }, [itemId]);
 
   return { product, loading, error };
 };

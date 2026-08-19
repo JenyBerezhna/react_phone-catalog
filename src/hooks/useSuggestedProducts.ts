@@ -2,7 +2,7 @@ import { useEffect, useState } from 'react';
 import { getSuggestedProducts } from '../shared/helpers/getSuggestedProducts';
 import { Product } from '../types/Product';
 
-export const useSuggestedProducts = (productId: string) => {
+export const useSuggestedProducts = (itemId: string) => {
   const [suggested, setSuggested] = useState<Product[]>([]);
   const [loadingSuggested, setLoadingSuggested] = useState(true);
   const [errorSuggested, setErrorSuggested] = useState(false);
@@ -10,11 +10,11 @@ export const useSuggestedProducts = (productId: string) => {
   useEffect(() => {
     setLoadingSuggested(true);
 
-    getSuggestedProducts(productId)
+    getSuggestedProducts(itemId)
       .then(setSuggested)
       .catch(() => setErrorSuggested(true))
       .finally(() => setLoadingSuggested(false));
-  }, [productId]);
+  }, [itemId]);
 
   return { suggested, loadingSuggested, errorSuggested };
 };

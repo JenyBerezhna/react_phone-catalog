@@ -1,7 +1,7 @@
 export interface Product {
   id: string;
   category: 'phones' | 'tablets' | 'accessories';
-  namespaceId: string;
+  itemId: string;
   name: string;
 
   price: number;
@@ -14,5 +14,4 @@ export interface Product {
   year: number;
 
   image: string;
-  itemId: string;
 }

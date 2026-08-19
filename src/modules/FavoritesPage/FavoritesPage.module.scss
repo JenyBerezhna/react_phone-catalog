@@ -9,7 +9,7 @@
 
 .counter {
   @include counter-text;
-  
+
   color: $text-secondary;
   margin-bottom: $space-6;
 }

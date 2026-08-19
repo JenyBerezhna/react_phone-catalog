@@ -1,7 +1,7 @@
 export interface Model {
-  namespaceId: string;
+  itemId: string;
   name: string;
   image: string;
-  Year: number;
-  Price: number;
+  newestYear: number;
+  lowestPrice: number;
 }

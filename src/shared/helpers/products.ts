@@ -14,9 +14,9 @@ export const getProducts = async (): Promise<Product[]> => {
 };
 
 export const getProductDetails = async (
-  productId: string,
+  itemId: string,
 ): Promise<ProductDetails> => {
-  const response = await fetch(`${BASE_URL}/products/${productId}.json`);
+  const response = await fetch(`${BASE_URL}/products/${itemId}.json`);
 
   if (!response.ok) {
     throw new Error('Failed to load product details');

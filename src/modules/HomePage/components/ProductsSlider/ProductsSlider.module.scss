@@ -1,12 +1,11 @@
-/* SECTION WRAPPER */
+
 .slider {
   margin-bottom: $space-6;
 }
 
-/* HEADER (title + arrows) */
 .header {
   @include flex-between;
-  
+
   align-items: center;
   margin-bottom: $space-4;
 }
@@ -49,7 +48,7 @@
   }
 
   &:hover {
-    background: $surface-3;
+    background: transparent;
   }
 
   &:active {

@@ -1,13 +1,4 @@
-/* shared */
-.container {
-  @include container; // padding only
 
-  max-width: 1140px;
-  width: 100%;
-  margin-inline: auto; // centers it
-}
-
-/* layout wrapper */
 .layout {
   min-height: 100vh;
   display: flex;
@@ -15,10 +6,10 @@
 }
 
 .main {
+  @include container;
+
   flex: 1;
   padding: $space-4;
-  max-width: 1140px;
-  margin-inline: auto; // centers it
 
   @include mobile {
     padding: $space-3;
@@ -33,51 +24,37 @@
   }
 }
 
-/* spacing before footer */
-.footerSpacer {
-  margin-top: $space-6;
+/* PRODUCT GRID */
+.layout--grid {
+  display: grid;
+  grid-template-columns: 1fr;
 
-  @include mobile {
-    margin-top: $space-4;
-  }
-}
+  gap: 40px $space-3;
 
-/* Slide + Fade Transition */
-.slide-fade-enter {
-  opacity: 0;
-  transform: translateX(20px);
-}
 
-.slide-fade-enter-active {
-  opacity: 1;
-  transform: translateX(0);
-  transition: opacity 300ms ease, transform 300ms ease;
-}
-
-.slide-fade-exit {
-  opacity: 1;
-  transform: translateX(0);
-}
-
-.slide-fade-exit-active {
-  opacity: 0;
-  transform: translateX(-20px);
-  transition: opacity 300ms ease, transform 300ms ease;
-}
-
-.page-transition {
   width: 100%;
+
+  @include tablet {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  @include desktop {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+
+  justify-items: start;
 }
 
+/* HORIZONTAL PRODUCT SLIDER */
 .layout--slider {
   display: flex;
-  flex-wrap: nowrap;
-  gap: 16px;
-  overflow-x: auto;
+  gap: $space-3;
+
+  width: 100%;
+
+  overflow: auto hidden;
   scroll-behavior: smooth;
-  padding-bottom: $space-2;
   scrollbar-width: none;
-  scroll-snap-type: x mandatory;
 
   &::-webkit-scrollbar {
     display: none;
@@ -85,14 +62,15 @@
 
   > * {
     flex: 0 0 auto;
-    scroll-snap-align: start;
-    min-width: 0;
   }
 }
 
-.layout--grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 24px;
+/* before footer */
+.footerSpacer {
+  margin-top: $space-6;
+
+  @include mobile {
+    margin-top: $space-4;
+  }
 }
 

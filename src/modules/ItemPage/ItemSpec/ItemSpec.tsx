@@ -3,16 +3,16 @@ import styles from './ItemSpec.module.scss';
 import type { ProductDetails } from '../../../types/ProductDetails';
 
 interface ItemSpecProps {
-  item: ProductDetails;
+  product: ProductDetails;
 }
 
-export const ItemSpec: React.FC<ItemSpecProps> = ({ item }) => {
+export const ItemSpec: React.FC<ItemSpecProps> = ({ product }) => {
   const [activeTab, setActiveTab] = useState<'about' | 'camera' | 'specs'>(
     'about',
   );
 
-  const about = item.description[0];
-  const camera = item.description[1];
+  const about = product.description[0];
+  const camera = product.description[1];
 
   return (
     <div className={styles.description}>
@@ -79,22 +79,22 @@ export const ItemSpec: React.FC<ItemSpecProps> = ({ item }) => {
           <div className={styles.specs}>
             <div className={styles.specRow}>
               <span>Screen</span>
-              <span>{item.screen}</span>
+              <span>{product.screen}</span>
             </div>
 
             <div className={styles.specRow}>
               <span>Resolution</span>
-              <span>{item.resolution}</span>
+              <span>{product.resolution}</span>
             </div>
 
             <div className={styles.specRow}>
               <span>Processor</span>
-              <span>{item.processor}</span>
+              <span>{product.processor}</span>
             </div>
 
             <div className={styles.specRow}>
               <span>RAM</span>
-              <span>{item.ram}</span>
+              <span>{product.ram}</span>
             </div>
           </div>
         )}

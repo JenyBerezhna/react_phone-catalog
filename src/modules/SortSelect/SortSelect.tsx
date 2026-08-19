@@ -8,12 +8,12 @@ type Props = {
 export const SortSelect: React.FC<Props> = ({ sort, setSort }) => {
   return (
     <div className={styles.wrapper}>
-      <label className={styles.label} htmlFor="sortSelect">
+      <label className={styles.label} htmlFor={`sortSelect-${sort}`}>
         Sort by
       </label>
 
       <select
-        id="sortSelect"
+        id={`sortSelect-${sort}`}
         className={styles.select}
         value={sort}
         onChange={e => setSort(e.target.value as 'age' | 'title' | 'price')}

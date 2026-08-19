@@ -1,183 +1,186 @@
 
-   .card {
-    position: relative;
-    border-radius: $radius-m;
-    padding: 24px;
-    overflow: hidden;
-    font-family: $font-family-primary;
-    text-decoration: none;
+.card {
+  position: relative;
+  border-radius: $radius-m;
+  padding: 24px;
+  overflow: hidden;
+  font-family: $font-family-primary;
+  text-decoration: none;
 
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-
-    transition: transform 0.2s ease, box-shadow 0.2s ease;
-
-
-    &::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: $surface-1;
-      border-radius: inherit;
-      z-index: 0;
-    }
-
-    > * {
-      position: relative;
-      z-index: 1;
-      background: transparent !important;
-    }
-
-    &:hover {
-      transform: scale(1.02);
-      box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
-    }
-  }
-
-
-  /* IMAGE */
-  .imageWrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
     width: 100%;
-    height: 212px;
+    box-sizing: border-box;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
 
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+
+
+  &::before {
+    content: "";
+    position: absolute;
+    inset: 0;
     background: $surface-1;
-    border-radius: $radius-m;
-    overflow: hidden;
+    border-radius: inherit;
+    z-index: 0;
   }
 
-  .image {
-    max-height: 100%;
-    width: auto;
-    object-fit: contain;
-    transition: transform $transition;
-    background: none;
+  > * {
+    position: relative;
+    z-index: 1;
+    background: transparent !important;
   }
 
+  &:hover {
+    transform: scale(1.02);
+    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
+  }
+}
 
-  /* TEXT */
-  .name {
-    font-size: 14px;
-    font-weight: 600;
-    color: $text-primary;
-    min-height: 48px;
-    margin-top: 8px;
+
+/* IMAGE */
+.imageWrapper {
+  width: 100%;
+  height: 212px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  background: $surface-1;
+  border-radius: $radius-m;
+  overflow: hidden;
+}
+
+.image {
+  max-height: 100%;
+  width: auto;
+  object-fit: contain;
+  transition: transform $transition;
+  background: none;
+}
+
+
+/* TEXT */
+.name {
+  font-size: 14px;
+  font-weight: 600;
+  color: $text-primary;
+  min-height: 48px;
+  margin-top: 8px;
+}
+
+.prices {
+  display: flex;
+  align-items: baseline;
+  gap: 8px;
+}
+
+.priceCurrent {
+  font-size: 22px;
+  font-weight: 800;
+  color: $text-primary;
+}
+
+.priceFull {
+  font-size: 22px;
+  font-weight: 600;
+  color: $text-secondary;
+  text-decoration: line-through;
+}
+
+.divider {
+  width: 100%;
+  height: 1px;
+  background: $color-elements;
+}
+
+
+/* ACTIONS */
+.actions {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.addButton {
+  flex: 1;
+  height: 40px;
+
+  background: $accent-primary;
+  border-radius: $radius-s;
+
+  color: $text-primary;
+  font-family: $font-family-primary;
+  font-weight: 600;
+  font-size: 14px;
+
+  cursor: pointer;
+  transition: background 0.2s ease;
+
+  &:hover {
+    background: $accent-hover;
   }
 
-  .prices {
-    display: flex;
-    align-items: baseline;
-    gap: 8px;
+  &:active {
+    background: $accent-active;
   }
 
-  .priceCurrent {
-    font-size: 22px;
-    font-weight: 800;
-    color: $text-primary;
-  }
-
-  .priceFull {
-    font-size: 22px;
-    font-weight: 600;
-    color: $text-secondary;
-    text-decoration: line-through;
-  }
-
-  .divider {
-    width: 100%;
-    height: 1px;
-    background: $color-elements;
-  }
-
-
-  /* ACTIONS */
-  .actions {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .addButton {
-    flex: 1;
-    height: 40px;
-
-    background: $accent-primary;
-    border-radius: $radius-s;
-
-    color: $text-primary;
-    font-family: $font-family-primary;
-    font-weight: 600;
-    font-size: 14px;
-
-    cursor: pointer;
-    transition: background 0.2s ease;
-
-    &:hover {
-      background: $accent-hover;
-    }
-
-    &:active {
-      background: $accent-active;
-    }
-
-    &:disabled {
-      background: $surface-2;
-      cursor: default;
-    }
-  }
-
-  .heart {
-    width: 40px;
-    height: 40px;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
+  &:disabled {
     background: $surface-2;
-    border-radius: $radius-s;
-    cursor: pointer;
-
-    img {
-      width: 20px;
-      height: 20px;
-      background: transparent;
-    }
-
-    &:hover {
-      background: $surface-3;
-    }
+    cursor: default;
   }
+}
 
+.heart {
+  width: 40px;
+  height: 40px;
 
-  .specs {
-    display: flex;
-    flex-direction: column;
-    gap: 8px;
-  }
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
-  .specRow {
-    display: flex;
-    justify-content: space-between;
-    font-size: 12px;
-    color: $text-secondary;
+  background: $surface-2;
+  border-radius: $radius-s;
+  cursor: pointer;
+
+  img {
+    width: 20px;
+    height: 20px;
     background: transparent;
   }
 
-  .specValue {
-    font-size: 12px;
-    font-weight: 600;
-    color: $text-primary;
+  &:hover {
+    background: $surface-3;
   }
+}
 
 
-  /* VARIANTS */
-  .card--slider {
-    min-width: 212px;
-    max-width: 212px;
-  }
+.specs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.specRow {
+  display: flex;
+  justify-content: space-between;
+  font-size: 12px;
+  color: $text-secondary;
+  background: transparent;
+}
+
+.specValue {
+  font-size: 12px;
+  font-weight: 600;
+  color: $text-primary;
+}
+
+
+/* VARIANTS */
+.card--slider {
+  min-width: 212px;
+  max-width: 212px;
+}

@@ -1,7 +1,7 @@
 import { useCart } from '../../shared/context/CartContext';
 import { CartItem } from './CartItem/CartItem';
-import styles from './CartPage.module.scss';
 import { BackButton } from '../../components/BackButton/BackButton';
+import styles from './CartPage.module.scss';
 
 export const CartPage = () => {
   const { items, totalPrice, removeFromCart, increase, decrease, clearCart } =
@@ -24,7 +24,10 @@ export const CartPage = () => {
           alt="Cart is empty"
           className={styles.emptyImage}
         />
+
         <p className={styles.emptyText}>Your cart is empty</p>
+
+        <button className={styles.btn}>Continue shopping</button>
       </section>
     );
   }
@@ -34,31 +37,32 @@ export const CartPage = () => {
     <section className={styles.page}>
       <BackButton />
 
-      {/* Grid container */}
       <div className={styles.cart}>
         <h1 className={styles.title}>Cart</h1>
 
-        <div className={styles.items}>
-          {items.map(item => (
-            <CartItem
-              key={item.id}
-              item={item}
-              increase={increase}
-              decrease={decrease}
-              remove={removeFromCart}
-            />
-          ))}
-        </div>
-
-        <div className={styles.summary}>
-          <div className={styles.totalBlock}>
-            <h2>${totalPrice}</h2>
-            <p className={styles.count}>Total for {items.length} items</p>
+        <div className={styles.content}>
+          <div className={styles.items}>
+            {items.map(item => (
+              <CartItem
+                key={item.id}
+                item={item}
+                increase={increase}
+                decrease={decrease}
+                remove={removeFromCart}
+              />
+            ))}
           </div>
 
-          <button className={styles.checkout} onClick={handleCheckout}>
-            Checkout
-          </button>
+          <aside className={styles.summary}>
+            <div className={styles.totalBlock}>
+              <h2 className={styles.totalPrice}>${totalPrice}</h2>
+              <p className={styles.count}>Total for {items.length} items</p>
+            </div>
+
+            <button className={styles.checkout} onClick={handleCheckout}>
+              Checkout
+            </button>
+          </aside>
         </div>
       </div>
     </section>

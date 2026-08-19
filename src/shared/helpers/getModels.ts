@@ -5,11 +5,11 @@ export const getModels = (products: Product[]): Model[] => {
   const map = new Map<string, Model>();
 
   for (const p of products) {
-    const existing = map.get(p.namespaceId);
+    const existing = map.get(p.itemId);
 
     if (!existing) {
-      map.set(p.namespaceId, {
-        namespaceId: p.namespaceId,
+      map.set(p.itemId, {
+        itemId: p.itemId,
         name: p.name.replace(/\d+GB.*/, '').trim(),
         image: p.image,
         newestYear: p.year,

@@ -2,8 +2,8 @@ import { useEffect, useState } from 'react';
 import { ProductDetails } from '../../types/ProductDetails';
 import { getProductDetails } from '../../shared/helpers/products';
 
-export const useItemDetails = (itemId: string) => {
-  const [item, setItem] = useState<ProductDetails | null>(null);
+export const useItemDetails = (productId: string) => {
+  const [product, setProduct] = useState<ProductDetails | null>(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
@@ -11,11 +11,11 @@ export const useItemDetails = (itemId: string) => {
     setLoading(true);
     setError(false);
 
-    getProductDetails(itemId)
-      .then(setItem)
+    getProductDetails(productId)
+      .then(setProduct)
       .catch(() => setError(true))
       .finally(() => setLoading(false));
-  }, [itemId]);
+  }, [productId]);
 
-  return { item, loading, error };
+  return { product, loading, error };
 };

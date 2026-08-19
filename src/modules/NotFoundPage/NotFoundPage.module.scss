@@ -1,16 +1,18 @@
-
 .wrapper {
-  min-height: 60vh;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: center;
-
-  text-align: center;
-  padding: 32px 16px;
 }
 
-.wrapper h2 {
+.title {
   font-size: 32px;
   font-weight: 700;
   color: $text-primary;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  max-width: 500px;
+  height: auto;
 }

@@ -1,0 +1,65 @@
+.options {
+  display: flex;
+  flex-direction: column;
+  gap: 24px;
+}
+
+.block {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+}
+
+.label {
+  font-size: 14px;
+  font-weight: 500;
+  color: var(--secondary-text);
+}
+
+/* COLORS */
+.colors {
+  display: flex;
+  gap: 8px;
+}
+
+.color {
+  width: 32px;
+  height: 32px;
+  border-radius: 50%;
+  border: 2px solid transparent;
+  cursor: pointer;
+  transition: border-color 0.2s ease;
+}
+
+.color:hover {
+  border-color: var(--border-hover);
+}
+
+.active {
+  border-color: var(--accent);
+}
+
+/* CAPACITY */
+.capacity {
+  display: flex;
+  gap: 8px;
+}
+
+.cap {
+  padding: 8px 16px;
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  background: var(--surface);
+  font-size: 14px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+}
+
+.cap:hover {
+  border-color: var(--border-hover);
+}
+
+.cap.active {
+  border-color: var(--accent);
+  background: var(--accent-light);
+}

@@ -1,16 +1,31 @@
-.specs {
+.description {
+  display: flex;
+  flex-direction: column;
+  gap: 32px;
+  margin-top: 48px;
+}
+
+.block {
   display: flex;
   flex-direction: column;
   gap: 12px;
-  padding: 24px;
-  background: var(--surface);
-  border-radius: 12px;
 }
 
 .title {
   font-size: 20px;
   font-weight: 600;
-  margin-bottom: 12px;
+}
+
+.paragraph {
+  font-size: 14px;
+  line-height: 1.6;
+  color: var(--secondary-text);
+}
+
+.specs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .specRow {

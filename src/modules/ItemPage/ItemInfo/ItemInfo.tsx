@@ -1,8 +1,8 @@
-import { useState } from 'react';
 import styles from './ItemInfo.module.scss';
+import { ItemOptions } from '../ItemInfo/ItemOptions/ItemOptions';
 import type { ProductDetails } from '../../../types/ProductDetails';
 
-export interface ItemInfoProps {
+interface ItemInfoProps {
   product: ProductDetails;
   selectedColor: string;
   selectedCapacity: string;
@@ -10,104 +10,56 @@ export interface ItemInfoProps {
   onCapacityChange: (capacity: string) => void;
 }
 
-export const ItemInfo: React.FC<ItemInfoProps> = ({ product }) => {
-  const [activeTab, setActiveTab] = useState<'about' | 'camera' | 'specs'>(
-    'about',
-  );
-
-  // SAFE FALLBACKS
-  const about = product.description?.[0] ?? { title: 'About', text: [] };
-  const camera = product.description?.[1] ?? { title: 'Camera', text: [] };
-
+export const ItemInfo = ({
+  product,
+  selectedColor,
+  selectedCapacity,
+  onColorChange,
+  onCapacityChange,
+}: ItemInfoProps) => {
   return (
-    <div className={styles.description}>
-      {/* TABS */}
-      <div className={styles.tabs}>
-        <button
-          className={`${styles.tab} ${activeTab === 'about' ? styles.active : ''}`}
-          onClick={() => setActiveTab('about')}
-        >
-          About
-        </button>
-
-        <button
-          className={`${styles.tab} ${activeTab === 'camera' ? styles.active : ''}`}
-          onClick={() => setActiveTab('camera')}
-        >
-          Camera
-        </button>
-
-        <button
-          className={`${styles.tab} ${activeTab === 'specs' ? styles.active : ''}`}
-          onClick={() => setActiveTab('specs')}
-        >
-          Tech specs
-        </button>
+    <div className={styles.info}>
+      {/* PRICE */}
+      <div className={styles.priceBlock}>
+        <span className={styles.price}>${product.priceDiscount}</span>
+        <span className={styles.fullPrice}>${product.priceRegular}</span>
       </div>
 
-      {/* CONTENT */}
-      <div className={styles.content}>
-        {/* ABOUT */}
-        {activeTab === 'about' && (
-          <div>
-            <h3 className={styles.title}>{about.title}</h3>
+      {/* OPTIONS */}
+      <ItemOptions
+        colors={product.colorsAvailable}
+        capacities={product.capacityAvailable}
+        selectedColor={selectedColor}
+        selectedCapacity={selectedCapacity}
+        onColorChange={onColorChange}
+        onCapacityChange={onCapacityChange}
+      />
 
-            {about.text.length > 0 ? (
-              about.text.map((p, i) => (
-                <p key={i} className={styles.paragraph}>
-                  {p}
-                </p>
-              ))
-            ) : (
-              <p className={styles.paragraph}>No information available.</p>
-            )}
-          </div>
-        )}
+      {/* SHORT SPECS */}
+      <div className={styles.shortSpecs}>
+        <div className={styles.specRow}>
+          <span>Screen</span>
+          <span>{product.screen}</span>
+        </div>
 
-        {/* CAMERA */}
-        {activeTab === 'camera' && (
-          <div>
-            <h3 className={styles.title}>{camera.title}</h3>
+        <div className={styles.specRow}>
+          <span>Resolution</span>
+          <span>{product.resolution}</span>
+        </div>
 
-            {camera.text.length > 0 ? (
-              camera.text.map((p, i) => (
-                <p key={i} className={styles.paragraph}>
-                  {p}
-                </p>
-              ))
-            ) : (
-              <p className={styles.paragraph}>
-                No camera information available.
-              </p>
-            )}
-          </div>
-        )}
+        <div className={styles.specRow}>
+          <span>Processor</span>
+          <span>{product.processor}</span>
+        </div>
 
-        {/* TECH SPECS */}
-        {activeTab === 'specs' && (
-          <div className={styles.specs}>
-            <div className={styles.specRow}>
-              <span>Screen</span>
-              <span>{product.screen ?? 'N/A'}</span>
-            </div>
-
-            <div className={styles.specRow}>
-              <span>Resolution</span>
-              <span>{product.resolution ?? 'N/A'}</span>
-            </div>
-
-            <div className={styles.specRow}>
-              <span>Processor</span>
-              <span>{product.processor ?? 'N/A'}</span>
-            </div>
-
-            <div className={styles.specRow}>
-              <span>RAM</span>
-              <span>{product.ram ?? 'N/A'}</span>
-            </div>
-          </div>
-        )}
+        <div className={styles.specRow}>
+          <span>RAM</span>
+          <span>{product.ram}</span>
+        </div>
       </div>
+
+      {/* BUTTON */}
+      <button className={styles.addToCart}>Add to cart</button>
     </div>
   );
 };

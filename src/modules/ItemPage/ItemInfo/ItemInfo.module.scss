@@ -1,68 +1,49 @@
-.description {
-  margin-top: 48px;
+.info {
   display: flex;
   flex-direction: column;
   gap: 24px;
 }
 
-.tabs {
+.priceBlock {
   display: flex;
-  gap: 24px;
-  border-bottom: 1px solid $color-elements;
-}
-
-.tab {
-  padding-bottom: 8px;
-  font-size: 16px;
-  font-weight: 600;
-  color: $text-secondary;
-  cursor: pointer;
-  background: none;
-  border: none;
-  outline: none;
-
-  &:hover {
-    color: $text-primary;
-  }
-}
-
-.active {
-  color: $text-primary;
-  border-bottom: 2px solid $accent-primary;
-}
-
-.content {
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
-}
-
-.title {
-  font-size: 20px;
-  font-weight: 700;
-  color: $text-primary;
-}
-
-.paragraph {
-  font-size: 14px;
-  line-height: 1.6;
-  color: $text-secondary;
-}
-
-.specs {
-  display: flex;
-  flex-direction: column;
+  align-items: center;
   gap: 12px;
+}
+
+.price {
+  font-size: 32px;
+  font-weight: 700;
+}
+
+.fullPrice {
+  font-size: 18px;
+  text-decoration: line-through;
+  opacity: 0.6;
+}
+
+.shortSpecs {
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
 }
 
 .specRow {
   display: flex;
   justify-content: space-between;
-  font-size: 14px;
-  color: $text-secondary;
+  padding: 8px 0;
+  border-bottom: 1px solid var(--border);
+}
 
-  span:last-child {
-    font-weight: 600;
-    color: $text-primary;
-  }
+.specRow:last-child {
+  border-bottom: none;
+}
+
+.addToCart {
+  width: 100%;
+  padding: 12px;
+  background: var(--accent);
+  color: white;
+  border-radius: 8px;
+  font-weight: 600;
+  cursor: pointer;
 }

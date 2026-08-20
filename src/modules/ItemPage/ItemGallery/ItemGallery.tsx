@@ -6,18 +6,16 @@ interface ItemGalleryProps {
 }
 
 export const ItemGallery = ({ images }: ItemGalleryProps) => {
-  const gallery = images.length ? images : [];
-
   const [active, setActive] = useState(0);
 
   return (
     <div className={styles.gallery}>
       <div className={styles.thumbs}>
-        {gallery.map((img, i) => (
+        {images.map((img, index) => (
           <button
             key={img}
-            className={`${styles.thumb} ${i === active ? styles.active : ''}`}
-            onClick={() => setActive(i)}
+            className={`${styles.thumb} ${index === active ? styles.active : ''}`}
+            onClick={() => setActive(index)}
           >
             <img src={img} alt="" />
           </button>
@@ -25,7 +23,7 @@ export const ItemGallery = ({ images }: ItemGalleryProps) => {
       </div>
 
       <div className={styles.main}>
-        <img src={gallery[active]} alt="Item" />
+        <img src={images[active]} alt="Product" />
       </div>
     </div>
   );

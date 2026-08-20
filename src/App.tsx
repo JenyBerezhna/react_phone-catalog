@@ -27,7 +27,8 @@ export const App = () => (
               element={<CatalogPage type="accessories" />}
             />
 
-            <Route path="/:category/:itemId" element={<ItemPage />} />
+            {/* ITEM DETAILS PAGE */}
+            <Route path="/item/:itemId" element={<ItemPage />} />
 
             <Route path="/favorites" element={<FavoritesPage />} />
             <Route path="/cart" element={<CartPage />} />

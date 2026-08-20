@@ -5,34 +5,39 @@ interface ItemSpecProps {
   product: ProductDetails;
 }
 
-export const ItemSpec: React.FC<ItemSpecProps> = ({ product }) => {
+export const ItemSpec = ({ product }: ItemSpecProps) => {
   return (
     <div className={styles.specs}>
-      <h2 className={styles.title}>Tech specs</h2>
+      <h2>Tech specs</h2>
 
-      <div className={styles.specRow}>
+      <div className={styles.row}>
         <span>Screen</span>
         <span>{product.screen}</span>
       </div>
 
-      <div className={styles.specRow}>
+      <div className={styles.row}>
         <span>Resolution</span>
         <span>{product.resolution}</span>
       </div>
 
-      <div className={styles.specRow}>
+      <div className={styles.row}>
         <span>Processor</span>
         <span>{product.processor}</span>
       </div>
 
-      <div className={styles.specRow}>
+      <div className={styles.row}>
         <span>RAM</span>
         <span>{product.ram}</span>
       </div>
 
-      <div className={styles.specRow}>
-        <span>Built-in memory</span>
-        <span>{product.capacity?.join(', ')}</span>
+      <div className={styles.row}>
+        <span>Capacity</span>
+        <span>{product.capacity}</span>
+      </div>
+
+      <div className={styles.row}>
+        <span>Color</span>
+        <span>{product.color}</span>
       </div>
     </div>
   );

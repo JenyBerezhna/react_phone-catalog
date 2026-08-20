@@ -1,5 +1,4 @@
-import { useParams } from 'react-router-dom';
-import { useState } from 'react';
+import { useNavigate, useParams } from 'react-router-dom';
 
 import styles from './ItemPage.module.scss';
 
@@ -17,14 +16,23 @@ import { useSuggestedProducts } from '../../hooks/useSuggestedProducts';
 
 export const ItemPage = () => {
   const { itemId } = useParams();
-  const { product, loading, error } = useItemDetails(itemId!);
+  const navigate = useNavigate();
 
+  const { product, loading, error } = useItemDetails(itemId!);
   const { suggested, loadingSuggested, errorSuggested } = useSuggestedProducts(
     itemId!,
   );
 
-  const [selectedColor, setSelectedColor] = useState('');
-  const [selectedCapacity, setSelectedCapacity] = useState('');
+  // Redirect helper (single function)
+  const redirectToVariant = (color: string, capacity: string) => {
+    if (!product) {
+      return;
+    }
+
+    const newItemId = `${product.namespaceId}-${capacity}-${color}`;
+
+    navigate(`/item/${newItemId}`);
+  };
 
   if (loading || error) {
     return (
@@ -37,6 +45,9 @@ export const ItemPage = () => {
   if (!product) {
     return <p>Item not found</p>;
   }
+
+  const selectedColor = product.color;
+  const selectedCapacity = product.capacity;
 
   return (
     <section className={styles.page}>
@@ -59,8 +70,12 @@ export const ItemPage = () => {
           product={product}
           selectedColor={selectedColor}
           selectedCapacity={selectedCapacity}
-          onColorChange={setSelectedColor}
-          onCapacityChange={setSelectedCapacity}
+          onColorChange={newColor =>
+            redirectToVariant(newColor, selectedCapacity)
+          }
+          onCapacityChange={newCapacity =>
+            redirectToVariant(selectedColor, newCapacity)
+          }
         />
       </div>
 

@@ -1,5 +1,5 @@
 import styles from './ItemInfo.module.scss';
-import { ItemOptions } from '../ItemInfo/ItemOptions/ItemOptions';
+import { ItemOptions } from './ItemOptions/ItemOptions';
 import type { ProductDetails } from '../../../types/ProductDetails';
 
 interface ItemInfoProps {
@@ -58,7 +58,6 @@ export const ItemInfo = ({
         </div>
       </div>
 
-      {/* BUTTON */}
       <button className={styles.addToCart}>Add to cart</button>
     </div>
   );

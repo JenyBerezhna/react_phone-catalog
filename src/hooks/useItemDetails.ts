@@ -3,6 +3,7 @@ import type { ProductDetails } from '../types/ProductDetails';
 
 export const useItemDetails = (itemId: string) => {
   const [product, setProduct] = useState<ProductDetails | null>(null);
+  const [variants, setVariants] = useState<ProductDetails[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -11,32 +12,40 @@ export const useItemDetails = (itemId: string) => {
       return;
     }
 
-    const fetchDetails = async () => {
+    const load = async () => {
       try {
         setLoading(true);
 
-        const response = await fetch(`/api/productDetails/${itemId}.json`);
+        // category = "phones", "tablets", "accessories"
+        const category = itemId.split('-')[0];
+
+        const response = await fetch(`/api/${category}.json`);
 
         if (!response.ok) {
-          throw new Error(`Failed to load product details for ${itemId}`);
+          throw new Error('Failed to load item details');
         }
 
-        const data: ProductDetails = await response.json();
+        const all: ProductDetails[] = await response.json();
 
-        setProduct(data);
-      } catch (err: unknown) {
-        if (err instanceof Error) {
-          setError(err.message);
-        } else {
-          setError('Unknown error');
+        const current = all.find(p => p.id === itemId);
+
+        if (!current) {
+          throw new Error(`Item ${itemId} not found`);
         }
+
+        const family = all.filter(p => p.namespaceId === current.namespaceId);
+
+        setProduct(current);
+        setVariants(family);
+      } catch (err) {
+        setError(err instanceof Error ? err.message : 'Unknown error');
       } finally {
         setLoading(false);
       }
     };
 
-    fetchDetails();
+    load();
   }, [itemId]);
 
-  return { product, loading, error };
+  return { product, variants, loading, error };
 };

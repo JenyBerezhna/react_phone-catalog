@@ -3,7 +3,7 @@ import { useNavigate, useParams } from 'react-router-dom';
 import styles from './ItemPage.module.scss';
 
 import { ItemGallery } from './ItemGallery/ItemGallery';
-import { ItemInfo } from './ItemInfo/ItemInfo';
+import { ItemVariants } from './ItemVariants/ItemVariants';
 import { ItemSpec } from './ItemSpec/ItemSpec';
 
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
@@ -12,18 +12,18 @@ import { WithLoader } from '../../components/WithLoader';
 import { Card } from '../Card/Card';
 
 import { useItemDetails } from '../../shared/helpers/useItemDetails';
-import { useSuggestedProducts } from '../../hooks/useSuggestedProducts';
+import { useProducts } from '../../hooks/useProducts';
 
-export const ItemPage = () => {
+export const ItemPage: React.FC = () => {
   const { itemId } = useParams();
   const navigate = useNavigate();
 
-  const { product, loading, error } = useItemDetails(itemId!);
-  const { suggested, loadingSuggested, errorSuggested } = useSuggestedProducts(
-    itemId!,
-  );
+  // FULL DETAILS (ProductDetails)
+  const { product, loading, error } = useItemDetails(itemId || '');
 
-  // Redirect helper (single function)
+  // LIST (Product)
+  const { products: allProducts } = useProducts();
+
   const redirectToVariant = (color: string, capacity: string) => {
     if (!product) {
       return;
@@ -34,20 +34,25 @@ export const ItemPage = () => {
     navigate(`/item/${newItemId}`);
   };
 
-  if (loading || error) {
+  if (loading) {
     return (
-      <WithLoader loading={loading} error={error}>
-        {null}
+      <WithLoader loading={true} error={undefined}>
+        <div className={styles.skeleton}>Loading item...</div>
       </WithLoader>
     );
   }
 
-  if (!product) {
-    return <p>Item not found</p>;
+  if (error || !product) {
+    return (
+      <WithLoader loading={false} error={!!error}>
+        <div className={styles.skeleton}>Unable to load item</div>
+      </WithLoader>
+    );
   }
 
-  const selectedColor = product.color;
-  const selectedCapacity = product.capacity;
+  const suggested = allProducts
+    .filter(p => p.category === product.category && p.itemId !== product.id)
+    .slice(0, 12);
 
   return (
     <section className={styles.page}>
@@ -66,22 +71,20 @@ export const ItemPage = () => {
       <div className={styles.columns}>
         <ItemGallery images={product.images} />
 
-        <ItemInfo
+        <ItemVariants
           product={product}
-          selectedColor={selectedColor}
-          selectedCapacity={selectedCapacity}
           onColorChange={newColor =>
-            redirectToVariant(newColor, selectedCapacity)
+            redirectToVariant(newColor, product.capacity)
           }
           onCapacityChange={newCapacity =>
-            redirectToVariant(selectedColor, newCapacity)
+            redirectToVariant(product.color, newCapacity)
           }
         />
       </div>
 
       <ItemSpec product={product} />
 
-      <WithLoader loading={loadingSuggested} error={errorSuggested}>
+      <WithLoader loading={false} error={undefined}>
         {suggested.length > 0 && (
           <div className={styles.suggested}>
             <h2>You may also like</h2>

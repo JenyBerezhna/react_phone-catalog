@@ -40,7 +40,7 @@ export const Card: React.FC<Props> = ({
 
   return (
     <Link
-      to={`/item/${product.id}`}
+      to={`/item/${product.itemId}`}
       className={classNames(styles.card, styles[`card--${variant}`])}
     >
       {/* IMAGE */}

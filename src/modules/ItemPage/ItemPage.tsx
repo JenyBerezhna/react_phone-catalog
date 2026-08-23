@@ -11,7 +11,7 @@ import { BackButton } from '../../components/BackButton/BackButton';
 import { WithLoader } from '../../components/WithLoader';
 import { Card } from '../Card/Card';
 
-import { useItemDetails } from '../../shared/helpers/useItemDetails';
+import { useItemDetails } from '../../hooks/useItemDetails';
 import { useProducts } from '../../hooks/useProducts';
 
 export const ItemPage: React.FC = () => {
@@ -29,14 +29,12 @@ export const ItemPage: React.FC = () => {
       return;
     }
 
-    const newItemId = `${product.namespaceId}-${capacity}-${color}`;
-
-    navigate(`/item/${newItemId}`);
+    navigate(`/item/${product.namespaceId}-${capacity}-${color}`);
   };
 
   if (loading) {
     return (
-      <WithLoader loading={true} error={undefined}>
+      <WithLoader loading={true} error={null}>
         <div className={styles.skeleton}>Loading item...</div>
       </WithLoader>
     );
@@ -44,7 +42,7 @@ export const ItemPage: React.FC = () => {
 
   if (error || !product) {
     return (
-      <WithLoader loading={false} error={!!error}>
+      <WithLoader loading={false} error={String(error)}>
         <div className={styles.skeleton}>Unable to load item</div>
       </WithLoader>
     );
@@ -84,7 +82,7 @@ export const ItemPage: React.FC = () => {
 
       <ItemSpec product={product} />
 
-      <WithLoader loading={false} error={undefined}>
+      <WithLoader loading={false} error={null}>
         {suggested.length > 0 && (
           <div className={styles.suggested}>
             <h2>You may also like</h2>

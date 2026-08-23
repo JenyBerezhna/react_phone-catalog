@@ -2,7 +2,7 @@ import { Loader } from '../components/Loader/Loader';
 
 type Props = {
   loading: boolean;
-  error?: boolean;
+  error: string | null;
   children: React.ReactNode;
   errorSlot?: React.ReactNode;
 };

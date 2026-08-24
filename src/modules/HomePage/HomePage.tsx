@@ -21,7 +21,7 @@ export const HomePage = () => {
   });
 
   return (
-    <WithLoader loading={loading} error={error}>
+    <WithLoader loading={loading} error={error ? String(error) : null}>
       <>
         <h1 className={styles.visuallyHidden}>Product Catalog</h1>
 

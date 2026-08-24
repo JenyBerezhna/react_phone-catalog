@@ -1,23 +1,21 @@
 import { useEffect, useState } from 'react';
 import type { ProductDetails } from '../types/ProductDetails';
 
-export const useItemDetails = (itemId: string) => {
+export const useItemDetails = (itemId: string, category: string) => {
   const [product, setProduct] = useState<ProductDetails | null>(null);
   const [variants, setVariants] = useState<ProductDetails[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!itemId) {
+    if (!itemId || !category) {
       return;
     }
 
     const load = async () => {
       try {
         setLoading(true);
-
-        // category = "phones", "tablets", "accessories"
-        const category = itemId.split('-')[0];
+        setError(null);
 
         const response = await fetch(`/api/${category}.json`);
 
@@ -27,13 +25,15 @@ export const useItemDetails = (itemId: string) => {
 
         const all: ProductDetails[] = await response.json();
 
-        const current = all.find(p => p.id === itemId);
+        const current = all.find(item => item.id === itemId);
 
         if (!current) {
           throw new Error(`Item ${itemId} not found`);
         }
 
-        const family = all.filter(p => p.namespaceId === current.namespaceId);
+        const family = all.filter(
+          item => item.namespaceId === current.namespaceId,
+        );
 
         setProduct(current);
         setVariants(family);
@@ -45,7 +45,12 @@ export const useItemDetails = (itemId: string) => {
     };
 
     load();
-  }, [itemId]);
+  }, [itemId, category]);
 
-  return { product, variants, loading, error };
+  return {
+    product,
+    variants,
+    loading,
+    error,
+  };
 };

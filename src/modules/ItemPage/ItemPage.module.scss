@@ -1,46 +1,98 @@
-@use '../../styles/mixins' as *;
-
 .page {
-  padding-block: 32px;
-
-  @include desktop {
-    padding-block: 48px;
-  }
+  @include container;
+  
+  display: flex;
+  flex-direction: column;
+  gap: $space-6;
+  padding-block: $space-5;
+  color: $text-primary;
 }
 
-.container {
-  display: grid;
-  gap: 32px;
-
-  @include tablet {
-    grid-template-columns: 1fr 1fr;
-  }
-
-  @include desktop {
-    grid-template-columns: 0.6fr 1fr 1fr;
-    gap: 48px;
-  }
-}
-
+/* MAIN PAGE TITLE */
 .title {
-  font-size: 32px;
-  font-weight: 800;
-  margin: 24px 0;
+  font-size: $h2-size;
+  font-weight: $h2-weight;
+  line-height: $h2-line-height;
+  margin-bottom: $space-3;
+  color: $text-primary;
 }
 
+/* BACK BUTTON */
+.back {
+  margin-bottom: $space-3;
+}
+
+/* MAIN LAYOUT: GALLERY + VARIANTS */
 .columns {
   display: grid;
-  grid-template-columns: 1fr 320px;
-  gap: 32px;
-  margin-bottom: 48px;
+  grid-template-columns: 1fr 360px;
+  gap: $space-6;
+  align-items: start;
+  margin-bottom: $space-6;
+
+  @include tablet {
+    grid-template-columns: 1fr;
+    gap: $space-5;
+  }
 }
 
-.left {
-  display: grid;
-  grid-template-columns: 80px 1fr;
-  gap: 16px;
+/* LOADING / ERROR */
+.skeleton {
+  padding: $space-6 0;
+  text-align: center;
+  font-size: $h3-size;
+  color: $text-secondary;
 }
 
+/* DESCRIPTION SECTION (ItemDescription) */
 .description {
-  margin-top: 48px;
+  margin-top: $space-6;
+
+  h2 {
+    font-size: $h2-size;
+    font-weight: $h2-weight;
+    line-height: $h2-line-height;
+    margin-bottom: $space-4;
+  }
+}
+
+/* DESCRIPTION BLOCKS */
+.descriptionBlock {
+  margin-bottom: $space-5;
+  padding: $space-4;
+  background: $surface-1;
+  border-radius: $radius-m;
+  border: 1px solid $color-elements;
+
+  h3 {
+    font-size: $h3-size;
+    font-weight: $h3-weight;
+    line-height: $h3-line-height;
+    margin-bottom: $space-3;
+    color: $text-primary;
+  }
+
+  p {
+    margin-bottom: $space-2;
+    color: $text-secondary;
+    line-height: 1.6;
+
+    &:last-child {
+      margin-bottom: 0;
+    }
+  }
+}
+
+/* GENERIC SECTION SPACING (used for Suggested) */
+.section {
+  margin-top: $space-6;
+}
+
+/* SECTION TITLE (used for Suggested) */
+.sectionTitle {
+  font-size: $h3-size;
+  font-weight: $h3-weight;
+  line-height: $h3-line-height;
+  margin-bottom: $space-4;
+  color: $text-primary;
 }

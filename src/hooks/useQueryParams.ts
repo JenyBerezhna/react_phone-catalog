@@ -6,7 +6,6 @@ type ParamValue = string | null;
 export const useQueryParams = () => {
   const [searchParams, setSearchParams] = useSearchParams();
 
-  // Memoize params object for stability
   const params = useMemo(
     () => Object.fromEntries(searchParams) as Record<string, string>,
     [searchParams],
@@ -23,7 +22,7 @@ export const useQueryParams = () => {
         next.set(key, value);
       }
 
-      // Avoid unnecessary updates
+      // Avoiding unnecessary updates
       if (next.toString() !== searchParams.toString()) {
         setSearchParams(next);
       }
@@ -44,7 +43,6 @@ export const useQueryParams = () => {
         }
       });
 
-      // Avoid unnecessary updates
       if (next.toString() !== searchParams.toString()) {
         setSearchParams(next);
       }

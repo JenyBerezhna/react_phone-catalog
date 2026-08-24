@@ -1,8 +1,8 @@
-import { Product } from '../../../../types/Product';
-import styles from './ProductsSlider.module.scss';
-import { Card } from '../../../Card/Card';
-import layoutStyles from '../../../../components/Layout/Layout.module.scss';
-import { useSlider } from '../../../../hooks/useSlider';
+import { Product } from '../../types/Product';
+import styles from './Slider.module.scss';
+import { Card } from '../../modules/Card/Card';
+import layoutStyles from '../Layout/Layout.module.scss';
+import { useSlider } from '../../hooks/useSlider';
 
 type Props = {
   title: string;
@@ -10,11 +10,7 @@ type Props = {
   showDiscount: boolean;
 };
 
-export const ProductsSlider: React.FC<Props> = ({
-  title,
-  products,
-  showDiscount,
-}) => {
+export const Slider: React.FC<Props> = ({ title, products, showDiscount }) => {
   const { sliderRef, prev, next } = useSlider();
 
   return (

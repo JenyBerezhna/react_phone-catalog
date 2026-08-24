@@ -10,15 +10,13 @@ import { ItemDescription } from './ItemDescription/ItemDescription';
 import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import { BackButton } from '../../components/BackButton/BackButton';
 import { WithLoader } from '../../components/WithLoader';
-import { Card } from '../Card/Card';
 
 import { useItemDetails } from '../../hooks/useItemDetails';
 import { useProducts } from '../../hooks/useProducts';
 import { useSuggestedProducts } from '../../hooks/useSuggestedProducts';
-import { useSlider } from '../../hooks/useSlider';
 import { getItemUrl } from '../../shared/helpers/getItemUrl';
 
-import layoutStyles from '../../components/Layout/Layout.module.scss';
+import { Slider } from '../../components/Slider/Slider';
 
 export const ItemPage: React.FC = () => {
   const { itemId } = useParams();
@@ -37,8 +35,6 @@ export const ItemPage: React.FC = () => {
     product,
     allProducts,
   );
-
-  const { sliderRef, prev, next } = useSlider();
 
   if (loading) {
     return (
@@ -60,17 +56,9 @@ export const ItemPage: React.FC = () => {
     <section className={styles.page}>
       <Breadcrumbs
         items={[
-          {
-            label: 'Home',
-            to: '/',
-          },
-          {
-            label: product.category,
-            to: `/${product.category}`,
-          },
-          {
-            label: product.name,
-          },
+          { label: 'Home', to: '/' },
+          { label: product.category, to: `/${product.category}` },
+          { label: product.name },
         ]}
       />
 
@@ -97,45 +85,14 @@ export const ItemPage: React.FC = () => {
       </div>
 
       <ItemDescription product={product} />
-
       <ItemSpec product={product} />
 
       {!loadingSuggested && suggested.length > 0 && (
-        <section className={styles.section}>
-          <div className={styles.suggestedHeader}>
-            <h2 className={styles.sectionTitle}>You may also like</h2>
-
-            <div className={styles.controls}>
-              <button
-                type="button"
-                className={styles.arrow}
-                onClick={prev}
-                aria-label="Previous products"
-              >
-                <img src="/img/icons/ArrowLeft.svg" alt="" />
-              </button>
-
-              <button
-                type="button"
-                className={styles.arrow}
-                onClick={next}
-                aria-label="Next products"
-              >
-                <img src="/img/icons/ArrowRight.svg" alt="" />
-              </button>
-            </div>
-          </div>
-
-          <div ref={sliderRef} className={layoutStyles['layout--slider']}>
-            {suggested.map(suggestedProduct => (
-              <Card
-                key={suggestedProduct.id}
-                product={suggestedProduct}
-                variant="slider"
-              />
-            ))}
-          </div>
-        </section>
+        <Slider
+          title="You may also like"
+          products={suggested}
+          showDiscount={false}
+        />
       )}
     </section>
   );

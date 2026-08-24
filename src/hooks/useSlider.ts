@@ -18,11 +18,10 @@ export const useSlider = () => {
 
     const itemWidth = firstItem.getBoundingClientRect().width;
 
-    const { gap } = window.getComputedStyle(container);
-    const gapValue = parseFloat(gap) || 0;
+    const { columnGap } = window.getComputedStyle(container);
+    const gap = parseFloat(columnGap) || 0;
 
-    const offset =
-      direction === 'left' ? -(itemWidth + gapValue) : itemWidth + gapValue;
+    const offset = direction === 'left' ? -(itemWidth + gap) : itemWidth + gap;
 
     container.scrollBy({
       left: offset,
@@ -30,17 +29,9 @@ export const useSlider = () => {
     });
   };
 
-  const next = () => {
-    scroll('right');
-  };
-
-  const prev = () => {
-    scroll('left');
-  };
-
   return {
     sliderRef,
-    next,
-    prev,
+    prev: () => scroll('left'),
+    next: () => scroll('right'),
   };
 };

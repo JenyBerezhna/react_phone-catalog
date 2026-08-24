@@ -1,4 +1,5 @@
 import { useEffect, useState } from 'react';
+
 import { Product, ProductDetails } from '../types';
 
 export const useSuggestedProducts = (
@@ -6,28 +7,33 @@ export const useSuggestedProducts = (
   allProducts: Product[],
 ) => {
   const [suggested, setSuggested] = useState<Product[]>([]);
+  const [loadingSuggested, setLoadingSuggested] = useState(true);
 
   useEffect(() => {
-    if (!product || allProducts.length === 0) {
+    if (!product) {
       setSuggested([]);
+      setLoadingSuggested(false);
 
       return;
     }
 
+    setLoadingSuggested(true);
+
     const filtered = allProducts
       .filter(
-        p =>
-          p.category === product.category &&
-          p.itemId !== product.id &&
-          Math.abs(p.price - product.priceRegular) < 150,
+        item =>
+          item.category === product.category &&
+          item.itemId !== product.id &&
+          Math.abs(item.price - product.priceRegular) < 150,
       )
       .slice(0, 12);
 
     setSuggested(filtered);
+    setLoadingSuggested(false);
   }, [product, allProducts]);
 
   return {
     suggested,
-    loadingSuggested: false,
+    loadingSuggested,
   };
 };

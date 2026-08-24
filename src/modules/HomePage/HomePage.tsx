@@ -2,8 +2,8 @@
 import styles from './HomePage.module.scss';
 
 import { Hero } from './components/Hero/Hero';
-import { ProductsSlider } from './components/ProductsSlider/ProductsSlider';
 import { ShopByCategory } from './components/ShopByCategory/ShopByCategory';
+import { Slider } from '../../components/Slider/Slider';
 
 import { useProducts } from '../../hooks/useProducts';
 import { WithLoader } from '../../components/WithLoader';
@@ -35,7 +35,7 @@ export const HomePage = () => {
 
         {/* Brand new models */}
         <section className={styles.section}>
-          <ProductsSlider
+          <Slider
             title="Brand new models"
             products={brandNew}
             showDiscount={false}
@@ -49,11 +49,7 @@ export const HomePage = () => {
 
         {/* Hot prices */}
         <section className={styles.section}>
-          <ProductsSlider
-            title="Hot prices"
-            products={hotPrices}
-            showDiscount={true}
-          />
+          <Slider title="Hot prices" products={hotPrices} showDiscount={true} />
         </section>
       </>
     </WithLoader>

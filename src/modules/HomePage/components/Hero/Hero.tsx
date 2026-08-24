@@ -1,5 +1,5 @@
 import styles from './Hero.module.scss';
-import { useSlider } from '../../../../hooks/useSlider';
+import { useSlider } from '../../../../hooks/useBanner';
 
 const images = [
   '/img/banners/banner-phones.jpg',

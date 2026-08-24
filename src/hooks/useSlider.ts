@@ -1,25 +1,46 @@
-import { useEffect, useState, useCallback } from 'react';
+import { useRef } from 'react';
 
-export const useSlider = (length: number, delay = 5000) => {
-  const [index, setIndex] = useState(0);
+export const useSlider = () => {
+  const sliderRef = useRef<HTMLDivElement>(null);
 
-  const next = useCallback(
-    () => setIndex(prev => (prev + 1) % length),
-    [length],
-  );
+  const scroll = (direction: 'left' | 'right') => {
+    const container = sliderRef.current;
 
-  const prev = useCallback(
-    () => setIndex(current => (current - 1 + length) % length),
-    [length],
-  );
+    if (!container) {
+      return;
+    }
 
-  const goTo = useCallback((i: number) => setIndex(i), []);
+    const firstItem = container.firstElementChild as HTMLElement | null;
 
-  useEffect(() => {
-    const id = setInterval(next, delay);
+    if (!firstItem) {
+      return;
+    }
 
-    return () => clearInterval(id);
-  }, [next, delay]);
+    const itemWidth = firstItem.getBoundingClientRect().width;
 
-  return { index, next, prev, goTo };
+    const { gap } = window.getComputedStyle(container);
+    const gapValue = parseFloat(gap) || 0;
+
+    const offset =
+      direction === 'left' ? -(itemWidth + gapValue) : itemWidth + gapValue;
+
+    container.scrollBy({
+      left: offset,
+      behavior: 'smooth',
+    });
+  };
+
+  const next = () => {
+    scroll('right');
+  };
+
+  const prev = () => {
+    scroll('left');
+  };
+
+  return {
+    sliderRef,
+    next,
+    prev,
+  };
 };

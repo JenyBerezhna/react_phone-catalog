@@ -1,29 +1,40 @@
 import { useState } from 'react';
+
 import styles from './ItemGallery.module.scss';
 
-interface ItemGalleryProps {
-  images: string[];
-}
+import { getImageUrl } from '../../../shared/helpers/getImageUrl';
 
-export const ItemGallery = ({ images }: ItemGalleryProps) => {
+type Props = {
+  images: string[];
+};
+
+export const ItemGallery: React.FC<Props> = ({ images }) => {
   const [active, setActive] = useState(0);
+
+  if (images.length === 0) {
+    return null;
+  }
 
   return (
     <div className={styles.gallery}>
       <div className={styles.thumbs}>
-        {images.map((img, index) => (
+        {images.map((image, index) => (
           <button
-            key={img}
-            className={`${styles.thumb} ${index === active ? styles.active : ''}`}
+            key={image}
+            type="button"
+            className={`${styles.thumb} ${
+              index === active ? styles.active : ''
+            }`}
             onClick={() => setActive(index)}
+            aria-label={`Show image ${index + 1}`}
           >
-            <img src={img} alt="" />
+            <img src={getImageUrl(image)} alt="" />
           </button>
         ))}
       </div>
 
       <div className={styles.main}>
-        <img src={images[active]} alt="Product" />
+        <img src={getImageUrl(images[active])} alt="" />
       </div>
     </div>
   );

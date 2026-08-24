@@ -55,15 +55,15 @@
 
 /* Main image */
 .main {
-  width: 100%;
   display: flex;
   justify-content: center;
   align-items: center;
 
   @include desktop {
     height: 464px;
+    width: 464px;
     border-radius: $radius-m;
-    background: $surface-1;
+    background: transparent;
   }
 
   img {
@@ -81,3 +81,5 @@
     }
   }
 }
+
+

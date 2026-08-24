@@ -1,5 +1,4 @@
 import { useNavigate, useParams } from 'react-router-dom';
-import { useRef } from 'react';
 
 import styles from './ItemPage.module.scss';
 
@@ -16,6 +15,8 @@ import { Card } from '../Card/Card';
 import { useItemDetails } from '../../hooks/useItemDetails';
 import { useProducts } from '../../hooks/useProducts';
 import { useSuggestedProducts } from '../../hooks/useSuggestedProducts';
+import { useSlider } from '../../hooks/useSlider';
+import { getItemUrl } from '../../shared/helpers/getItemUrl';
 
 import layoutStyles from '../../components/Layout/Layout.module.scss';
 
@@ -23,46 +24,22 @@ export const ItemPage: React.FC = () => {
   const { itemId } = useParams();
   const navigate = useNavigate();
 
-  // Lightweight list product (for category)
   const { products: allProducts } = useProducts();
-  const listProduct = allProducts.find(p => p.itemId === itemId);
 
-  // Full product details
+  const listProduct = allProducts.find(product => product.itemId === itemId);
+
   const { product, loading, error } = useItemDetails(
     itemId || '',
     listProduct?.category || '',
   );
 
-  // Slider ref
-  const ref = useRef<HTMLDivElement>(null);
+  const { suggested, loadingSuggested } = useSuggestedProducts(
+    product,
+    allProducts,
+  );
 
-  // Suggested products — MUST come AFTER product is defined
-  const { suggested, loadingSuggested } = useSuggestedProducts(product);
+  const { sliderRef, prev, next } = useSlider();
 
-  // Scroll logic
-  const scroll = (direction: 'left' | 'right') => {
-    const container = ref.current;
-
-    if (!container) {
-      return;
-    }
-
-    const card = container.querySelector(
-      '[class*="card--slider"]',
-    ) as HTMLElement | null;
-
-    if (!card) {
-      return;
-    }
-
-    const cardWidth = card.getBoundingClientRect().width;
-    const gap = 16;
-    const offset = direction === 'left' ? -(cardWidth + gap) : cardWidth + gap;
-
-    container.scrollBy({ left: offset, behavior: 'smooth' });
-  };
-
-  // Loading state
   if (loading) {
     return (
       <WithLoader loading={true} error={null}>
@@ -71,10 +48,9 @@ export const ItemPage: React.FC = () => {
     );
   }
 
-  // Error state
   if (error || !product) {
     return (
-      <WithLoader loading={false} error={String(error)}>
+      <WithLoader loading={false} error={error ? String(error) : null}>
         <div className={styles.skeleton}>Unable to load item</div>
       </WithLoader>
     );
@@ -84,9 +60,17 @@ export const ItemPage: React.FC = () => {
     <section className={styles.page}>
       <Breadcrumbs
         items={[
-          { label: 'Home', to: '/' },
-          { label: product.category, to: `/${product.category}` },
-          { label: product.name },
+          {
+            label: 'Home',
+            to: '/',
+          },
+          {
+            label: product.category,
+            to: `/${product.category}`,
+          },
+          {
+            label: product.name,
+          },
         ]}
       />
 
@@ -94,7 +78,6 @@ export const ItemPage: React.FC = () => {
 
       <h1 className={styles.title}>{product.name}</h1>
 
-      {/* MAIN LAYOUT */}
       <div className={styles.columns}>
         <ItemGallery images={product.images} />
 
@@ -102,40 +85,54 @@ export const ItemPage: React.FC = () => {
           product={product}
           onColorChange={newColor =>
             navigate(
-              `/item/${product.namespaceId}-${product.capacity}-${newColor}`,
+              getItemUrl(product.namespaceId, product.capacity, newColor),
             )
           }
           onCapacityChange={newCapacity =>
             navigate(
-              `/item/${product.namespaceId}-${newCapacity}-${product.color}`,
+              getItemUrl(product.namespaceId, newCapacity, product.color),
             )
           }
         />
       </div>
 
       <ItemDescription product={product} />
+
       <ItemSpec product={product} />
 
-      {/* SUGGESTED PRODUCTS */}
       {!loadingSuggested && suggested.length > 0 && (
         <section className={styles.section}>
           <div className={styles.suggestedHeader}>
             <h2 className={styles.sectionTitle}>You may also like</h2>
 
             <div className={styles.controls}>
-              <button className={styles.arrow} onClick={() => scroll('left')}>
-                <img src="/img/icons/ArrowLeft.svg" alt="Previous" />
+              <button
+                type="button"
+                className={styles.arrow}
+                onClick={prev}
+                aria-label="Previous products"
+              >
+                <img src="/img/icons/ArrowLeft.svg" alt="" />
               </button>
 
-              <button className={styles.arrow} onClick={() => scroll('right')}>
-                <img src="/img/icons/ArrowRight.svg" alt="Next" />
+              <button
+                type="button"
+                className={styles.arrow}
+                onClick={next}
+                aria-label="Next products"
+              >
+                <img src="/img/icons/ArrowRight.svg" alt="" />
               </button>
             </div>
           </div>
 
-          <div className={layoutStyles['layout--slider']} ref={ref}>
-            {suggested.map(p => (
-              <Card key={p.id} product={p} variant="slider" />
+          <div ref={sliderRef} className={layoutStyles['layout--slider']}>
+            {suggested.map(suggestedProduct => (
+              <Card
+                key={suggestedProduct.id}
+                product={suggestedProduct}
+                variant="slider"
+              />
             ))}
           </div>
         </section>

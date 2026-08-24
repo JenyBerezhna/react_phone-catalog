@@ -1,9 +1,8 @@
-/* eslint-disable max-len */
-import { useRef } from 'react';
 import { Product } from '../../../../types/Product';
 import styles from './ProductsSlider.module.scss';
 import { Card } from '../../../Card/Card';
 import layoutStyles from '../../../../components/Layout/Layout.module.scss';
+import { useSlider } from '../../../../hooks/useSlider';
 
 type Props = {
   title: string;
@@ -16,29 +15,7 @@ export const ProductsSlider: React.FC<Props> = ({
   products,
   showDiscount,
 }) => {
-  const ref = useRef<HTMLDivElement>(null);
-
-  const scroll = (direction: 'left' | 'right') => {
-    const container = ref.current;
-
-    if (!container) {
-      return;
-    }
-
-    const card = container.querySelector(
-      '[class*="card--slider"]',
-    ) as HTMLElement | null;
-
-    if (!card) {
-      return;
-    }
-
-    const cardWidth = card.getBoundingClientRect().width;
-    const gap = 16;
-    const offset = direction === 'left' ? -(cardWidth + gap) : cardWidth + gap;
-
-    container.scrollBy({ left: offset, behavior: 'smooth' });
-  };
+  const { sliderRef, prev, next } = useSlider();
 
   return (
     <section className={styles.slider}>
@@ -47,25 +24,26 @@ export const ProductsSlider: React.FC<Props> = ({
 
         <div className={styles.controls}>
           <button
+            type="button"
             className={styles.arrow}
-            onClick={() => scroll('left')}
+            onClick={prev}
             aria-label="Previous products"
           >
-            <img src="/img/icons/ArrowLeft.svg" alt="Previous" />
+            <img src="/img/icons/ArrowLeft.svg" alt="" />
           </button>
 
           <button
+            type="button"
             className={styles.arrow}
-            onClick={() => scroll('right')}
+            onClick={next}
             aria-label="Next products"
           >
-            <img src="/img/icons/ArrowRight.svg" alt="Next" />
+            <img src="/img/icons/ArrowRight.svg" alt="" />
           </button>
         </div>
       </div>
 
-      {/* LAYOUT SYSTEM */}
-      <div className={layoutStyles['layout--slider']} ref={ref}>
+      <div className={layoutStyles['layout--slider']} ref={sliderRef}>
         {products.map(product => (
           <Card
             key={product.id}

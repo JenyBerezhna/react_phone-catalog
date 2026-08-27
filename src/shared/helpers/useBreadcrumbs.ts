@@ -14,8 +14,8 @@ export const useBreadcrumbs = () => {
   const parts = location.pathname.split('/').filter(Boolean);
 
   return useMemo(() => {
-    // Product details page: /product/:itemId
-    if (parts[0] === 'product' && parts[1]) {
+    // itempage: /product/:itemId
+    if ((parts[0] === 'product' || parts[0] === 'item') && parts[1]) {
       const product = products.find(p => p.itemId === parts[1]);
 
       if (product) {
@@ -32,14 +32,30 @@ export const useBreadcrumbs = () => {
       }
     }
 
-    // Default
-    return parts.map((part, index) => {
-      const path = '/' + parts.slice(0, index + 1).join('/');
+    // Category page
+    if (parts.length === 1) {
+      const category = parts[0];
 
-      return {
-        label: part[0].toUpperCase() + part.slice(1),
-        to: index === parts.length - 1 ? undefined : path,
-      };
-    });
+      return [
+        { label: 'Home', to: '/' },
+        {
+          label: category[0].toUpperCase() + category.slice(1),
+          to: undefined,
+        },
+      ];
+    }
+
+    // fallback
+    return [
+      { label: 'Home', to: '/' },
+      ...parts.map((part, index) => {
+        const path = '/' + parts.slice(0, index + 1).join('/');
+
+        return {
+          label: part[0].toUpperCase() + part.slice(1),
+          to: index === parts.length - 1 ? undefined : path,
+        };
+      }),
+    ];
   }, [parts, products]);
 };

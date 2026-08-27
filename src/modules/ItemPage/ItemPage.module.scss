@@ -1,6 +1,6 @@
 .page {
   @include container;
-  
+
   display: flex;
   flex-direction: column;
   gap: $space-6;
@@ -8,44 +8,48 @@
   color: $text-primary;
 }
 
-/* MAIN PAGE TITLE */
+.back {
+  margin-bottom: $space-3;
+}
+
 .title {
   font-size: $h2-size;
   font-weight: $h2-weight;
   line-height: $h2-line-height;
   margin-bottom: $space-3;
   color: $text-primary;
-}
 
-/* BACK BUTTON */
-.back {
-  margin-bottom: $space-3;
-}
-
-/* MAIN LAYOUT: GALLERY + VARIANTS */
-.columns {
-  display: grid;
-  grid-template-columns: 1fr 360px;
-  gap: $space-6;
-  align-items: start;
-  margin-bottom: $space-6;
-
-  @include tablet {
-    grid-template-columns: 1fr;
-    gap: $space-5;
+  @include mobile {
+    font-size: $h3-size;
+    line-height: $h3-line-height;
   }
 }
 
-/* LOADING / ERROR */
-.skeleton {
-  padding: $space-6 0;
-  text-align: center;
-  font-size: $h3-size;
-  color: $text-secondary;
+/* PRODUCT GRID */
+
+.productGrid {
+  display: grid;
+
+  grid-template-columns: minmax(0, 1fr) 360px;
+  gap: $space-6;
+  align-items: start;
+  margin-bottom: $space-6;
 }
 
-/* DESCRIPTION SECTION (ItemDescription) */
+.gallery {
+  grid-column: 1;
+  grid-row: 1;
+}
+
+.variants {
+  grid-column: 2;
+  grid-row: 1;
+}
+
 .description {
+  grid-column: 1;
+  grid-row: 2;
+
   margin-top: $space-6;
 
   h2 {
@@ -56,7 +60,13 @@
   }
 }
 
-/* DESCRIPTION BLOCKS */
+.spec {
+  grid-column: 2;
+  grid-row: 2;
+}
+
+/* DESCRIPTION */
+
 .descriptionBlock {
   margin-bottom: $space-5;
   padding: $space-4;
@@ -76,23 +86,37 @@
     margin-bottom: $space-2;
     color: $text-secondary;
     line-height: 1.6;
-
-    &:last-child {
-      margin-bottom: 0;
-    }
   }
 }
 
-/* GENERIC SECTION SPACING (used for Suggested) */
-.section {
-  margin-top: $space-6;
+/* TABLET / MOBILE */
+
+@include tablet {
+  .productGrid {
+    display: flex;
+
+    flex-direction: column;
+
+    gap: $space-5;
+  }
+
+  .gallery,
+  .variants,
+  .description,
+  .spec {
+    width: 100%;
+  }
+
+  .description {
+    margin-top: 0;
+  }
 }
 
-/* SECTION TITLE (used for Suggested) */
-.sectionTitle {
+/* LOADING / ERROR */
+
+.skeleton {
+  padding: $space-6 0;
+  text-align: center;
   font-size: $h3-size;
-  font-weight: $h3-weight;
-  line-height: $h3-line-height;
-  margin-bottom: $space-4;
-  color: $text-primary;
+  color: $text-secondary;
 }

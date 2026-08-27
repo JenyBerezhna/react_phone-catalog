@@ -7,7 +7,6 @@ import { ItemVariants } from './ItemVariants/ItemVariants';
 import { ItemSpec } from './ItemSpec/ItemSpec';
 import { ItemDescription } from './ItemDescription/ItemDescription';
 
-import { Breadcrumbs } from '../../components/Breadcrumbs/Breadcrumbs';
 import { BackButton } from '../../components/BackButton/BackButton';
 import { WithLoader } from '../../components/WithLoader';
 
@@ -54,19 +53,11 @@ export const ItemPage: React.FC = () => {
 
   return (
     <section className={styles.page}>
-      <Breadcrumbs
-        items={[
-          { label: 'Home', to: '/' },
-          { label: product.category, to: `/${product.category}` },
-          { label: product.name },
-        ]}
-      />
-
       <BackButton className={styles.back} />
 
       <h1 className={styles.title}>{product.name}</h1>
 
-      <div className={styles.columns}>
+      <div className={styles.productGrid}>
         <ItemGallery images={product.images} />
 
         <ItemVariants

@@ -13,7 +13,7 @@ export const FavoritesPage = () => {
         <h1>Favourites</h1>
         <p className={styles.counter}>{favorites.length} items</p>
 
-        <WithLoader loading={false} error={undefined}>
+        <WithLoader loading={false} error={null}>
           {favorites.length === 0 ? (
             <p>No favourites yet</p>
           ) : (

@@ -15,13 +15,12 @@
 /* Thumbnails */
 .thumbs {
   display: flex;
-  gap: 8px;
+  gap: 16px;
   overflow-x: auto;
 
   @include desktop {
     flex-direction: column;
     overflow-y: auto;
-    height: 420px;
   }
 }
 
@@ -37,7 +36,6 @@
   @include desktop {
     width: 80px;
     height: 80px;
-    padding: 4px;
     border-radius: $radius-s;
     background: $surface-1;
   }

@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import styles from './HomePage.module.scss';
 
 import { Hero } from './components/Hero/Hero';

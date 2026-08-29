@@ -1,7 +1,7 @@
 .card {
   position: relative;
   border-radius: $radius-m;
-  padding: 24px;
+  padding: 32px;
   overflow: hidden;
   font-family: $font-family-primary;
   text-decoration: none;
@@ -47,8 +47,7 @@
   font-size: 14px;
   font-weight: 600;
   color: $text-primary;
-  min-height: 48px;
-  margin-top: 8px;
+  margin-top: 16px;
   background: transparent;
 }
 

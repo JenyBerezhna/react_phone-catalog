@@ -1,16 +1,22 @@
 import { Product } from '../../types/Product';
+import { ProductDetails } from '../../types/ProductDetails';
+
 import styles from './Slider.module.scss';
 import { Card } from '../../modules/Card/Card';
 import layoutStyles from '../Layout/Layout.module.scss';
 import { useSlider } from '../../hooks/useSlider';
 
-type Props = {
-  title: string;
-  products: Product[];
-  showDiscount: boolean;
-};
+interface SliderProps {
+  products: (Product | ProductDetails)[];
+  showDiscount?: boolean;
+  title?: string;
+}
 
-export const Slider: React.FC<Props> = ({ title, products, showDiscount }) => {
+export const Slider: React.FC<SliderProps> = ({
+  title,
+  products,
+  showDiscount,
+}) => {
   const { sliderRef, prev, next } = useSlider();
 
   return (

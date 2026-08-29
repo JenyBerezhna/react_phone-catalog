@@ -1,6 +1,7 @@
+export type ProductCategory = 'phones' | 'tablets' | 'accessories';
 export interface Product {
   id: string;
-  category: 'phones' | 'tablets' | 'accessories';
+  category: ProductCategory;
   itemId: string;
   name: string;
 
@@ -11,7 +12,7 @@ export interface Product {
   capacity: string;
   color: string;
   ram: string;
-  year: number;
 
+  year: number;
   image: string;
 }

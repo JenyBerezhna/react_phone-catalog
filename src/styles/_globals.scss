@@ -1,31 +1,33 @@
 @use './variables' as *;
 
-/* GLOBAL RESET + BASE */
 
 @mixin globals {
-  * {
+  *,
+  *::before,
+  *::after {
     box-sizing: border-box;
   }
 
-  html, body, * {
-    font-family: $font-family-primary;
-  }
-
+  html,
   body {
     margin: 0;
-    background-color: $bg-primary;
-    color: $text-primary;
     font-family: $font-family-primary;
+    color: $text-primary;
+    background-color: $bg-primary;
+  }
+
+  button {
+    background: none;
+    border: none;
+    padding: 0;
+    cursor: pointer;
+    font-family: inherit;
+    color: inherit;
+  }
+
+  html {
+    transition:
+      background-color 0.3s ease,
+      color 0.3s ease;
   }
 }
-
-button {
-  background: none;
-  border: none;
-  padding: 0;
-  cursor: pointer;
-  font-family: inherit;
-  color: inherit;
-}
-
-

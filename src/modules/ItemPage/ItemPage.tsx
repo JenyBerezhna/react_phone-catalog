@@ -16,14 +16,20 @@ import { useSuggestedProducts } from '../../hooks/useSuggestedProducts';
 import { getItemUrl } from '../../shared/helpers/getItemUrl';
 
 import { Slider } from '../../components/Slider/Slider';
+import { CardInfo } from '../../modules/Card/CardInfo/CardInfo';
+
+import { useCart } from '../../shared/context/CartContext';
+import { useFavorites } from '../../shared/context/FavoritesContext';
 
 export const ItemPage: React.FC = () => {
   const { itemId } = useParams();
   const navigate = useNavigate();
 
   const { products: allProducts } = useProducts();
+  const { items, addToCart } = useCart();
+  const { favorites, toggleFavorite } = useFavorites();
 
-  const listProduct = allProducts.find(product => product.itemId === itemId);
+  const listProduct = allProducts.find(p => p.itemId === itemId);
 
   const { product, loading, error } = useItemDetails(
     itemId || '',
@@ -51,6 +57,9 @@ export const ItemPage: React.FC = () => {
     );
   }
 
+  const isInCart = items.some(item => item.id === product.id);
+  const isFavorite = favorites.some(fav => fav.id === product.id);
+
   return (
     <section className={styles.page}>
       <BackButton className={styles.back} />
@@ -72,6 +81,21 @@ export const ItemPage: React.FC = () => {
               getItemUrl(product.namespaceId, newCapacity, product.color),
             )
           }
+        />
+      </div>
+
+      {/* ⭐ Reusable Info Block */}
+      <div className={styles.priceSection}>
+        <CardInfo
+          product={product}
+          showPrices
+          showDiscount
+          showSpecs
+          showActions
+          isInCart={isInCart}
+          isFavorite={isFavorite}
+          onAddToCart={() => addToCart(product)}
+          onToggleFavorite={() => toggleFavorite(product)}
         />
       </div>
 

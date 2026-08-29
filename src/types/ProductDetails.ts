@@ -1,6 +1,8 @@
+export type ProductCategory = 'phones' | 'tablets' | 'accessories';
+
 export interface ProductDetails {
   id: string;
-  category: string;
+  category: ProductCategory;
   namespaceId: string;
   name: string;
 

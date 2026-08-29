@@ -5,23 +5,25 @@ import classNames from 'classnames';
 import { useCart } from '../../shared/context/CartContext';
 import { useFavorites } from '../../shared/context/FavoritesContext';
 
-import FavoriteFilled from '/img/icons/FavoriteFilled.svg';
-import FavoriteEmpty from '/img/icons/FavoriteEmpty.svg';
+import { CardInfo } from '../../modules/Card/CardInfo/CardInfo';
 
+import { normalizeProduct } from '../../shared/context/normalizeProduct';
 import styles from './Card.module.scss';
+
 import { Product } from '../../types/Product';
+import { ProductDetails } from '../../types/ProductDetails';
 
 type CardVariant = 'grid' | 'slider';
 
-type Props = {
-  product: Product;
+interface Props {
+  product: Product | ProductDetails;
   variant?: CardVariant;
 
   showPrices?: boolean;
   showSpecs?: boolean;
   showActions?: boolean;
   showDiscount?: boolean;
-};
+}
 
 export const Card: React.FC<Props> = ({
   product,
@@ -34,84 +36,48 @@ export const Card: React.FC<Props> = ({
   const { items, addToCart } = useCart();
   const { favorites, toggleFavorite } = useFavorites();
 
-  const isInCart = items.some(item => item.id === product.id);
-  const isFavorite = favorites.some(fav => fav.id === product.id);
-  const hasDiscount = product.fullPrice > product.price;
+  const normalizedProduct = normalizeProduct(product);
+
+  const image = normalizedProduct.image;
+  const name = normalizedProduct.name;
+  const itemId = normalizedProduct.itemId;
+
+  const isInCart = items.some(item => item.id === normalizedProduct.id);
+
+  const isFavorite = favorites.some(
+    favorite => favorite.id === normalizedProduct.id,
+  );
+
+  const handleAddToCart = () => {
+    addToCart(normalizedProduct);
+  };
+
+  const handleToggleFavorite = () => {
+    toggleFavorite(normalizedProduct);
+  };
 
   return (
     <Link
-      to={`/item/${product.itemId}`}
+      to={`/item/${itemId}`}
       className={classNames(styles.card, styles[`card--${variant}`])}
     >
-      {/* IMAGE */}
       <div className={styles.imageWrapper}>
-        <img src={product.image} alt={product.name} className={styles.image} />
+        <img src={image} alt={name} className={styles.image} />
       </div>
 
-      {/* NAME */}
-      <span className={styles.name}>{product.name}</span>
+      <span className={styles.name}>{name}</span>
 
-      {/* PRICES */}
-      {showPrices && (
-        <div className={styles.prices}>
-          <span className={styles.priceCurrent}>${product.price}</span>
-
-          {showDiscount && hasDiscount && (
-            <span className={styles.priceFull}>${product.fullPrice}</span>
-          )}
-        </div>
-      )}
-
-      {(showPrices || showSpecs) && <div className={styles.divider} />}
-
-      {/* ACTIONS */}
-      {showActions && (
-        <div className={styles.actions}>
-          <button
-            className={styles.addButton}
-            disabled={isInCart}
-            onClick={e => {
-              e.preventDefault();
-              addToCart(product);
-            }}
-          >
-            {isInCart ? 'Added to cart' : 'Add to cart'}
-          </button>
-
-          <button
-            className={styles.heart}
-            onClick={e => {
-              e.preventDefault();
-              toggleFavorite(product);
-            }}
-          >
-            <img
-              src={isFavorite ? FavoriteFilled : FavoriteEmpty}
-              alt="Favorite"
-            />
-          </button>
-        </div>
-      )}
-
-      {/* SPECS */}
-      {showSpecs && (
-        <div className={styles.specs}>
-          <div className={styles.specRow}>
-            <span>Screen</span>
-            <span className={styles.specValue}>{product.screen}</span>
-          </div>
-
-          <div className={styles.specRow}>
-            <span>Capacity</span>
-            <span className={styles.specValue}>{product.capacity}</span>
-          </div>
-
-          <div className={styles.specRow}>
-            <span>RAM</span>
-            <span className={styles.specValue}>{product.ram}</span>
-          </div>
-        </div>
-      )}
+      <CardInfo
+        product={product}
+        showPrices={showPrices}
+        showSpecs={showSpecs}
+        showActions={showActions}
+        showDiscount={showDiscount}
+        isInCart={isInCart}
+        isFavorite={isFavorite}
+        onAddToCart={handleAddToCart}
+        onToggleFavorite={handleToggleFavorite}
+      />
     </Link>
   );
 };

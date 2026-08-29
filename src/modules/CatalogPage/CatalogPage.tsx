@@ -49,7 +49,7 @@ export const CatalogPage: React.FC<Props> = ({ type }) => {
         <p className={styles.counter}>{filtered.length} models</p>
       </div>
 
-      <WithLoader loading={loading} error={error}>
+      <WithLoader loading={loading} error={error ? error.toString() : null}>
         {filtered.length === 0 ? (
           <p>There are no {TITLES[type].toLowerCase()} yet</p>
         ) : (

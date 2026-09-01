@@ -6,6 +6,9 @@
 }
 
 .main {
+  position: relative;
+  overflow: hidden;
+  
   @include container;
 
   flex: 1;

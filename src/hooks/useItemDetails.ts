@@ -9,8 +9,15 @@ export const useItemDetails = (itemId: string, category: string) => {
 
   useEffect(() => {
     if (!itemId || !category) {
+      setProduct(null);
+      setVariants([]);
+      setLoading(false);
+      setError('Invalid item or category');
+
       return;
     }
+
+    let cancelled = false;
 
     const load = async () => {
       try {
@@ -35,16 +42,26 @@ export const useItemDetails = (itemId: string, category: string) => {
           item => item.namespaceId === current.namespaceId,
         );
 
-        setProduct(current);
-        setVariants(family);
+        if (!cancelled) {
+          setProduct(current);
+          setVariants(family);
+        }
       } catch (err) {
-        setError(err instanceof Error ? err.message : 'Unknown error');
+        if (!cancelled) {
+          setError(err instanceof Error ? err.message : 'Unknown error');
+        }
       } finally {
-        setLoading(false);
+        if (!cancelled) {
+          setLoading(false);
+        }
       }
     };
 
     load();
+
+    return () => {
+      cancelled = true;
+    };
   }, [itemId, category]);
 
   return {

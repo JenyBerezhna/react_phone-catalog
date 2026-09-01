@@ -1,39 +1,30 @@
-import { useEffect, useState } from 'react';
-
-import { Product, ProductDetails } from '../types';
+import { useMemo } from 'react';
+import type { Product, ProductDetails } from '../types';
 
 export const useSuggestedProducts = (
   product: ProductDetails | null,
   allProducts: Product[],
 ) => {
-  const [suggested, setSuggested] = useState<Product[]>([]);
-  const [loadingSuggested, setLoadingSuggested] = useState(true);
-
-  useEffect(() => {
+  const suggested = useMemo(() => {
     if (!product) {
-      setSuggested([]);
-      setLoadingSuggested(false);
-
-      return;
+      return [];
     }
 
-    setLoadingSuggested(true);
+    const sameCategory = allProducts.filter(
+      item => item.category === product.category,
+    );
 
-    const filtered = allProducts
-      .filter(
-        item =>
-          item.category === product.category &&
-          item.itemId !== product.id &&
-          Math.abs(item.price - product.priceRegular) < 150,
-      )
-      .slice(0, 12);
+    const closePrice = sameCategory.filter(
+      item =>
+        item.id !== product.id &&
+        Math.abs(item.price - product.priceRegular) < 150,
+    );
 
-    setSuggested(filtered);
-    setLoadingSuggested(false);
+    return closePrice.slice(0, 12);
   }, [product, allProducts]);
 
   return {
     suggested,
-    loadingSuggested,
+    loadingSuggested: false,
   };
 };

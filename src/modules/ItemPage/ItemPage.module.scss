@@ -25,32 +25,78 @@
   }
 }
 
-/* PRODUCT GRID */
-
 .productGrid {
   display: grid;
 
-  grid-template-columns: minmax(0, 1fr) 360px;
+  grid-template:
+    "gallery right" auto
+    "description spec" auto
+    / minmax(0, 1fr) auto;
+
   gap: $space-6;
-  align-items: start;
   margin-bottom: $space-6;
+
+  @include tablet {
+    grid-template:
+      "gallery right" auto
+      "description description" auto
+      "spec spec" auto
+      / minmax(0, 1fr) 320px;
+
+    gap: $space-5;
+  }
+
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+    gap: $space-5;
+  }
 }
+
+/* GRID AREAS */
 
 .gallery {
-  grid-column: 1;
-  grid-row: 1;
+  grid-area: gallery;
 }
 
-.variants {
-  grid-column: 2;
-  grid-row: 1;
+.rightColumn {
+  grid-area: right;
+
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+}
+
+.variantsWrapper {
+  padding-bottom: $space-4;
+  margin-bottom: $space-4;
+}
+
+.cardInfoWrapper {
+  /* optional spacing if needed */
+}
+
+.cardInfoTransparent {
+  background-color: transparent;
+
+  &:hover {
+    transform: none;
+    box-shadow: none;
+  }
 }
 
 .description {
-  grid-column: 1;
-  grid-row: 2;
-
+  grid-area: description;
   margin-top: $space-6;
+
+  @include tablet {
+    margin-top: $space-5;
+  }
+
+  /* Flex wrapper inside description */
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
 
   h2 {
     font-size: $h2-size;
@@ -59,12 +105,6 @@
     margin-bottom: $space-4;
   }
 }
-
-.spec {
-  grid-column: 2;
-  grid-row: 2;
-}
-
 
 .descriptionBlock {
   margin-bottom: $space-5;
@@ -88,30 +128,29 @@
   }
 }
 
-/* TABLET / MOBILE */
 
-@include tablet {
-  .productGrid {
-    display: flex;
+.spec {
+  grid-area: spec;
+  margin-top: $space-6;
 
-    flex-direction: column;
-
-    gap: $space-5;
+  @include tablet {
+    margin-top: $space-5;
   }
 
-  .gallery,
-  .variants,
-  .description,
-  .spec {
-    width: 100%;
-  }
-
-  .description {
-    margin-top: 0;
-  }
+  /* Flex wrapper inside spec */
+  display: flex;
+  flex-direction: column;
+  gap: $space-4;
 }
 
-/* LOADING / ERROR */
+
+.suggested {
+  margin-top: $space-6;
+
+  @include tablet {
+    margin-top: $space-5;
+  }
+}
 
 .skeleton {
   padding: $space-6 0;

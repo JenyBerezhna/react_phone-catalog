@@ -1,49 +1,93 @@
-.info {
-  display: flex;
-  flex-direction: column;
-  gap: 24px;
-}
+   .wrapper {
+    display: flex;
+    flex-direction: column;
+    gap: $space-4;
+  }
 
-.priceBlock {
-  display: flex;
-  align-items: center;
-  gap: 12px;
-}
+  .label {
+    font-size: $menu-font-size;
+    font-weight: $menu-font-weight;
+    line-height: $menu-line-height;
+    letter-spacing: $menu-letter-spacing;
+    text-transform: $menu-text-transform;
+    color: $text-secondary;
+    margin-bottom: $space-2;
+  }
 
-.price {
-  font-size: 32px;
-  font-weight: 700;
-}
+  /* COLORS SECTION */
+  .colorsSection {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: $space-4;
+    border-bottom: 1px solid $color-elements;
+  }
 
-.fullPrice {
-  font-size: 18px;
-  text-decoration: line-through;
-  opacity: 0.6;
-}
+  .colors {
+    display: flex;
+    gap: $space-2;
+  }
 
-.shortSpecs {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-}
+  /* COLOR BUTTON — CIRCLE */
+  .colorCircle {
+    width: 32px;
+    height: 32px;
+    border-radius: 50%;
 
-.specRow {
-  display: flex;
-  justify-content: space-between;
-  padding: 8px 0;
-  border-bottom: 1px solid var(--border);
-}
+    border: 1px solid $color-elements;
+    background: $surface-1;
 
-.specRow:last-child {
-  border-bottom: none;
-}
+    cursor: pointer;
+    transition: border-color $transition, transform $transition;
 
-.addToCart {
-  width: 100%;
-  padding: 12px;
-  background: var(--accent);
-  color: white;
-  border-radius: 8px;
-  font-weight: 600;
-  cursor: pointer;
-}
+    &:hover {
+      border-color: $accent-primary;
+      transform: scale(1.05);
+    }
+  }
+
+  /* ACTIVE COLOR */
+  .colorCircle.active {
+    outline: 2px solid $accent-primary;
+    outline-offset: 2px;
+  }
+
+  /* CAPACITY SECTION */
+  .capacitySection {
+    display: flex;
+    flex-direction: column;
+    padding-bottom: $space-4;
+    border-bottom: 1px solid $color-elements;
+  }
+
+  .capacity {
+    display: flex;
+    gap: $space-2;
+  }
+
+  .capacityButton {
+    padding: $space-2;
+
+
+    border: 1px solid $color-elements;
+    background: $surface-1;
+
+    cursor: pointer;
+    font-size: $menu-font-size;
+    color: $text-primary;
+    min-width: 54px;
+    text-align: center;
+
+    transition: all $transition;
+
+    &:hover {
+      border-color: $accent-primary;
+      background: $surface-3;
+    }
+  }
+
+  /* ACTIVE CAPACITY */
+  .capacityButton.active {
+    background: $accent-primary;
+    color: $text-primary;
+    border-color: $accent-primary;
+  }

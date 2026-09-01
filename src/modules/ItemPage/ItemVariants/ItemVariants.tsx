@@ -1,63 +1,73 @@
+import React from 'react';
+import classNames from 'classnames';
+
 import styles from './ItemVariants.module.scss';
+import { COLOR_MAP } from '../../../shared/constants/colors';
 import { ProductDetails } from '../../../types/ProductDetails';
 
-interface ItemVariantsProps {
+interface Props {
   product: ProductDetails;
   onColorChange: (color: string) => void;
   onCapacityChange: (capacity: string) => void;
 }
 
-export const ItemVariants: React.FC<ItemVariantsProps> = ({
+export const ItemVariants: React.FC<Props> = ({
   product,
   onColorChange,
   onCapacityChange,
 }) => {
-  const colors = product.colorsAvailable;
-  const capacities = product.capacityAvailable;
+  const { colorsAvailable, capacityAvailable, color, capacity } = product;
 
   return (
     <div className={styles.wrapper}>
       {/* COLORS */}
-      <div className={styles.section}>
-        <h3>Available colors</h3>
-        <div className={styles.options}>
-          {colors.map((color: string) => (
-            <button
-              key={color}
-              className={
-                color === product.color ? styles.active : styles.option
-              }
-              onClick={() => onColorChange(color)}
-            >
-              {color}
-            </button>
-          ))}
+      {colorsAvailable?.length > 0 && (
+        <div className={styles.colorsSection}>
+          <h3 className={styles.label}>Available colors</h3>
+
+          <div className={styles.colors} role="radiogroup">
+            {colorsAvailable.map(c => (
+              <button
+                key={c}
+                type="button"
+                role="radio"
+                aria-pressed={c === color}
+                aria-label={`Select ${c}`}
+                title={c}
+                className={classNames(styles.colorCircle, {
+                  [styles.active]: c === color,
+                })}
+                style={{ backgroundColor: COLOR_MAP[c] }}
+                onClick={() => onColorChange(c)}
+              />
+            ))}
+          </div>
         </div>
-      </div>
+      )}
 
       {/* CAPACITIES */}
-      <div className={styles.section}>
-        <h3>Available capacities</h3>
-        <div className={styles.options}>
-          {capacities.map((capacity: string) => (
-            <button
-              key={capacity}
-              className={
-                capacity === product.capacity ? styles.active : styles.option
-              }
-              onClick={() => onCapacityChange(capacity)}
-            >
-              {capacity}
-            </button>
-          ))}
-        </div>
-      </div>
+      {capacityAvailable?.length > 0 && (
+        <div className={styles.capacitySection}>
+          <h3 className={styles.label}>Select capacity</h3>
 
-      {/* PRICE */}
-      <div className={styles.price}>
-        <p>Regular price: £{product.priceRegular}</p>
-        <p>Discount price: £{product.priceDiscount}</p>
-      </div>
+          <div className={styles.capacity} role="radiogroup">
+            {capacityAvailable.map(cap => (
+              <button
+                key={cap}
+                type="button"
+                role="radio"
+                aria-pressed={cap === capacity}
+                className={classNames(styles.capacityButton, {
+                  [styles.active]: cap === capacity,
+                })}
+                onClick={() => onCapacityChange(cap)}
+              >
+                {cap}
+              </button>
+            ))}
+          </div>
+        </div>
+      )}
     </div>
   );
 };

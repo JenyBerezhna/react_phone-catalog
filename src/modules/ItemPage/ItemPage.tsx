@@ -20,6 +20,7 @@ import { CardInfo } from '../../modules/Card/CardInfo/CardInfo';
 
 import { useCart } from '../../shared/context/CartContext';
 import { useFavorites } from '../../shared/context/FavoritesContext';
+import { normalizeProduct } from '../../shared/context/normalizeProduct';
 
 export const ItemPage: React.FC = () => {
   const { itemId } = useParams();
@@ -29,11 +30,15 @@ export const ItemPage: React.FC = () => {
   const { items, addToCart } = useCart();
   const { favorites, toggleFavorite } = useFavorites();
 
-  const listProduct = allProducts.find(p => p.itemId === itemId);
+  const currentItemId = itemId?.toLowerCase() || '';
+
+  const listProduct = allProducts.find(
+    p => p.itemId.toLowerCase() === currentItemId,
+  );
 
   const { product, loading, error } = useItemDetails(
-    itemId || '',
-    listProduct?.category || '',
+    currentItemId,
+    listProduct?.category ?? '',
   );
 
   const { suggested, loadingSuggested } = useSuggestedProducts(
@@ -41,24 +46,32 @@ export const ItemPage: React.FC = () => {
     allProducts,
   );
 
-  if (loading) {
+  if (!itemId) {
+    return <div className={styles.skeleton}>Invalid URL</div>;
+  }
+
+  if (loading || error || !product) {
     return (
-      <WithLoader loading={true} error={null}>
-        <div className={styles.skeleton}>Loading item...</div>
+      <WithLoader loading={loading} error={error ? String(error) : null}>
+        <div className={styles.skeleton}>
+          {loading ? 'Loading item...' : 'Unable to load item'}
+        </div>
       </WithLoader>
     );
   }
 
-  if (error || !product) {
-    return (
-      <WithLoader loading={false} error={error ? String(error) : null}>
-        <div className={styles.skeleton}>Unable to load item</div>
-      </WithLoader>
-    );
-  }
+  const normalized = normalizeProduct(product);
 
-  const isInCart = items.some(item => item.id === product.id);
-  const isFavorite = favorites.some(fav => fav.id === product.id);
+  const isInCart = items.some(item => item.id === normalized.id);
+  const isFavorite = favorites.some(f => f.id === normalized.id);
+
+  const handleColorChange = (newColor: string) => {
+    navigate(getItemUrl(product.namespaceId, product.capacity, newColor));
+  };
+
+  const handleCapacityChange = (newCapacity: string) => {
+    navigate(getItemUrl(product.namespaceId, newCapacity, product.color));
+  };
 
   return (
     <section className={styles.page}>
@@ -69,34 +82,31 @@ export const ItemPage: React.FC = () => {
       <div className={styles.productGrid}>
         <ItemGallery images={product.images} />
 
-        <ItemVariants
-          product={product}
-          onColorChange={newColor =>
-            navigate(
-              getItemUrl(product.namespaceId, product.capacity, newColor),
-            )
-          }
-          onCapacityChange={newCapacity =>
-            navigate(
-              getItemUrl(product.namespaceId, newCapacity, product.color),
-            )
-          }
-        />
-      </div>
+        <div className={styles.rightColumn}>
+          <div className={styles.variantsWrapper}>
+            <ItemVariants
+              product={product}
+              onColorChange={handleColorChange}
+              onCapacityChange={handleCapacityChange}
+            />
+          </div>
 
-      {/* ⭐ Reusable Info Block */}
-      <div className={styles.priceSection}>
-        <CardInfo
-          product={product}
-          showPrices
-          showDiscount
-          showSpecs
-          showActions
-          isInCart={isInCart}
-          isFavorite={isFavorite}
-          onAddToCart={() => addToCart(product)}
-          onToggleFavorite={() => toggleFavorite(product)}
-        />
+          <div className={styles.cardInfoWrapper}>
+            <CardInfo
+              product={normalized}
+              showPrices
+              showDiscount
+              showSpecs
+              showActions
+              isInCart={isInCart}
+              isFavorite={isFavorite}
+              onAddToCart={() => addToCart(normalized)}
+              onToggleFavorite={() => toggleFavorite(normalized)}
+              showDivider={false}
+              className={styles.cardInfoTransparent}
+            />
+          </div>
+        </div>
       </div>
 
       <ItemDescription product={product} />

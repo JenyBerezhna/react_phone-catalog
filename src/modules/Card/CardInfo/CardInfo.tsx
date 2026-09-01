@@ -18,6 +18,8 @@ interface CardInfoProps {
 
   onAddToCart?: () => void;
   onToggleFavorite?: () => void;
+  showDivider?: boolean;
+  className?: string;
 }
 
 export const CardInfo: React.FC<CardInfoProps> = ({
@@ -26,10 +28,12 @@ export const CardInfo: React.FC<CardInfoProps> = ({
   showDiscount = true,
   showActions = true,
   showSpecs = true,
+  showDivider,
   isInCart = false,
   isFavorite = false,
   onAddToCart,
   onToggleFavorite,
+  className,
 }) => {
   const isDetails = (
     item: Product | ProductDetails,
@@ -44,8 +48,8 @@ export const CardInfo: React.FC<CardInfoProps> = ({
     : product.fullPrice;
 
   const hasDiscount = price < fullPrice;
-
-  const showDivider = showPrices && (showActions || showSpecs);
+  const internalDivider =
+    showDivider ?? (showPrices && (showActions || showSpecs));
 
   const handleAddToCart = (event: React.MouseEvent<HTMLButtonElement>) => {
     event.preventDefault();
@@ -62,7 +66,7 @@ export const CardInfo: React.FC<CardInfoProps> = ({
   };
 
   return (
-    <div className={styles.info}>
+    <div className={`${styles.card} ${className ?? ''}`}>
       {showPrices && (
         <div className={styles.prices}>
           <span className={styles.priceCurrent}>${price}</span>
@@ -73,7 +77,7 @@ export const CardInfo: React.FC<CardInfoProps> = ({
         </div>
       )}
 
-      {showDivider && <div className={styles.divider} />}
+      {internalDivider && <div className={styles.divider} />}
 
       {showActions && (
         <div className={styles.actions}>

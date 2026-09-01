@@ -1,47 +1,55 @@
 
-/* Root layout */
 .gallery {
   display: flex;
   flex-direction: column;
-  gap: 16px;
+  gap: $space-3;
 
   @include desktop {
     display: grid;
-    grid-template-columns: 80px 1fr;
-    gap: 24px;
+    grid-template-columns: $thumbnail-size 1fr;
+    gap: $space-4;
   }
 }
 
-/* Thumbnails */
+/* THUMBNAILS LIST */
 .thumbs {
   display: flex;
-  gap: 16px;
+  gap: $space-3;
   overflow-x: auto;
+  order: 2;
 
   @include desktop {
     flex-direction: column;
     overflow-y: auto;
+    order: 1;
+  }
+
+  @include tablet {
+    flex-direction: column;
+    overflow-y: auto;
+    order: 1;
   }
 }
 
+/* SINGLE THUMBNAIL */
 .thumb {
+  flex: 0 0 auto;
   width: 48px;
   height: 48px;
-  border-radius: 8px;
+  padding: 0;
   overflow: hidden;
   border: 1px solid transparent;
-  background: var(--surface-2);
+  background: transparent;
   cursor: pointer;
 
   @include desktop {
-    width: 80px;
-    height: 80px;
+    width: $thumbnail-size;
+    height: $thumbnail-size;
     border-radius: $radius-s;
-    background: $surface-1;
   }
 
   &.active {
-    border-color: var(--accent);
+    border-color: $accent-primary;
   }
 
   img {
@@ -51,17 +59,19 @@
   }
 }
 
-/* Main image */
+/* MAIN IMAGE WRAPPER */
 .main {
   display: flex;
   justify-content: center;
   align-items: center;
+  order: 1;
 
   @include desktop {
     height: 464px;
     width: 464px;
     border-radius: $radius-m;
     background: transparent;
+    order: 2;
   }
 
   img {
@@ -79,5 +89,3 @@
     }
   }
 }
-
-

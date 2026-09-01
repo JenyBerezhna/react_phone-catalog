@@ -2,8 +2,9 @@ import React from 'react';
 import classNames from 'classnames';
 
 import styles from './ItemVariants.module.scss';
-import { COLOR_MAP } from '../../../shared/constants/colors';
-import { ProductDetails } from '../../../types/ProductDetails';
+import { COLOR_MAP } from '../../../../../shared/constants/colors';
+
+import { ProductDetails } from '../../../../../types/ProductDetails';
 
 interface Props {
   product: ProductDetails;

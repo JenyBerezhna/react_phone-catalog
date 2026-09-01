@@ -1,5 +1,5 @@
 import styles from './ItemSpec.module.scss';
-import type { ProductDetails } from '../../../types/ProductDetails';
+import type { ProductDetails } from '../../../../types/ProductDetails';
 
 interface ItemSpecProps {
   product: ProductDetails;

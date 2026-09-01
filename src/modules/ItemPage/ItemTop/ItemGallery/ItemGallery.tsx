@@ -2,7 +2,7 @@ import { useState } from 'react';
 
 import styles from './ItemGallery.module.scss';
 
-import { getImageUrl } from '../../../shared/helpers/getImageUrl';
+import { getImageUrl } from '../../../../shared/helpers/getImageUrl';
 
 type Props = {
   images: string[];

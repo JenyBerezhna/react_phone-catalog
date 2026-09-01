@@ -1,5 +1,5 @@
 import styles from './ItemDescription.module.scss';
-import type { ProductDetails } from '../../../types/ProductDetails';
+import type { ProductDetails } from '../../../../types/ProductDetails';
 
 interface ItemDescriptionProps {
   product: ProductDetails;

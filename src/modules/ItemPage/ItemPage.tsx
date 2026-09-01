@@ -2,10 +2,9 @@ import { useNavigate, useParams } from 'react-router-dom';
 
 import styles from './ItemPage.module.scss';
 
-import { ItemGallery } from './ItemGallery/ItemGallery';
-import { ItemVariants } from './ItemVariants/ItemVariants';
-import { ItemSpec } from './ItemSpec/ItemSpec';
-import { ItemDescription } from './ItemDescription/ItemDescription';
+import { ItemTop } from './ItemTop';
+import { ItemDetails } from './ItemDetails';
+import { SuggestedProducts } from './SuggestedProducts';
 
 import { BackButton } from '../../components/BackButton/BackButton';
 import { WithLoader } from '../../components/WithLoader';
@@ -13,14 +12,12 @@ import { WithLoader } from '../../components/WithLoader';
 import { useItemDetails } from '../../hooks/useItemDetails';
 import { useProducts } from '../../hooks/useProducts';
 import { useSuggestedProducts } from '../../hooks/useSuggestedProducts';
-import { getItemUrl } from '../../shared/helpers/getItemUrl';
 
-import { Slider } from '../../components/Slider/Slider';
-import { CardInfo } from '../../modules/Card/CardInfo/CardInfo';
+import { getItemUrl } from '../../shared/helpers/getItemUrl';
+import { normalizeProduct } from '../../shared/context/normalizeProduct';
 
 import { useCart } from '../../shared/context/CartContext';
 import { useFavorites } from '../../shared/context/FavoritesContext';
-import { normalizeProduct } from '../../shared/context/normalizeProduct';
 
 export const ItemPage: React.FC = () => {
   const { itemId } = useParams();
@@ -79,45 +76,21 @@ export const ItemPage: React.FC = () => {
 
       <h1 className={styles.title}>{product.name}</h1>
 
-      <div className={styles.productGrid}>
-        <ItemGallery images={product.images} />
+      <ItemTop
+        product={product}
+        normalized={normalized}
+        isInCart={isInCart}
+        isFavorite={isFavorite}
+        onColorChange={handleColorChange}
+        onCapacityChange={handleCapacityChange}
+        onAddToCart={() => addToCart(normalized)}
+        onToggleFavorite={() => toggleFavorite(normalized)}
+      />
 
-        <div className={styles.rightColumn}>
-          <div className={styles.variantsWrapper}>
-            <ItemVariants
-              product={product}
-              onColorChange={handleColorChange}
-              onCapacityChange={handleCapacityChange}
-            />
-          </div>
-
-          <div className={styles.cardInfoWrapper}>
-            <CardInfo
-              product={normalized}
-              showPrices
-              showDiscount
-              showSpecs
-              showActions
-              isInCart={isInCart}
-              isFavorite={isFavorite}
-              onAddToCart={() => addToCart(normalized)}
-              onToggleFavorite={() => toggleFavorite(normalized)}
-              showDivider={false}
-              className={styles.cardInfoTransparent}
-            />
-          </div>
-        </div>
-      </div>
-
-      <ItemDescription product={product} />
-      <ItemSpec product={product} />
+      <ItemDetails product={product} />
 
       {!loadingSuggested && suggested.length > 0 && (
-        <Slider
-          title="You may also like"
-          products={suggested}
-          showDiscount={false}
-        />
+        <SuggestedProducts products={suggested} />
       )}
     </section>
   );

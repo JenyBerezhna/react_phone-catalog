@@ -1,0 +1,21 @@
+.descriptionBlock {
+  margin-bottom: $space-5;
+  padding: $space-4;
+  background: $surface-1;
+  border-radius: $radius-m;
+  border: 1px solid $color-elements;
+
+  h3 {
+    font-size: $h3-size;
+    font-weight: $h3-weight;
+    line-height: $h3-line-height;
+    margin-bottom: $space-3;
+    color: $text-primary;
+  }
+
+  p {
+    margin-bottom: $space-2;
+    color: $text-secondary;
+    line-height: 1.6;
+  }
+}

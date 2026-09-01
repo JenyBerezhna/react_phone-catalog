@@ -1,0 +1,53 @@
+.productGrid {
+  display: grid;
+
+  grid-template:
+    "gallery right" auto
+    "description spec" auto
+    / minmax(0, 1fr) auto;
+
+  gap: $space-6;
+  margin-bottom: $space-6;
+
+  @include tablet {
+    grid-template:
+      "gallery right" auto
+      "description description" auto
+      "spec spec" auto
+      / minmax(0, 1fr) 320px;
+
+    gap: $space-5;
+  }
+
+  @include mobile {
+    display: flex;
+    flex-direction: column;
+    gap: $space-5;
+  }
+}
+
+.gallery {
+  grid-area: gallery;
+}
+
+.rightColumn {
+  grid-area: right;
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+}
+
+.variantsWrapper {
+  padding-bottom: $space-4;
+  margin-bottom: $space-4;
+}
+
+
+.cardInfoTransparent {
+  background-color: transparent;
+
+  &:hover {
+    transform: none;
+    box-shadow: none;
+  }
+}

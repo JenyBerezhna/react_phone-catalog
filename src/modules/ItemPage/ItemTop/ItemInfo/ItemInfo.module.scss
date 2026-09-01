@@ -1,0 +1,11 @@
+.rightColumn {
+  display: flex;
+  flex-direction: column;
+  gap: $space-5;
+}
+
+.variantsWrapper {
+  padding-bottom: $space-4;
+  margin-bottom: $space-4;
+}
+

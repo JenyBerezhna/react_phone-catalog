@@ -8,7 +8,7 @@ interface ItemDescriptionProps {
 export const ItemDescription = ({ product }: ItemDescriptionProps) => {
   return (
     <div className={styles.description}>
-      <h2>Description</h2>
+      <h2>About</h2>
 
       {product.description.map(block => (
         <div key={block.title} className={styles.block}>

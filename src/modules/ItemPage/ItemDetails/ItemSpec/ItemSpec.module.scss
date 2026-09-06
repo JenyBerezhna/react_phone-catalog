@@ -1,5 +1,40 @@
-.spec {
+.specs {
   display: flex;
   flex-direction: column;
-  gap: $space-4;
+  gap: $space-2;
+
+  h2 {
+    font-size: $h2-size;
+    font-weight: $h2-weight;
+    line-height: $h2-line-height;
+    color: $text-primary;
+
+    padding-bottom: $space-3;
+    border-bottom: 1px solid $color-elements;
+  }
+}
+
+.row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  align-items: center;
+
+  font-size: 14px;
+  color: $text-secondary;
+
+
+  &:last-child {
+    border-bottom: none;
+  }
+
+  span:first-child {
+    font-weight: 600;
+    color: $text-secondary;
+  }
+
+  span:last-child {
+    text-align: right;
+    font-weight: 700;
+    color: $text-primary;
+  }
 }

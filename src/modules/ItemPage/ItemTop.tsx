@@ -1,10 +1,10 @@
 import React from 'react';
 import styles from './ItemTop.module.scss';
 
-import { ItemGallery } from './ItemGallery/ItemGallery';
-import { ItemInfo } from './ItemInfo/ItemInfo';
-import { ProductDetails } from '../../../types/ProductDetails';
-import { Product } from '../../../types/Product';
+import { ItemGallery } from './ItemTop/ItemGallery/ItemGallery';
+import { ItemInfo } from './ItemTop/ItemInfo/ItemInfo';
+import { ProductDetails } from '../../types/ProductDetails';
+import { Product } from '../../types/Product';
 
 type Props = {
   product: ProductDetails;
@@ -28,7 +28,7 @@ export const ItemTop: React.FC<Props> = ({
   onToggleFavorite,
 }) => {
   return (
-    <div className={styles.productGrid}>
+    <div className={styles.itemTop}>
       <ItemGallery images={product.images} />
 
       <ItemInfo

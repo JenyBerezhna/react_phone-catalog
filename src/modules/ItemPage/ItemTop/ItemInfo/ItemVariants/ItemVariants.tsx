@@ -20,7 +20,7 @@ export const ItemVariants: React.FC<Props> = ({
   const { colorsAvailable, capacityAvailable, color, capacity } = product;
 
   return (
-    <div className={styles.wrapper}>
+    <div className={styles.variants}>
       {/* COLORS */}
       {colorsAvailable?.length > 0 && (
         <div className={styles.colorsSection}>

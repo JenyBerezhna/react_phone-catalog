@@ -28,16 +28,14 @@ export const ItemInfo: React.FC<Props> = ({
   onToggleFavorite,
 }) => {
   return (
-    <div className={styles.rightColumn}>
-      <div className={styles.variantsWrapper}>
-        <ItemVariants
-          product={product}
-          onColorChange={onColorChange}
-          onCapacityChange={onCapacityChange}
-        />
-      </div>
+    <div className={styles.info}>
+      <ItemVariants
+        product={product}
+        onColorChange={onColorChange}
+        onCapacityChange={onCapacityChange}
+      />
 
-      <div className={styles.cardInfoWrapper}>
+      <div className={styles.infoBlock}>
         <CardInfo
           product={normalized}
           showPrices
@@ -49,7 +47,7 @@ export const ItemInfo: React.FC<Props> = ({
           onAddToCart={onAddToCart}
           onToggleFavorite={onToggleFavorite}
           showDivider={false}
-          className={styles.cardInfoTransparent}
+          className={styles.cardInfo}
         />
       </div>
     </div>

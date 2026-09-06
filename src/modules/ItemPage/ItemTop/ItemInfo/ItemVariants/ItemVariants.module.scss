@@ -1,4 +1,4 @@
-   .wrapper {
+   .variants {
     display: flex;
     flex-direction: column;
     gap: $space-4;
@@ -14,7 +14,6 @@
     margin-bottom: $space-2;
   }
 
-  /* COLORS SECTION */
   .colorsSection {
     display: flex;
     flex-direction: column;
@@ -51,7 +50,6 @@
     outline-offset: 2px;
   }
 
-  /* CAPACITY SECTION */
   .capacitySection {
     display: flex;
     flex-direction: column;

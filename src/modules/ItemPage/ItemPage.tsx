@@ -49,14 +49,24 @@ export const ItemPage: React.FC = () => {
     return <div className={styles.skeleton}>Invalid URL</div>;
   }
 
-  if (loading || error || !product) {
+  if (!product && loading) {
     return (
-      <WithLoader loading={loading} error={error ? String(error) : null}>
-        <div className={styles.skeleton}>
-          {loading ? 'Loading item...' : 'Unable to load item'}
-        </div>
+      <WithLoader loading={true} error={null}>
+        <div className={styles.skeleton}>Loading item...</div>
       </WithLoader>
     );
+  }
+
+  if (!product && error) {
+    return (
+      <WithLoader loading={false} error={error}>
+        <div className={styles.skeleton}>Unable to load item</div>
+      </WithLoader>
+    );
+  }
+
+  if (!product) {
+    return null;
   }
 
   const normalized = normalizeProduct(product);

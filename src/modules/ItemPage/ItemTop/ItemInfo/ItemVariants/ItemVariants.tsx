@@ -39,7 +39,11 @@ export const ItemVariants: React.FC<Props> = ({
                   [styles.active]: c === color,
                 })}
                 style={{ backgroundColor: COLOR_MAP[c] }}
-                onClick={() => onColorChange(c)}
+                onClick={() => {
+                  if (c !== color) {
+                    onColorChange(c);
+                  }
+                }}
               />
             ))}
           </div>
@@ -61,7 +65,11 @@ export const ItemVariants: React.FC<Props> = ({
                 className={classNames(styles.capacityButton, {
                   [styles.active]: cap === capacity,
                 })}
-                onClick={() => onCapacityChange(cap)}
+                onClick={() => {
+                  if (cap !== capacity) {
+                    onCapacityChange(cap);
+                  }
+                }}
               >
                 {cap}
               </button>

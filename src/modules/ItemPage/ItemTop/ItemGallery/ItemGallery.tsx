@@ -1,4 +1,5 @@
 import { useState } from 'react';
+import { useEffect } from 'react';
 
 import styles from './ItemGallery.module.scss';
 
@@ -10,6 +11,10 @@ type Props = {
 
 export const ItemGallery: React.FC<Props> = ({ images }) => {
   const [active, setActive] = useState(0);
+
+  useEffect(() => {
+    setActive(0);
+  }, [images]);
 
   if (images.length === 0) {
     return null;

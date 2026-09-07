@@ -1,6 +1,5 @@
 .card {
   position: relative;
-  border-radius: $radius-m;
   padding: 32px;
   overflow: hidden;
   font-family: $font-family-primary;
@@ -18,7 +17,6 @@
 
   &:hover {
     transform: scale(1.02);
-    box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
   }
 }
 
@@ -30,7 +28,6 @@
   align-items: center;
   justify-content: center;
 
-  border-radius: $radius-m;
   overflow: hidden;
   background: transparent;
 }
@@ -55,5 +52,10 @@
 
 .card--slider {
   min-width: 212px;
-  max-width: 212px;
+  max-width: 240px;
+
+  @include desktop {
+    min-width: 240px;
+    max-width: 270px;
+  }
 }

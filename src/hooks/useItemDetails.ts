@@ -9,8 +9,6 @@ export const useItemDetails = (itemId: string, category: string) => {
 
   useEffect(() => {
     if (!itemId || !category) {
-      setProduct(null);
-      setVariants([]);
       setLoading(false);
       setError('Invalid item or category');
 

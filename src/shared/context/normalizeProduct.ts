@@ -30,6 +30,6 @@ export const normalizeProduct = (
 
     year: 0,
 
-    image: product.images[0],
+    image: product.images?.[0] ?? '/img/placeholders/no-image.png',
   };
 };

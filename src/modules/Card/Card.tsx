@@ -12,6 +12,7 @@ import styles from './Card.module.scss';
 
 import { Product } from '../../types/Product';
 import { ProductDetails } from '../../types/ProductDetails';
+import { getImageUrl } from '../../shared/helpers/getImageUrl';
 
 type CardVariant = 'grid' | 'slider';
 
@@ -62,7 +63,7 @@ export const Card: React.FC<Props> = ({
       className={classNames(styles.card, styles[`card--${variant}`])}
     >
       <div className={styles.imageWrapper}>
-        <img src={image} alt={name} className={styles.image} />
+        <img src={getImageUrl(image)} alt={name} className={styles.image} />
       </div>
 
       <span className={styles.name}>{name}</span>

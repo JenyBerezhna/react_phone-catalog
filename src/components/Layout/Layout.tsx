@@ -19,7 +19,6 @@ export const Layout = () => {
           <Breadcrumbs items={items} />
         )}
 
-        {/* Stable wrapper prevents layout jumps */}
         <div className={styles.pageWrapper}>
           <div key={location.pathname} className={styles.pageTransition}>
             <Outlet />

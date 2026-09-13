@@ -52,8 +52,6 @@ export const ItemPage: React.FC = () => {
     allProducts,
   );
 
-  // ---------------- UI STATES ----------------
-
   if (!itemId) {
     return <div className={styles.skeleton}>Invalid URL</div>;
   }

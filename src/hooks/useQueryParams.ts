@@ -22,7 +22,6 @@ export const useQueryParams = () => {
         next.set(key, value);
       }
 
-      // Avoiding unnecessary updates
       if (next.toString() !== searchParams.toString()) {
         setSearchParams(next);
       }

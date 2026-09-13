@@ -21,9 +21,9 @@
 
 
 .pageTitle {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 24px;
+  font-size: $h1-size;
+  font-weight: $h1-weight;
+  margin: 24px 0;
   color: $text-primary;
 
   @include mobile {
@@ -32,9 +32,9 @@
 }
 
 .sectionTitle {
-  font-size: 32px;
-  font-weight: 700;
-  margin-bottom: 24px;
+  font-size: $h2-size;
+  font-weight: $h2-weight;
+  margin: 24px 0;
   color: $text-primary;
 
   @include mobile {

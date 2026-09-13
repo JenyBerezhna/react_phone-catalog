@@ -55,7 +55,7 @@ export const CartPage = () => {
 
           <aside className={styles.summary}>
             <div className={styles.totalBlock}>
-              <h2 className={styles.totalPrice}>${totalPrice}</h2>
+              <span className={styles.totalPrice}>${totalPrice}</span>
               <p className={styles.count}>Total for {items.length} items</p>
             </div>
 

@@ -1,18 +1,21 @@
 import { useEffect, useMemo } from 'react';
 import { Product } from '../types/Product';
 
-type PerPage = '4' | '8' | '16' | 'all';
+export type PerPage = '4' | '8' | '16' | 'all';
+
+interface UsePaginationProps {
+  products: Product[];
+  params: Record<string, string>;
+  setParam: (key: string, value: string | null) => void;
+  setParams?: (updates: Record<string, string | null>) => void;
+}
 
 export const usePagination = ({
   products,
   params,
   setParam,
-}: {
-  products: Product[];
-  params: Record<string, string>;
-  setParam: (key: string, value: string | null) => void;
-}) => {
-  // Parse perPage
+  setParams,
+}: UsePaginationProps) => {
   const perPage: PerPage =
     params.perPage === '4' ||
     params.perPage === '8' ||
@@ -21,18 +24,16 @@ export const usePagination = ({
       ? params.perPage
       : 'all';
 
-  // Parse page
-  const page = Number(params.page) > 0 ? Number(params.page) : 1;
+  const parsedPage = Number(params.page);
+  const page = Number.isInteger(parsedPage) && parsedPage > 0 ? parsedPage : 1;
 
   const totalPages =
     perPage === 'all'
       ? 1
       : Math.max(1, Math.ceil(products.length / Number(perPage)));
 
-  // Clamp page
   const safePage = Math.min(page, totalPages);
 
-  // If URL page is invalid → fix it
   useEffect(() => {
     if (safePage !== page) {
       setParam('page', safePage === 1 ? null : String(safePage));
@@ -52,22 +53,23 @@ export const usePagination = ({
 
   // Update page
   const setPage = (newPage: number) => {
-    if (newPage <= 1) {
-      setParam('page', null);
-    } else {
-      setParam('page', String(newPage));
-    }
+    const nextPage = Math.max(1, Math.min(newPage, totalPages));
+
+    setParam('page', nextPage === 1 ? null : String(nextPage));
   };
 
   // Update perPage
-  const setPerPage = (value: string) => {
-    if (value === 'all') {
-      setParam('perPage', null);
-    } else {
-      setParam('perPage', value);
+  const setPerPage = (value: PerPage) => {
+    if (setParams) {
+      setParams({
+        perPage: value === 'all' ? null : value,
+        page: null,
+      });
+
+      return;
     }
 
-    //  reset page
+    setParam('perPage', value === 'all' ? null : value);
     setParam('page', null);
   };
 

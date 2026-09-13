@@ -4,7 +4,7 @@ import { Hero } from './components/Hero/Hero';
 import { ShopByCategory } from './components/ShopByCategory/ShopByCategory';
 import { Slider } from '../../components/Slider/Slider';
 
-import { useProducts } from '../../hooks/useProducts';
+import { useProducts } from '../../shared/context/ProductsContext';
 import { WithLoader } from '../../components/WithLoader';
 
 export const HomePage = () => {
@@ -25,7 +25,7 @@ export const HomePage = () => {
         <h1 className={styles.visuallyHidden}>Product Catalog</h1>
 
         {/* Page title */}
-        <h2 className={styles.pageTitle}>Welcome to Nice Gadgets store!</h2>
+        <h1 className={styles.pageTitle}>Welcome to Nice Gadgets store!</h1>
 
         {/* Hero section */}
         <section className={styles.section}>

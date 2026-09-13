@@ -9,23 +9,27 @@ import { ItemSpec } from './ItemDetails/ItemSpec/ItemSpec';
 import { SuggestedProducts } from './SuggestedProducts';
 
 import { BackButton } from '../../components/BackButton/BackButton';
-import { WithLoader } from '../../components/WithLoader';
 
 import { useItemDetails } from '../../hooks/useItemDetails';
-import { useProducts } from '../../hooks/useProducts';
 import { useSuggestedProducts } from '../../hooks/useSuggestedProducts';
+
+import { useProducts } from '../../shared/context/ProductsContext';
+import { useCart } from '../../shared/context/CartContext';
+import { useFavorites } from '../../shared/context/FavoritesContext';
 
 import { getItemUrl } from '../../shared/helpers/getItemUrl';
 import { normalizeProduct } from '../../shared/context/normalizeProduct';
-
-import { useCart } from '../../shared/context/CartContext';
-import { useFavorites } from '../../shared/context/FavoritesContext';
 
 export const ItemPage: React.FC = () => {
   const { itemId } = useParams();
   const navigate = useNavigate();
 
-  const { products: allProducts } = useProducts();
+  const {
+    products: allProducts,
+    loading: productsLoading,
+    error: productsError,
+  } = useProducts();
+
   const { items, addToCart } = useCart();
   const { favorites, toggleFavorite } = useFavorites();
 
@@ -35,34 +39,43 @@ export const ItemPage: React.FC = () => {
     product => product.itemId.toLowerCase() === currentItemId,
   );
 
-  const { product, loading, error } = useItemDetails(
-    currentItemId,
-    listProduct?.category ?? '',
-  );
+  const category = listProduct?.category ?? '';
+
+  const {
+    product,
+    loading: itemLoading,
+    error: itemError,
+  } = useItemDetails(currentItemId, category);
 
   const { suggested, loadingSuggested } = useSuggestedProducts(
     product,
     allProducts,
   );
 
+  // ---------------- UI STATES ----------------
+
   if (!itemId) {
     return <div className={styles.skeleton}>Invalid URL</div>;
   }
 
-  if (!product && loading) {
-    return (
-      <WithLoader loading={true} error={null}>
-        <div className={styles.skeleton}>Loading item...</div>
-      </WithLoader>
-    );
+  if (productsLoading && allProducts.length === 0) {
+    return <div className={styles.skeleton}>Loading products...</div>;
   }
 
-  if (!product && error) {
-    return (
-      <WithLoader loading={false} error={error}>
-        <div className={styles.skeleton}>Unable to load item</div>
-      </WithLoader>
-    );
+  if (productsError) {
+    return <div className={styles.skeleton}>Unable to load products</div>;
+  }
+
+  if (!listProduct) {
+    return <div className={styles.skeleton}>Product not found</div>;
+  }
+
+  if (itemLoading && !product) {
+    return <div className={styles.skeleton}>Loading item...</div>;
+  }
+
+  if (itemError && !product) {
+    return <div className={styles.skeleton}>Unable to load item</div>;
   }
 
   if (!product) {

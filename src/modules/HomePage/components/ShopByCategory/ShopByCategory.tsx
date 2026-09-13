@@ -1,5 +1,5 @@
 import { CategoryCard } from '../CategoryCard/CategoryCard';
-import { useProducts } from '../../../../hooks/useProducts';
+import { useProducts } from '../../../../shared/context/ProductsContext';
 import styles from './ShopByCategory.module.scss';
 
 export const ShopByCategory = () => {

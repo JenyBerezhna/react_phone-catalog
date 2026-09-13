@@ -1,22 +1,27 @@
+import { useMemo } from 'react';
 import { useLocation } from 'react-router-dom';
-import { useState, useEffect, useMemo } from 'react';
-import { getProducts } from '../../shared/helpers/products';
-import { Product } from '../../types/Product';
+import { useProducts } from '../../shared/context/ProductsContext';
 
 export const useBreadcrumbs = () => {
   const location = useLocation();
-  const [products, setProducts] = useState<Product[]>([]);
+  const { products } = useProducts();
 
-  useEffect(() => {
-    getProducts().then(setProducts);
-  }, []);
-
-  const parts = location.pathname.split('/').filter(Boolean);
+  const parts = useMemo(
+    () => location.pathname.split('/').filter(Boolean),
+    [location.pathname],
+  );
 
   return useMemo(() => {
-    // itempage: /product/:itemId
-    if ((parts[0] === 'product' || parts[0] === 'item') && parts[1]) {
-      const product = products.find(p => p.itemId === parts[1]);
+    const first = parts[0];
+    const second = parts[1];
+
+    // Item page: /item/:itemId or /product/:itemId
+    if ((first === 'item' || first === 'product') && second) {
+      const currentItemId = second.toLowerCase();
+
+      const product = products.find(
+        item => item.itemId.toLowerCase() === currentItemId,
+      );
 
       if (product) {
         const category = product.category;
@@ -32,7 +37,7 @@ export const useBreadcrumbs = () => {
       }
     }
 
-    // Category page
+    // Category page: /phones, /tablets, /accessories
     if (parts.length === 1) {
       const category = parts[0];
 
@@ -45,11 +50,10 @@ export const useBreadcrumbs = () => {
       ];
     }
 
-    // fallback
     return [
       { label: 'Home', to: '/' },
       ...parts.map((part, index) => {
-        const path = '/' + parts.slice(0, index + 1).join('/');
+        const path = `/${parts.slice(0, index + 1).join('/')}`;
 
         return {
           label: part[0].toUpperCase() + part.slice(1),

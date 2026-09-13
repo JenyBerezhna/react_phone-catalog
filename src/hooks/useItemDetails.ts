@@ -1,5 +1,8 @@
 import { useEffect, useState } from 'react';
+
 import type { ProductDetails } from '../types/ProductDetails';
+
+const categoryCache = new Map<string, ProductDetails[]>();
 
 export const useItemDetails = (itemId: string, category: string) => {
   const [product, setProduct] = useState<ProductDetails | null>(null);
@@ -8,17 +11,55 @@ export const useItemDetails = (itemId: string, category: string) => {
   const [error, setError] = useState<string | null>(null);
 
   useEffect(() => {
-    if (!itemId || !category) {
+    if (!itemId) {
+      setProduct(null);
+      setVariants([]);
       setLoading(false);
-      setError('Invalid item or category');
+      setError('Invalid item');
+
+      return;
+    }
+
+    if (!category) {
+      setLoading(true);
+      setError(null);
 
       return;
     }
 
     let cancelled = false;
 
+    const updateFromAll = (all: ProductDetails[]) => {
+      const current = all.find(item => item.id === itemId);
+
+      if (!current) {
+        throw new Error(`Item ${itemId} not found`);
+      }
+
+      const family = all.filter(
+        item => item.namespaceId === current.namespaceId,
+      );
+
+      if (cancelled) {
+        return;
+      }
+
+      setProduct(current);
+      setVariants(family);
+      setLoading(false);
+      setError(null);
+    };
+
     const load = async () => {
       try {
+        const cached = categoryCache.get(category);
+
+        if (cached) {
+          updateFromAll(cached);
+
+          return;
+        }
+
         setLoading(true);
         setError(null);
 
@@ -28,28 +69,22 @@ export const useItemDetails = (itemId: string, category: string) => {
           throw new Error('Failed to load item details');
         }
 
-        const all: ProductDetails[] = await response.json();
+        const data: unknown = await response.json();
 
-        const current = all.find(item => item.id === itemId);
-
-        if (!current) {
-          throw new Error(`Item ${itemId} not found`);
+        if (!Array.isArray(data)) {
+          throw new Error('Invalid product data format');
         }
 
-        const family = all.filter(
-          item => item.namespaceId === current.namespaceId,
-        );
+        const all = data as ProductDetails[];
 
-        if (!cancelled) {
-          setProduct(current);
-          setVariants(family);
-        }
+        categoryCache.set(category, all);
+
+        updateFromAll(all);
       } catch (err) {
         if (!cancelled) {
+          setProduct(null);
+          setVariants([]);
           setError(err instanceof Error ? err.message : 'Unknown error');
-        }
-      } finally {
-        if (!cancelled) {
           setLoading(false);
         }
       }

@@ -7,10 +7,10 @@ import { Card } from '../../modules/Card/Card';
 import { Pagination } from '../../components/Pagination/Pagination';
 import { WithLoader } from '../../components/WithLoader';
 
-import { useProducts } from '../../hooks/useProducts';
+import { useProducts } from '../../shared/context/ProductsContext';
 import { useQueryParams } from '../../hooks/useQueryParams';
 import { useSort } from '../../hooks/useSort';
-import { usePagination } from '../../hooks/usePagination';
+import { usePagination, type PerPage } from '../../hooks/usePagination';
 
 import { Product } from '../../types/Product';
 
@@ -34,7 +34,6 @@ export const CatalogPage: React.FC<Props> = ({ type }) => {
     [products, type],
   );
 
-  // Sorting
   const { sort, sortedProducts, setSort } = useSort(filtered, params, setParam);
 
   // Pagination
@@ -76,7 +75,7 @@ export const CatalogPage: React.FC<Props> = ({ type }) => {
                 <select
                   id="perpage"
                   value={perPage}
-                  onChange={e => setPerPage(e.target.value)}
+                  onChange={e => setPerPage(e.target.value as PerPage)}
                 >
                   <option value="4">4</option>
                   <option value="8">8</option>

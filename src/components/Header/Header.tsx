@@ -3,6 +3,7 @@ import { useState } from 'react';
 
 import { useFavorites } from '../../shared/context/FavoritesContext';
 import { useCart } from '../../shared/context/CartContext';
+import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
 
 import styles from './Header.module.scss';
 
@@ -48,6 +49,7 @@ export const Header = () => {
 
         {/* actions */}
         <div className={styles.actionsButtons}>
+          <ThemeSwitcher />
           {/* Favorites */}
           <NavLink to="/favorites" className={styles.icon}>
             <div className={styles.iconInner}>
@@ -159,6 +161,7 @@ export const Header = () => {
 
             {/* Mobile actions */}
             <div className={styles.mobileActions}>
+              <ThemeSwitcher />
               {/* Favorites */}
               <NavLink
                 to="/favorites"

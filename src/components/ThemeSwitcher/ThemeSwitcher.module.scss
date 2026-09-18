@@ -1,38 +1,65 @@
-
 .button {
-  cursor: pointer;
-  border: none;
-  background-color: $surface-2;
-  color: $color-icons;
+  position: relative;
 
-  width: $thumbnail-size;
-  height: $thumbnail-size;
+  width: 48px;
+  height: 48px;
+
+  border-left: 1px solid $color-elements;
+  background: none;
 
   display: flex;
   align-items: center;
   justify-content: center;
 
   font-size: 24px;
-  border-radius: $radius-m;
+  color: $color-icons;
+  cursor: pointer;
 
   transition: background-color $transition, transform $transition, opacity $transition;
 
+  @include desktop {
+    width: 64px;
+    height: 64px;
+  }
+
+  &::after {
+    content: "";
+    position: absolute;
+    left: 0;
+    bottom: -1px;
+
+    width: 0;
+    height: 2px;
+
+    background: $accent-primary;
+    border-radius: $radius-s;
+
+    transition: width $transition;
+  }
+
+  &:hover::after {
+    width: 100%;
+  }
+
   &:hover {
-    background-color: $surface-3;
     transform: scale(1.05);
   }
 
   &:active {
-    background-color: $accent-active;
     transform: scale(0.95);
     opacity: 0.8;
   }
 }
 
-
 :root[data-theme='light'] .button {
-  color: $text-primary;
+  /* light theme */
+  --bg-primary: #fff;
+  --text-primary: #1a1a1a;
+  --surface-2: #f0f0f0;
+  --surface-3: #e6e6e6;
+  --color-icons: #333;
 }
+
 
 :root[data-theme='dark'] .button {
   color: $color-icons;

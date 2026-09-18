@@ -51,16 +51,4 @@
   }
 }
 
-:root[data-theme='light'] .button {
-  /* light theme */
-  --bg-primary: #fff;
-  --text-primary: #1a1a1a;
-  --surface-2: #f0f0f0;
-  --surface-3: #e6e6e6;
-  --color-icons: #333;
-}
 
-
-:root[data-theme='dark'] .button {
-  color: $color-icons;
-}

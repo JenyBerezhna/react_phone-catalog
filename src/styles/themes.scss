@@ -35,7 +35,7 @@
 
   /* Text */
   --text-primary: #313237;
-  --text-secondary: #89939a;
+  --text-secondary: #6a6d6f;
 
   /* Accent */
   --accent-primary: #905bff;
@@ -44,13 +44,15 @@
 
   /* Surfaces */
   --surface-1: #fff;
-  --surface-2: #f1f2f9;
-  --surface-3: #e2e6e9;
+  --surface-2: #434444;
+  --surface-3: #323334;
 
   /* Semantic */
   --color-secondary: #89939a;
-  --color-icons: #89939a;
-  --color-elements: #e2e6e9;
+
+  stroke: var(--color-icons);
+
+  --color-elements: #313237;
   --color-green: #27ae60;
   --color-red: #eb5757;
 }

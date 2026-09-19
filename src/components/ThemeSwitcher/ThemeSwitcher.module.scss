@@ -10,12 +10,19 @@
   display: flex;
   align-items: center;
   justify-content: center;
+  gap: 2px;
 
-  font-size: 24px;
+  padding: 0;
+
+  font-family: inherit;
+  font-size: 12px;
+  font-weight: 700;
   color: var(--color-icons);
+
   cursor: pointer;
 
-  transition: background-color $transition, transform $transition, opacity $transition;
+  transition: background-color $transition, transform $transition,
+    opacity $transition;
 
   @include desktop {
     width: 64px;
@@ -23,15 +30,17 @@
   }
 
   &::after {
-    content: "";
+    content: '';
     position: absolute;
     left: 0;
     bottom: -1px;
 
     width: 0;
     height: 2px;
+
     background: var(--accent-primary);
     border-radius: $radius-s;
+
     transition: width $transition;
   }
 
@@ -49,4 +58,11 @@
   }
 }
 
+.active {
+  color: var(--text-primary);
+}
+
+.separator {
+  color: var(--color-icons);
+}
 

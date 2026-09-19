@@ -18,13 +18,19 @@
   color: var(--text-secondary);
 
   font-family: inherit;
-  font-size: 12px;
-  font-weight: 700;
+  font-size: $menu-font-size;
+  font-weight: $h2-weight;
   line-height: 1;
 
   cursor: pointer;
 
   transition: color 0.2s ease;
+
+  @include desktop {
+    width: 64px;
+    height: 64px;
+  }
+
 
   &:hover {
     color: var(--text-primary);

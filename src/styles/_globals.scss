@@ -1,4 +1,5 @@
 @use './variables' as *;
+@use './themes';
 
 *,
 *::before,
@@ -12,9 +13,9 @@ body {
   min-height: 100%;
 
   font-family: $font-family-primary;
-  color: $text-primary;
 
-  background-color: $bg-primary;
+  color: var(--text-primary);
+  background-color: var(--bg-primary);
 }
 
 button {

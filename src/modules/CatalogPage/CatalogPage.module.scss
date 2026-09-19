@@ -15,13 +15,13 @@
   @include h2;
 
   margin-bottom: $space-1;
-  color: $text-primary;
+  color: var(--text-primary);
 }
 
 .counter {
   @include counter-text;
 
-  color: $text-secondary;
+  color: var(--text-secondary);
   margin-bottom: $space-2;
 }
 
@@ -46,22 +46,22 @@
   label {
     @include small-text;
 
-    color: $text-secondary;
+    color: var(--text-secondary);
   }
 
   select {
     @include body-text;
 
     padding: $space-2 $space-3;
-    background: $surface-2;
+    background: var(--surface-2);
     border-radius: $radius-s;
-    border: 1px solid $surface-3;
-    color: $text-primary;
+    border: 1px solid var(--surface-3);
+    color: var(--text-primary);
     cursor: pointer;
     transition: background $transition;
 
     &:hover {
-      background: $surface-3;
+      background: var(--surface-3);
     }
   }
 }

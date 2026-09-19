@@ -10,7 +10,7 @@
   padding: $space-4;
   box-sizing: border-box;
 
-  background-color: $surface-1;
+  background-color: var(--surface-1);
 
   @include tablet {
     height: auto;
@@ -62,7 +62,7 @@
   justify-content: center;
 
   cursor: pointer;
-  transition: background $hover-transition;
+  transition: background var(--hover-transition);
 
   img {
     width: 16px;
@@ -72,7 +72,7 @@
   }
 
   &:hover {
-    background: $surface-3;
+    background: var(--surface-3);
   }
 
   @include mobile {
@@ -104,7 +104,7 @@
 
   font-size: 14px;
   font-weight: $h3-weight;
-  color: $text-primary;
+  color: var(--text-primary);
 
   background: transparent;
 
@@ -163,7 +163,7 @@
   justify-content: center;
 
   cursor: pointer;
-  transition: background $hover-transition;
+  transition: background var(--hover-transition);
 
   img {
     width: 16px;
@@ -173,7 +173,7 @@
   }
 
   &:hover {
-    background: $surface-3;
+    background: var(--surface-3);
   }
 
   @include mobile {
@@ -191,7 +191,7 @@
 .qtyValue {
   font-size: 16px;
   font-weight: 600;
-  color: $text-primary;
+  color: var(--text-primary);
 
   background: transparent;
 }
@@ -200,7 +200,7 @@
 .price {
   font-size: 20px;
   font-weight: 700;
-  color: $text-primary;
+  color: var(--text-primary);
   margin: 0;
 
   background: transparent;

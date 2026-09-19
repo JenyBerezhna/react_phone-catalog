@@ -10,7 +10,7 @@
 }
 
 .totalPrice{
-  color: $text-primary;
+  color: var(--text-primary);
   font-size: 32px;
   font-weight: $h1-weight;
 }
@@ -53,7 +53,7 @@
   align-self: start;
 
   box-sizing: border-box;
-  border: 1px solid $color-elements;
+  border: 1px solid var(--color-elements);
 
   display: flex;
   flex-direction: column;
@@ -65,13 +65,13 @@
 
   .totalBlock {
     text-align: center;
-    border-bottom: 1px solid $color-elements;
+    border-bottom: 1px solid var(--color-elements);
   }
 
   .count {
     @include body-text;
 
-    color: $text-secondary;
+    color: var(--text-secondary);
     margin-top: $space-1;
   }
 }
@@ -81,25 +81,25 @@
   width: 100%;
   padding: 14px 24px;
 
-  background: $accent-primary;
+  background: var(--accent-primary);
   border: none;
   border-radius: $radius-s;
 
-  color: $text-primary;
+  color: var(--text-primary);
 
   @include body-text;
 
   font-weight: 700;
 
   cursor: pointer;
-  transition: background $hover-transition;
+  transition: background var(--hover-transition);
 
   &:hover {
-    background: $accent-hover;
+    background: var(--accent-hover);
   }
 
   &:active {
-    background: $accent-active;
+    background: var(--accent-active);
   }
 }
 
@@ -116,7 +116,7 @@
 .emptyText {
   @include h2;
 
-  color: $text-primary;
+  color: var(--text-primary);
 
   @include tablet {
     font-size: 40px;
@@ -144,8 +144,8 @@
 }
 
 .btn {
-  background-color: $surface-2;
-  color: $text-primary;
+  background-color: var(--surface-2);
+  color: var(--text-primary);
 
   border: none;
   border-radius: $radius-s;
@@ -157,10 +157,10 @@
   transition: background $transition;
 
   &:hover {
-    background-color: $surface-3;
+    background-color: var(--surface-3);
   }
 
   &:active {
-    background-color: $accent-active;
+    background-color: var(--accent-active);
   }
 }

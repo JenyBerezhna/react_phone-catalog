@@ -3,7 +3,7 @@
   flex-direction: column;
   text-decoration: none;
   font-family: $font-family-primary;
-  background: $surface-1;
+  background: var(--surface-1);
   border-radius: $radius-m;
   overflow: hidden;
   transition: transform $transition, box-shadow $transition;
@@ -50,12 +50,12 @@
 .title {
   font-size: 20px;
   font-weight: 700;
-  color: $text-primary;
+  color: var(--text-primary);
   margin-bottom: 4px;
 }
 
 .models {
   font-size: 16px;
-  color: $text-secondary;
+  color: var(--text-secondary);
 }
 

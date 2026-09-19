@@ -10,7 +10,7 @@
     line-height: $menu-line-height;
     letter-spacing: $menu-letter-spacing;
     text-transform: $menu-text-transform;
-    color: $text-secondary;
+    color: var(--text-secondary);
     margin-bottom: $space-2;
   }
 
@@ -18,7 +18,7 @@
     display: flex;
     flex-direction: column;
     padding-bottom: $space-4;
-    border-bottom: 1px solid $color-elements;
+    border-bottom: 1px solid var(--color-elements);
   }
 
   .colors {
@@ -32,21 +32,21 @@
     height: 32px;
     border-radius: 50%;
 
-    border: 1px solid $color-elements;
-    background: $surface-1;
+    border: 1px solid var(--color-elements);
+    background: var(--surface-1);
 
     cursor: pointer;
     transition: border-color $transition, transform $transition;
 
     &:hover {
-      border-color: $accent-primary;
+      border-color: var(--accent-primary);
       transform: scale(1.05);
     }
   }
 
   /* ACTIVE COLOR */
   .colorCircle.active {
-    outline: 2px solid $accent-primary;
+    outline: 2px solid var(--accent-primary);
     outline-offset: 2px;
   }
 
@@ -54,7 +54,7 @@
     display: flex;
     flex-direction: column;
     padding-bottom: $space-4;
-    border-bottom: 1px solid $color-elements;
+    border-bottom: 1px solid var(--color-elements);
   }
 
   .capacity {
@@ -66,26 +66,26 @@
     padding: $space-2;
 
 
-    border: 1px solid $color-elements;
-    background: $surface-1;
+    border: 1px solid var(--color-elements);
+    background: var(--surface-1);
 
     cursor: pointer;
     font-size: $menu-font-size;
-    color: $text-primary;
+    color: var(--text-primary);
     min-width: 54px;
     text-align: center;
 
     transition: all $transition;
 
     &:hover {
-      border-color: $accent-primary;
-      background: $surface-3;
+      border-color: var(--accent-primary);
+      background: var(--surface-3);
     }
   }
 
   /* ACTIVE CAPACITY */
   .capacityButton.active {
-    background: $accent-primary;
-    color: $text-primary;
-    border-color: $accent-primary;
+    background: var(--accent-primary);
+    color: var(--text-primary);
+    border-color: var(--accent-primary);
   }

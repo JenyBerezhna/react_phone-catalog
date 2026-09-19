@@ -7,11 +7,11 @@
     font-size: $h2-size;
     font-weight: $h2-weight;
     line-height: $h2-line-height;
-    color: $text-primary;
+    color: var(--text-primary);
 
     margin-bottom: 0;
     padding-bottom: $space-3;
-    border-bottom: 1px solid $color-elements;
+    border-bottom: 1px solid var(--color-elements);
   }
 }
 
@@ -23,23 +23,23 @@
     font-size: $h2-size;
     font-weight: $h2-weight;
     line-height: $h2-line-height;
-    color: $text-primary;
+    color: var(--text-primary);
 
     padding-bottom: $space-3;
-    border-bottom: 1px solid $color-elements;
+    border-bottom: 1px solid var(--color-elements);
   }
 
   h3 {
     font-size: $h3-size;
     font-weight: $h3-weight;
     line-height: $h3-line-height;
-    color: $text-primary;
+    color: var(--text-primary);
     margin: $space-3 0;
   }
 
   p {
     margin-bottom: $space-2;
-    color: $text-secondary;
+    color: var(--text-secondary);
     line-height: 1.6;
     font-size: 14px;
     letter-spacing: 0;

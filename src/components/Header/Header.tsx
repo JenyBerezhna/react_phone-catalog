@@ -4,6 +4,8 @@ import { useState } from 'react';
 import { useFavorites } from '../../shared/context/FavoritesContext';
 import { useCart } from '../../shared/context/CartContext';
 import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
+import { useLanguage } from '../../shared/context/LanguageContext';
+import { LanguageSwitcher } from '../LanguageSwitcher/LanguageSwitcher';
 
 import styles from './Header.module.scss';
 
@@ -13,6 +15,7 @@ const getNavClass = ({ isActive }: { isActive: boolean }) =>
 export const Header = () => {
   const [isMenuOpen, setIsMenuOpen] = useState(false);
 
+  const { t } = useLanguage();
   const { favorites } = useFavorites();
   const { items: cart } = useCart();
 
@@ -34,22 +37,27 @@ export const Header = () => {
         {/* Desktop navigation */}
         <nav className={styles.navDesktop}>
           <NavLink to="/" end className={getNavClass}>
-            Home
+            {t.navigation.home}
           </NavLink>
+
           <NavLink to="/phones" className={getNavClass}>
-            Phones
+            {t.navigation.phones}
           </NavLink>
+
           <NavLink to="/tablets" className={getNavClass}>
-            Tablets
+            {t.navigation.tablets}
           </NavLink>
+
           <NavLink to="/accessories" className={getNavClass}>
-            Accessories
+            {t.navigation.accessories}
           </NavLink>
         </nav>
 
-        {/* actions */}
+        {/* Actions */}
         <div className={styles.actionsButtons}>
+          <LanguageSwitcher />
           <ThemeSwitcher />
+
           {/* Favorites */}
           <NavLink to="/favorites" className={styles.icon}>
             <div className={styles.iconInner}>
@@ -60,8 +68,9 @@ export const Header = () => {
                     ? '/img/icons/FavoriteEmpty.svg'
                     : '/img/icons/FavoriteFilled.svg'
                 }
-                alt="Favorites"
+                alt={t.navigation.favorites}
               />
+
               {favoritesCount > 0 && (
                 <span className={styles.counter}>{favoritesCount}</span>
               )}
@@ -78,8 +87,9 @@ export const Header = () => {
                     ? '/img/icons/CartEmpty.svg'
                     : '/img/icons/Cart.svg'
                 }
-                alt="Cart"
+                alt={t.navigation.cart}
               />
+
               {cartCount > 0 && (
                 <span className={styles.counter}>{cartCount}</span>
               )}
@@ -88,7 +98,11 @@ export const Header = () => {
         </div>
 
         {/* Mobile burger */}
-        <button className={styles.burger} onClick={() => setIsMenuOpen(true)}>
+        <button
+          className={styles.burger}
+          onClick={() => setIsMenuOpen(true)}
+          aria-label="Open menu"
+        >
           <img
             className={styles.burgerImage}
             src="/img/icons/Menu.svg"
@@ -117,6 +131,7 @@ export const Header = () => {
               <button
                 className={styles.close}
                 onClick={() => setIsMenuOpen(false)}
+                aria-label="Close menu"
               >
                 <img
                   className={styles.closeImage}
@@ -134,34 +149,39 @@ export const Header = () => {
                 className={getNavClass}
                 onClick={() => setIsMenuOpen(false)}
               >
-                Home
+                {t.navigation.home}
               </NavLink>
+
               <NavLink
                 to="/phones"
                 className={getNavClass}
                 onClick={() => setIsMenuOpen(false)}
               >
-                Phones
+                {t.navigation.phones}
               </NavLink>
+
               <NavLink
                 to="/tablets"
                 className={getNavClass}
                 onClick={() => setIsMenuOpen(false)}
               >
-                Tablets
+                {t.navigation.tablets}
               </NavLink>
+
               <NavLink
                 to="/accessories"
                 className={getNavClass}
                 onClick={() => setIsMenuOpen(false)}
               >
-                Accessories
+                {t.navigation.accessories}
               </NavLink>
             </nav>
 
             {/* Mobile actions */}
             <div className={styles.mobileActions}>
+              <LanguageSwitcher />
               <ThemeSwitcher />
+
               {/* Favorites */}
               <NavLink
                 to="/favorites"
@@ -176,8 +196,9 @@ export const Header = () => {
                         ? '/img/icons/FavoriteEmpty.svg'
                         : '/img/icons/FavoriteFilled.svg'
                     }
-                    alt="Favorites"
+                    alt={t.navigation.favorites}
                   />
+
                   {favoritesCount > 0 && (
                     <span className={styles.counter}>{favoritesCount}</span>
                   )}
@@ -198,8 +219,9 @@ export const Header = () => {
                         ? '/img/icons/CartEmpty.svg'
                         : '/img/icons/Cart.svg'
                     }
-                    alt="Cart"
+                    alt={t.navigation.cart}
                   />
+
                   {cartCount > 0 && (
                     <span className={styles.counter}>{cartCount}</span>
                   )}

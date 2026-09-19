@@ -10,7 +10,7 @@
 .counter {
   @include counter-text;
 
-  color: $text-secondary;
+  color: var(--text-secondary);
   margin-bottom: $space-6;
 }
 
@@ -38,7 +38,7 @@
   }
 
   &:hover {
-    background-color: $surface-3;
+    background-color: var(--surface-3);
 
     img {
       transform: scale(1.1);
@@ -47,7 +47,7 @@
   }
 
   &.active {
-    background-color: rgba($color-red, 0.1);
+    background-color: var(--color-red);
 
     img {
       transform: scale(1.15);

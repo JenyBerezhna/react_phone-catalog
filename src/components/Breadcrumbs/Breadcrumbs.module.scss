@@ -52,13 +52,13 @@
 }
 
 .link {
-  color: $text-secondary;
+  color: var(--text-secondary);
   text-decoration: none;
   font-size: 12px;
   transition: color $transition;
 
   &:hover {
-    color: $text-primary;
+    color: var(--text-secondary);
   }
 
   @include tablet {
@@ -68,7 +68,7 @@
 
 /* CURRENT PAGE */
 .current {
-  color: $text-primary;
+  color: var(--text-primary);
   font-size: 12px;
 
   @include tablet {

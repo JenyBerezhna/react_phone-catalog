@@ -8,7 +8,7 @@
 
 
 .card {
-  background: $surface-1;
+  background: var(--surface-1);
   border-radius: $radius-m;
   padding: $space-4;
   display: flex;
@@ -28,7 +28,7 @@
   @include small-text;
 
   font-weight: 600;
-  color: $text-primary;
+  color: var(--text-primary);
   min-height: 40px;
 }
 
@@ -41,20 +41,20 @@
 .priceDiscount {
   font-size: 22px;
   font-weight: 700;
-  color: $text-primary;
+  color: var(--text-primary);
 }
 
 .priceFull {
   font-size: 14px;
   font-weight: 500;
   text-decoration: line-through;
-  color: $text-secondary;
+  color: var(--text-secondary);
 }
 
 
 .divider {
   height: 1px;
-  background: $surface-3;
+  background: var(--surface-3);
 }
 
 .specs {
@@ -65,13 +65,13 @@
 
 .specLabel {
   font-size: 12px;
-  color: $text-secondary;
+  color: var(--text-secondary);
 }
 
 .specValue {
   font-size: 12px;
   font-weight: 600;
-  color: $text-primary;
+  color: var(--text-primary);
 }
 
 
@@ -85,8 +85,8 @@
   flex: 1;
   height: 40px;
   border-radius: $radius-m;
-  background: $accent-primary;
-  color: $text-primary;
+  background: var(--accent-primary);
+  color: var(--text-primary);
   font-size: 14px;
   font-weight: 600;
   border: none;
@@ -94,11 +94,11 @@
   transition: background $transition;
 
   &:hover {
-    background: $accent-hover;
+    background: var(--accent-hover);
   }
 
   &:active {
-    background: $accent-active;
+    background: var(--accent-active);
   }
 }
 
@@ -106,13 +106,13 @@
   width: 40px;
   height: 40px;
   border-radius: $radius-m;
-  background: $surface-2;
+  background: var(--surface-2);
   border: none;
-  color: $text-primary;
+  color: var(--text-primary);
   cursor: pointer;
   transition: background $transition;
 
   &:hover {
-    background: $surface-3;
+    background: var(--surface-3);
   }
 }

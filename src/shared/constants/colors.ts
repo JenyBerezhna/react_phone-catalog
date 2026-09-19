@@ -1,6 +1,6 @@
 export const COLOR_MAP: Record<string, string> = {
   black: '#1C1C1E',
-  white: '#FFFFFF',
+  white: '#FFF',
   yellow: '#F4D03F',
   purple: '#A29BFE',
   green: '#2ECC71',

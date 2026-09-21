@@ -4,6 +4,7 @@
   z-index: 100;
 
   height: 48px;
+
   background: var(--bg-primary);
 
   @include flex-center;
@@ -24,9 +25,11 @@
 }
 
 /* LOGO */
+
 .logo {
   display: flex;
   align-items: center;
+
   padding: 0 16px;
 }
 
@@ -36,13 +39,13 @@
 
   transition: transform $transition;
 
-  &:hover {
-    transform: scale(1.1);
-  }
-
   @include desktop {
     width: 80px;
     height: 28px;
+  }
+
+  &:hover {
+    transform: scale(1.1);
   }
 }
 
@@ -66,6 +69,50 @@
   }
 }
 
+/* THEME-AWARE MASK ICONS */
+
+.maskIcon {
+  display: block;
+
+  width: 24px;
+  height: 24px;
+
+  background-color: var(--color-icons);
+
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+
+  @include desktop {
+    width: 28px;
+    height: 28px;
+  }
+}
+
+.cartIcon {
+  mask-image: url('/img/icons/Cart.svg');
+  -webkit-mask-image: url('/img/icons/Cart.svg');
+}
+
+.cartEmptyIcon {
+  mask-image: url('/img/icons/CartEmpty.svg');
+  -webkit-mask-image: url('/img/icons/CartEmpty.svg');
+}
+
+.favoriteIcon {
+  mask-image: url('/img/icons/FavoriteFilled.svg');
+  -webkit-mask-image: url('/img/icons/FavoriteFilled.svg');
+}
+
+.favoriteEmptyIcon {
+  mask-image: url('/img/icons/FavoriteEmpty.svg');
+  -webkit-mask-image: url('/img/icons/FavoriteEmpty.svg');
+}
+
 /* DESKTOP NAVIGATION */
 
 .navDesktop {
@@ -75,7 +122,6 @@
     display: flex;
     flex: 1;
     gap: $space-4;
-    flex-grow: 1;
     margin-left: $space-3;
   }
 
@@ -104,10 +150,6 @@
 
   transition: color $transition;
 
-  &:hover {
-    color: var(--text-primary);
-  }
-
   &::after {
     content: "";
 
@@ -122,6 +164,10 @@
     border-radius: $radius-s;
 
     transition: width $transition;
+  }
+
+  &:hover {
+    color: var(--text-primary);
   }
 
   &:hover::after {
@@ -156,18 +202,17 @@
 .icon {
   position: relative;
 
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 48px;
   height: 48px;
 
   border-left: 1px solid var(--color-elements);
   background: none;
 
-  @include flex-center;
-
-  @include desktop {
-    width: 64px;
-    height: 64px;
-  }
+  text-decoration: none;
 
   &::after {
     content: "";
@@ -188,6 +233,11 @@
   &:hover::after {
     width: 100%;
   }
+
+  @include desktop {
+    width: 64px;
+    height: 64px;
+  }
 }
 
 /* COUNTER BADGE */
@@ -196,6 +246,10 @@
   position: absolute;
   top: -2px;
   right: -2px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
 
   width: 14px;
   height: 14px;
@@ -208,8 +262,6 @@
   font-size: 10px;
   font-weight: 700;
 
-  @include flex-center;
-
   @include desktop {
     top: -3px;
     right: -3px;
@@ -221,7 +273,7 @@
   }
 }
 
-/* MOBILE ONLY */
+/* MOBILE BURGER */
 
 .burger {
   display: block;
@@ -230,6 +282,8 @@
 
   border: none;
   background: none;
+
+  cursor: pointer;
 
   @include tablet {
     display: none !important;
@@ -299,3 +353,4 @@
   width: 100%;
   height: 64px;
 }
+

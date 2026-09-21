@@ -67,14 +67,14 @@ export const Header = () => {
           {/* Favorites */}
           <NavLink to="/favorites" className={styles.icon}>
             <div className={styles.iconInner}>
-              <img
-                className={styles.iconImage}
-                src={
+              <span
+                className={`${styles.maskIcon} ${
                   favoritesCount === 0
-                    ? '/img/icons/FavoriteEmpty.svg'
-                    : '/img/icons/FavoriteFilled.svg'
-                }
-                alt={t.navigation.favorites}
+                    ? styles.favoriteEmptyIcon
+                    : styles.favoriteIcon
+                }`}
+                role="img"
+                aria-label={t.navigation.favorites}
               />
 
               {favoritesCount > 0 && (
@@ -86,14 +86,12 @@ export const Header = () => {
           {/* Cart */}
           <NavLink to="/cart" className={styles.icon}>
             <div className={styles.iconInner}>
-              <img
-                className={styles.iconImage}
-                src={
-                  cartCount === 0
-                    ? '/img/icons/CartEmpty.svg'
-                    : '/img/icons/Cart.svg'
-                }
-                alt={t.navigation.cart}
+              <span
+                className={`${styles.maskIcon} ${
+                  cartCount === 0 ? styles.cartEmptyIcon : styles.cartIcon
+                }`}
+                role="img"
+                aria-label={t.navigation.cart}
               />
 
               {cartCount > 0 && (
@@ -199,14 +197,14 @@ export const Header = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 <div className={styles.iconInner}>
-                  <img
-                    className={styles.iconImage}
-                    src={
+                  <span
+                    className={`${styles.maskIcon} ${
                       favoritesCount === 0
-                        ? '/img/icons/FavoriteEmpty.svg'
-                        : '/img/icons/FavoriteFilled.svg'
-                    }
-                    alt={t.navigation.favorites}
+                        ? styles.favoriteEmptyIcon
+                        : styles.favoriteIcon
+                    }`}
+                    role="img"
+                    aria-label={t.navigation.favorites}
                   />
 
                   {favoritesCount > 0 && (
@@ -222,14 +220,10 @@ export const Header = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 <div className={styles.iconInner}>
-                  <img
-                    className={styles.iconImage}
-                    src={
-                      cartCount === 0
-                        ? '/img/icons/CartEmpty.svg'
-                        : '/img/icons/Cart.svg'
-                    }
-                    alt={t.navigation.cart}
+                  <span
+                    className={`${styles.maskIcon} ${cartCount === 0 ? styles.cartEmptyIcon : styles.cartIcon}`}
+                    role="img"
+                    aria-label={t.navigation.cart}
                   />
 
                   {cartCount > 0 && (

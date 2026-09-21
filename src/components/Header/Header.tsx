@@ -128,9 +128,13 @@ export const Header = () => {
                 onClick={() => setIsMenuOpen(false)}
               >
                 <img
-                  className={styles.mobileLogoImage}
-                  src="/img/logo/Logo.svg"
+                  src={
+                    theme === 'dark'
+                      ? '/img/logo/Logo.svg'
+                      : '/img/logo/LogoLight.svg'
+                  }
                   alt="Logo"
+                  className={styles.mobileLogoImage}
                 />
               </NavLink>
 

@@ -30,29 +30,32 @@
 
 :root[data-theme='light'] {
   /* Backgrounds */
+
   --bg-primary: #fff;
   --bg-secondary: #f5f5f7;
 
   /* Text */
+
   --text-primary: #313237;
   --text-secondary: #6a6d6f;
 
   /* Accent */
+
   --accent-primary: #905bff;
   --accent-hover: #a378ff;
   --accent-active: #e9e0ff;
 
   /* Surfaces */
+
   --surface-1: #fff;
   --surface-2: #434444;
   --surface-3: #323334;
 
   /* Semantic */
+
   --color-secondary: #89939a;
-
-  stroke: var(--color-icons);
-
-  --color-elements: #313237;
+  --color-icons: #313237;
+  --color-elements: #5c5e64;
   --color-green: #27ae60;
   --color-red: #eb5757;
 }

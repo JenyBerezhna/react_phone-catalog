@@ -6,6 +6,7 @@ import { useCart } from '../../shared/context/CartContext';
 import { ThemeSwitcher } from '../ThemeSwitcher/ThemeSwitcher';
 import { useLanguage } from '../../shared/context/LanguageContext';
 import { LanguageSwitcher } from '../LanguageSwitcher/LanguageSwitcher';
+import { useTheme } from '../../shared/context/ThemeContext';
 
 import styles from './Header.module.scss';
 
@@ -21,6 +22,7 @@ export const Header = () => {
 
   const cartCount = cart.reduce((sum, item) => sum + item.quantity, 0);
   const favoritesCount = favorites.length;
+  const { theme } = useTheme();
 
   return (
     <header className={styles.header}>
@@ -28,7 +30,11 @@ export const Header = () => {
         {/* Logo */}
         <NavLink to="/" replace className={styles.logo}>
           <img
-            src="/img/logo/Logo.svg"
+            src={
+              theme === 'dark'
+                ? '/img/logo/Logo.svg'
+                : '/img/logo/LogoLight.svg'
+            }
             alt="Logo"
             className={styles.logoImage}
           />

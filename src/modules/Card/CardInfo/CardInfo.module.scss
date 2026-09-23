@@ -2,15 +2,18 @@
   display: flex;
   flex-direction: column;
   gap: $space-2;
+
   background-color: var(--surface-1);
   border-radius: $radius-m;
 }
 
 /* PRICES */
+
 .prices {
   display: flex;
   align-items: baseline;
   gap: $space-2;
+
   margin-bottom: $space-2;
 }
 
@@ -18,12 +21,14 @@
   font-size: $h3-size;
   font-weight: $h3-weight;
   line-height: $h3-line-height;
+
   color: var(--text-primary);
 }
 
 .priceFull {
   font-size: $h3-size;
   font-weight: 600;
+
   color: var(--text-secondary);
   text-decoration: line-through;
 }
@@ -31,16 +36,20 @@
 .divider {
   width: 100%;
   height: 1px;
-  background: var(--color-elements);
+
   margin: $space-2 0;
+
+  background: var(--color-elements);
 }
 
 /* ACTIONS */
+
 .actions {
   display: flex;
-  justify-content: space-between;
   align-items: center;
+  justify-content: space-between;
   gap: $space-2;
+
   margin-bottom: $space-5;
 }
 
@@ -52,12 +61,16 @@
   border-radius: $radius-s;
 
   color: var(--text-primary);
+
   font-family: $font-family-primary;
-  font-weight: 600;
   font-size: $menu-font-size;
+  font-weight: 600;
 
   cursor: pointer;
-  transition: background $transition;
+
+  transition:
+    background-color $transition,
+    transform $transition;
 
   &:hover {
     background: var(--accent-hover);
@@ -65,6 +78,7 @@
 
   &:active {
     background: var(--accent-active);
+    transform: scale(0.98);
   }
 
   &:disabled {
@@ -74,29 +88,48 @@
 }
 
 .heart {
-  width: 40px;
-  height: 40px;
-
   display: flex;
   align-items: center;
   justify-content: center;
 
-  background: var(--surface-2);
+  width: 40px;
+  height: 40px;
+
+  background: var(--slider-btn-bg);
+  border: 1px solid var(--color-elements);
   border-radius: $radius-s;
+
   cursor: pointer;
+
+  transition:
+    background-color $transition,
+    border-color $transition,
+    transform $transition;
 
   img {
     width: 20px;
     height: 20px;
+
     background: transparent;
+
+    transition: filter $transition;
   }
 
   &:hover {
-    background: var(--surface-3);
+    background: var(--slider-btn-hover);
+
+    img {
+      filter: brightness(0) invert(1);
+    }
+  }
+
+  &:active {
+    transform: scale(0.96);
   }
 }
 
 /* SPECS */
+
 .specs {
   display: flex;
   flex-direction: column;
@@ -108,6 +141,7 @@
   justify-content: space-between;
 
   font-size: 12px;
+
   color: var(--text-secondary);
   background: transparent;
 }
@@ -115,5 +149,6 @@
 .specValue {
   font-size: 12px;
   font-weight: 600;
+
   color: var(--text-primary);
 }

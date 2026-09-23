@@ -8,6 +8,7 @@
   display: flex;
   flex-direction: column;
   gap: $space-1;
+
   margin-bottom: $space-4;
 }
 
@@ -21,15 +22,17 @@
 .counter {
   @include counter-text;
 
-  color: var(--text-secondary);
   margin-bottom: $space-2;
+
+  color: var(--text-secondary);
 }
 
 .topbar {
   display: flex;
-  justify-content: flex-start;
   align-items: center;
+  justify-content: flex-start;
   gap: $space-4;
+
   margin-bottom: $space-5;
 
   @include mobile {
@@ -53,15 +56,30 @@
     @include body-text;
 
     padding: $space-2 $space-3;
-    background: var(--surface-2);
+
+    background: var(--slider-btn-bg);
+    border: 1px solid var(--color-elements);
     border-radius: $radius-s;
-    border: 1px solid var(--surface-3);
+
     color: var(--text-primary);
+
     cursor: pointer;
-    transition: background $transition;
+
+    transition:
+      background-color $transition,
+      border-color $transition,
+      color $transition;
 
     &:hover {
-      background: var(--surface-3);
+      background: var(--accent-primary);
+
+      /* optional */
+      border-color: var(--text-primary);
+    }
+
+    &:focus {
+      outline: none;
+      border-color: var(--slider-btn-bg);
     }
   }
 }

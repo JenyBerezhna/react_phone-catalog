@@ -106,6 +106,7 @@
 .favoriteIcon {
   mask-image: url('/img/icons/FavoriteFilled.svg');
   -webkit-mask-image: url('/img/icons/FavoriteFilled.svg');
+  background-color: var(--favorite-color);
 }
 
 .favoriteEmptyIcon {

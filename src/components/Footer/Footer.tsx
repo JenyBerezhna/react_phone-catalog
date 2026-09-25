@@ -1,5 +1,7 @@
 import { NavLink } from 'react-router-dom';
+
 import styles from './Footer.module.scss';
+import { useTheme } from '../../shared/context/ThemeContext';
 
 export const Footer = () => {
   const handleBackToTop = () => {
@@ -8,6 +10,8 @@ export const Footer = () => {
       behavior: 'smooth',
     });
   };
+
+  const { theme } = useTheme();
 
   return (
     <footer className={styles.footer}>
@@ -19,7 +23,15 @@ export const Footer = () => {
           className={styles.logo}
           aria-label="Go to homepage"
         >
-          <img src="/img/logo/Logo.svg" alt="Logo" />
+          <img
+            src={
+              theme === 'dark'
+                ? '/img/logo/Logo.svg'
+                : '/img/logo/LogoLight.svg'
+            }
+            alt="Logo"
+            className={styles.logoImage}
+          />
         </NavLink>
 
         {/* Navigation */}
@@ -52,7 +64,7 @@ export const Footer = () => {
           <span className={styles.backToTopText}>Back to top</span>
 
           <span className={styles.backToTopIcon}>
-            <img src="/img/icons/Back-to-top.svg" alt="" />
+            <span className={styles.backToTopIconImage} aria-hidden="true" />
           </span>
         </button>
       </div>

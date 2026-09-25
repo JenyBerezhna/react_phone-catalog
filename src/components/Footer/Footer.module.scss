@@ -1,8 +1,19 @@
 .footer {
-  background: var(--bg-primary);
-  padding: 32px 16px;
+  background-color: var(--bg-primary);
   border-top: 1px solid var(--color-elements);
+
+  padding: $space-5 $space-4;
+
+  @include tablet {
+    padding: $space-5 $space-6;
+  }
+
+  @include desktop {
+    padding: $space-6;
+  }
 }
+
+/* CONTAINER */
 
 .footerContainer {
   @include container;
@@ -11,53 +22,49 @@
   align-items: center;
   justify-content: space-between;
 
+  width: 100%;
   gap: $space-4;
-  flex-wrap: nowrap;
 
   @include mobile {
     flex-direction: column;
-    align-items: center;
+    align-items: flex-start;
+
     gap: $space-5;
   }
 }
 
-.logo {
-  order: 0;
+/* LOGO */
 
-  width: 64px;
-  height: 24px;
+.logo {
+  display: flex;
+  align-items: center;
+
+  padding: 0 16px;
 
   transition: transform $transition;
 
   &:hover {
     transform: scale(1.1);
   }
+}
+
+.logoImage {
+  width: 64px;
+  height: 24px;
 
   @include desktop {
     width: 80px;
     height: 28px;
   }
-
-  @include mobile {
-    align-self: flex-start;
-  }
-
-  img {
-    width: 100%;
-    height: 100%;
-
-    object-fit: contain;
-  }
 }
 
-.nav {
-  order: 1;
+/* NAVIGATION */
 
+.nav {
   display: flex;
   align-items: center;
 
   gap: $space-5;
-  flex-shrink: 1;
 
   @include tablet {
     gap: $space-4;
@@ -67,22 +74,25 @@
     flex-direction: column;
     align-items: flex-start;
 
-    gap: $space-3;
     width: 100%;
+    gap: $space-3;
   }
 }
 
-@mixin nav-link {
+.github,
+.contacts,
+.rights {
   @include body-text;
 
-  font-weight: 800;
-  font-size: 12px;
+  color: var(--text-primary);
 
+  font-size: 12px;
+  font-weight: 700;
+  line-height: 16px;
+
+  text-decoration: none;
   text-transform: uppercase;
   letter-spacing: $menu-letter-spacing;
-
-  color: var(--text-primary);
-  text-decoration: none;
 
   transition: color $transition;
 
@@ -91,35 +101,25 @@
   }
 }
 
-.github {
-  @include nav-link;
-}
-
-.contacts {
-  @include nav-link;
-}
-
-.rights {
-  @include nav-link;
-}
+/* BACK TO TOP */
 
 .backToTop {
-  order: 2;
-
   display: flex;
   align-items: center;
+  justify-content: center;
 
   gap: $space-3;
 
-  background: none;
-  border: none;
   padding: 0;
+
+  background: transparent;
+  border: none;
 
   cursor: pointer;
   flex-shrink: 0;
 
   @include mobile {
-    margin-top: $space-2;
+    align-self: center;
   }
 }
 
@@ -132,32 +132,59 @@
   letter-spacing: 0.5px;
 
   white-space: nowrap;
+
+  transition: color $transition;
 }
 
-/* ICON WRAPPER */
+.backToTop:hover .backToTopText {
+  color: var(--text-primary);
+}
+
+/* BACK TO TOP BUTTON */
 
 .backToTopIcon {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
   width: 32px;
   height: 32px;
 
-  background: var(--surface-2);
+  background-color: var(--color-secondary);
 
-  @include flex-center;
-
-  transition: all $transition;
-
-  &:hover {
-    background: var(--surface-3);
-    transform: translateY(-2px);
-  }
-
-  img {
-    width: 16px;
-    height: 16px;
-
-    object-fit: contain;
-    background: transparent;
-  }
+  transition:
+    background-color $transition,
+    transform $transition;
 }
 
+.backToTop:hover .backToTopIcon {
+  background-color: var(--color-elements);
+  transform: translateY(-2px);
+}
 
+/* BACK TO TOP ICON */
+
+.backToTopIconImage {
+  display: block;
+
+  width: 16px;
+  height: 16px;
+
+  background-color: var(--color-icons);
+
+  mask-image: url('/img/icons/Back-to-top.svg');
+  mask-repeat: no-repeat;
+  mask-position: center;
+  mask-size: contain;
+
+  -webkit-mask-image: url('/img/icons/Back-to-top.svg');
+  -webkit-mask-repeat: no-repeat;
+  -webkit-mask-position: center;
+  -webkit-mask-size: contain;
+
+  transition: background-color $transition;
+}
+
+.backToTop:hover .backToTopIconImage {
+  background-color: var(--text-primary);
+}

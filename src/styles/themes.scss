@@ -18,17 +18,17 @@
   --surface-3: #2a2d42;
 
   /* Slider */
-  --slider-btn-bg: var(--surface-2);
-  --slider-btn-hover: var(--surface-3);
+  --slider-btn-bg: var(--color-elements);
+  --slider-btn-hover: var(--color-secondary);
 
   /* Semantic */
   --color-secondary: #75767f;
   --color-elements: #3b3e4a;
   --color-icons: #4a4d58;
-  --color-red: #eb5757;
 
   /* Components */
   --favorite-color: var(--color-red);
+  --color-red: #eb5757;
 }
 
 /* Light theme */
@@ -63,4 +63,5 @@
 
   /* Components */
   --favorite-color: var(--color-red);
+  --color-red: #eb5757;
 }

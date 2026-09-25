@@ -92,20 +92,13 @@ export const CardInfo: React.FC<CardInfoProps> = ({
 
           <button
             type="button"
-            className={styles.heart}
+            className={`${styles.heart} ${isFavorite ? styles.favorite : ''}`}
             onClick={handleToggleFavorite}
             aria-label={
               isFavorite ? 'Remove from favorites' : 'Add to favorites'
             }
           >
-            <img
-              src={
-                isFavorite
-                  ? '/img/icons/FavoriteFilled.svg'
-                  : '/img/icons/FavoriteEmpty.svg'
-              }
-              alt=""
-            />
+            <span className={styles.heartIcon} />
           </button>
         </div>
       )}

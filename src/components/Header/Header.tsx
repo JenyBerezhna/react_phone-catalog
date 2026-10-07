@@ -32,8 +32,8 @@ export const Header = () => {
           <img
             src={
               theme === 'dark'
-                ? '/img/logo/Logo.svg'
-                : '/img/logo/LogoLight.svg'
+                ? './img/logo/Logo.svg'
+                : './img/logo/LogoLight.svg'
             }
             alt="Logo"
             className={styles.logoImage}
@@ -109,7 +109,7 @@ export const Header = () => {
         >
           <img
             className={styles.burgerImage}
-            src="/img/icons/Menu.svg"
+            src="./img/icons/Menu.svg"
             alt="Menu"
           />
         </button>
@@ -128,8 +128,8 @@ export const Header = () => {
                 <img
                   src={
                     theme === 'dark'
-                      ? '/img/logo/Logo.svg'
-                      : '/img/logo/LogoLight.svg'
+                      ? './img/logo/Logo.svg'
+                      : './img/logo/LogoLight.svg'
                   }
                   alt="Logo"
                   className={styles.mobileLogoImage}
@@ -143,7 +143,7 @@ export const Header = () => {
               >
                 <img
                   className={styles.closeImage}
-                  src="/img/icons/Close.svg"
+                  src="./img/icons/Close.svg"
                   alt="Close"
                 />
               </button>

@@ -15,12 +15,12 @@ export const Breadcrumbs = ({ items }: Props) => {
     <div className={styles.wrapper}>
       {/* Home icon */}
       <NavLink to="/" className={styles.iconButton} aria-label="Go to homepage">
-        <img src="/img/icons/Home.svg" alt="" />
+        <img src="./img/icons/Home.svg" alt="" />
       </NavLink>
 
       {/* Arrow after home if crumbs exist */}
       {items.length > 0 && (
-        <img src="/img/icons/ArrowRight.svg" alt="" className={styles.arrow} />
+        <img src="./img/icons/ArrowRight.svg" alt="" className={styles.arrow} />
       )}
 
       {/* Breadcrumb items */}
@@ -41,7 +41,7 @@ export const Breadcrumbs = ({ items }: Props) => {
               {/* Arrow between items */}
               {!isLast && (
                 <img
-                  src="/img/icons/ArrowRight.svg"
+                  src="./img/icons/ArrowRight.svg"
                   alt=""
                   className={styles.arrow}
                 />

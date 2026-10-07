@@ -9,7 +9,7 @@ export const BackButton = ({ className = '' }) => {
       className={`${styles.backButton} ${className}`}
       onClick={() => navigate(-1)}
     >
-      <img className={styles.icon} src="/img/icons/ArrowLeft.svg" alt="" />
+      <img className={styles.icon} src="./img/icons/ArrowLeft.svg" alt="" />
       Back
     </button>
   );

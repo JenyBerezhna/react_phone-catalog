@@ -25,7 +25,7 @@ export const CartItem: React.FC<CartItemProps> = ({
           onClick={() => remove(id)}
           aria-label={`Remove ${product.name}`}
         >
-          <img src="/img/icons/Close.svg" alt="" />
+          <img src="./img/icons/Close.svg" alt="" />
         </button>
 
         <img
@@ -45,7 +45,7 @@ export const CartItem: React.FC<CartItemProps> = ({
             onClick={() => decrease(id)}
             aria-label={`Decrease quantity of ${product.name}`}
           >
-            <img src="/img/icons/Minus.svg" alt="" />
+            <img src="./img/icons/Minus.svg" alt="" />
           </button>
 
           <span className={styles.qtyValue}>{quantity}</span>
@@ -55,7 +55,7 @@ export const CartItem: React.FC<CartItemProps> = ({
             onClick={() => increase(id)}
             aria-label={`Increase quantity of ${product.name}`}
           >
-            <img src="/img/icons/Plus.svg" alt="" />
+            <img src="./img/icons/Plus.svg" alt="" />
           </button>
         </div>
 

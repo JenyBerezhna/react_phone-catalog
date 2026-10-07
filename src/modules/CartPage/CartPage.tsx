@@ -20,7 +20,7 @@ export const CartPage = () => {
     return (
       <section className={styles.empty}>
         <img
-          src="/img/cart-is-empty.png"
+          src="./img/cart-is-empty.png"
           alt="Cart is empty"
           className={styles.emptyImage}
         />

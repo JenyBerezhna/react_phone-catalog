@@ -18,7 +18,7 @@ export const ShopByCategory = () => {
       <div className={styles.grid}>
         <CategoryCard
           title="Mobile phones"
-          image="/img/category/PhonesCategory.svg"
+          image="./img/category/PhonesCategory.svg"
           link="/phones"
           models={phonesCount}
           variant="category"
@@ -26,7 +26,7 @@ export const ShopByCategory = () => {
 
         <CategoryCard
           title="Tablets"
-          image="/img/category/TabsCategory.svg"
+          image="./img/category/TabsCategory.svg"
           link="/tablets"
           models={tabletsCount}
           variant="category"
@@ -34,7 +34,7 @@ export const ShopByCategory = () => {
 
         <CategoryCard
           title="Accessories"
-          image="/img/category/AccessoriseCategory.svg"
+          image="./img/category/AccessoriseCategory.svg"
           link="/accessories"
           models={accessoriesCount}
           variant="category"

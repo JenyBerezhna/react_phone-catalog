@@ -31,7 +31,7 @@ export const Slider: React.FC<SliderProps> = ({
             onClick={prev}
             aria-label="Previous products"
           >
-            <img src="/img/icons/ArrowLeft.svg" alt="" />
+            <img src="./img/icons/ArrowLeft.svg" alt="" />
           </button>
 
           <button
@@ -40,7 +40,7 @@ export const Slider: React.FC<SliderProps> = ({
             onClick={next}
             aria-label="Next products"
           >
-            <img src="/img/icons/ArrowRight.svg" alt="" />
+            <img src="./img/icons/ArrowRight.svg" alt="" />
           </button>
         </div>
       </div>

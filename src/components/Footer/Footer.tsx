@@ -26,8 +26,8 @@ export const Footer = () => {
           <img
             src={
               theme === 'dark'
-                ? '/img/logo/Logo.svg'
-                : '/img/logo/LogoLight.svg'
+                ? './img/logo/Logo.svg'
+                : './img/logo/LogoLight.svg'
             }
             alt="Logo"
             className={styles.logoImage}

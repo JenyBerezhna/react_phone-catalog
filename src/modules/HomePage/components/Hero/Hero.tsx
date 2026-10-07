@@ -2,9 +2,9 @@ import styles from './Hero.module.scss';
 import { useSlider } from '../../../../hooks/useBanner';
 
 const images = [
-  '/img/banners/banner-phones.jpg',
-  '/img/banners/ipads-banner-1.avif',
-  '/img/banners/banner-accessor.png',
+  './img/banners/banner-phones.jpg',
+  './img/banners/ipads-banner-1.avif',
+  './img/banners/banner-accessor.png',
 ];
 
 export const Hero = () => {
@@ -21,7 +21,7 @@ export const Hero = () => {
             aria-label="Previous slide"
           >
             <span className={styles.arrowIcon}>
-              <img src="/img/icons/ArrowLeft.svg" alt="" />
+              <img src="./img/icons/ArrowLeft.svg" alt="" />
             </span>
           </button>
 
@@ -39,7 +39,7 @@ export const Hero = () => {
             aria-label="Next slide"
           >
             <span className={styles.arrowIcon}>
-              <img src="/img/icons/ArrowRight.svg" alt="" />
+              <img src="./img/icons/ArrowRight.svg" alt="" />
             </span>
           </button>
         </div>

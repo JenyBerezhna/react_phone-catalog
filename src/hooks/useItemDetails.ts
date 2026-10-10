@@ -63,7 +63,9 @@ export const useItemDetails = (itemId: string, category: string) => {
         setLoading(true);
         setError(null);
 
-        const response = await fetch(`./api/${category}.json`);
+        const response = await fetch(
+          `${import.meta.env.BASE_URL}api/${category}.json`,
+        );
 
         if (!response.ok) {
           throw new Error('Failed to load item details');

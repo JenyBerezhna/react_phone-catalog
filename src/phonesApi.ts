@@ -1,4 +1,4 @@
-const BASE_URL = `${import.meta.env.BASE_URL}api`;
+const BASE_URL = `${import.meta.env.BASE_URL}/api/`;
 
 export const getPhones = async () => {
   const res = await fetch(`${BASE_URL}/phones.json`);

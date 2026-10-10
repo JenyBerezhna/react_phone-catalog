@@ -2,7 +2,7 @@ const BASE_URL = `${import.meta.env.BASE_URL}api`; //Use the data from `/public/
 // and images from `/public/img` folders.
 
 export const getPhones = async () => {
-  const res = await fetch(`${BASE_URL}/phones.json`);
+  const res = await fetch(`${BASE_URL}./phones.json`);
 
   if (!res.ok) {
     throw new Error('Failed to load phones');

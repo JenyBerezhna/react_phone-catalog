@@ -37,7 +37,7 @@ export const Footer = () => {
         {/* Navigation */}
         <nav className={styles.nav}>
           <a
-            href="https://github.com/JenyBerezhna/react_phone-catalog"
+            href="https://github.com/JenyBerezhna?tab=repositories"
             target="_blank"
             rel="noopener noreferrer"
             className={styles.github}
